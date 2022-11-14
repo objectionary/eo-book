@@ -1,0 +1,75 @@
+% (The MIT License)
+%
+% Copyright (c) 2021 Yegor Bugayenko
+%
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the 'Software'), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+% SOFTWARE.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ffcode}[00.00.0000 0.0.0 Fixed Font Code]
+
+\RequirePackage{xkeyval}
+
+\makeatletter
+\newif\ifffcode@nopygments
+\DeclareOptionX{nopygments}{\ffcode@nopygmentstrue}
+\newif\ifffcode@noframes
+\DeclareOptionX{noframes}{\ffcode@noframestrue}
+\newif\ifffcode@nonumbers
+\DeclareOptionX{nonumbers}{\ffcode@nonumberstrue}
+\newif\ifffcode@nocn
+\DeclareOptionX{nocn}{\ffcode@nocntrue}
+\ProcessOptionsX\relax
+\makeatother
+
+\makeatletter\ifffcode@nopygments
+  \RequirePackage[draft=true]{minted}
+\else
+  \RequirePackage{minted}
+\fi\makeatother
+\setminted{breaklines}
+\usemintedstyle{bw}
+\makeatletter\ifffcode@nonumbers
+  \newminted[ffcode]{text}{framesep=6pt,framerule=1pt,rulecolor=gray,frame=leftline,escapeinside=||,mathescape,highlightcolor=gray!30}
+\else
+  \renewcommand{\theFancyVerbLine}{\textcolor{gray}{\tiny\oldstylenums{\ttfamily\arabic{FancyVerbLine}}}}
+  \ifffcode@nocn
+    \newminted[ffcode]{text}{linenos,numbersep=2pt,framesep=6pt,framerule=1pt,highlightcolor=gray!30,rulecolor=gray,frame=leftline,escapeinside=||,mathescape}
+  \else
+    \newminted[ffcode]{text}{firstnumber=last,linenos,numbersep=2pt,framesep=6pt,framerule=1pt,highlightcolor=gray!30,rulecolor=gray,frame=leftline,escapeinside=||,mathescape}
+  \fi
+\fi\makeatother
+
+\makeatletter
+\newcommand\ffcode@print{\begingroup\obeyspaces\ffcode@printx}
+\newcommand\ffcode@printx[1]{\texttt{#1}\endgroup}
+\makeatother
+
+\makeatletter\newcommand\ffcode@rule{\vrule height 6pt depth 1pt width 0pt}
+\makeatletter\ifffcode@noframes
+  \newcommand\ff[1]{\ffcode@rule\ffcode@print{#1}}
+\else
+  \RequirePackage{tcolorbox}
+    \newtcbox\ffcode@box{nobeforeafter,colframe=gray!80!white,
+    colback=gray!5!white,boxrule=0.1pt,arc=1pt,
+    boxsep=1.2pt,left=0.5pt,right=0.5pt,top=0.2pt,bottom=0.2pt,
+    tcbox raise base}
+  \newcommand\ff[1]{\ffcode@box{\ffcode@rule\ffcode@print{#1}}}
+\fi\makeatother
+
+\endinput

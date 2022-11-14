@@ -1,0 +1,6 @@
+_minted-book/
+*.aux
+*.log
+*.out
+*.synctex*
+*.toc
