@@ -2747,51 +2747,10 @@ We surely may reproduce the similar technique of capturing the lexical scope in 
 \end{ffcode}
 
 \section{Summary about patterns}
+
 It is possible to conclude that (1) EO is principally applicable to all the considered patterns; (2) For some patterns, EO is able to give a fairly concise and intuitively clear code, since the language combines the features of Functional Programming and OOP; (3) the issues of effective implementation of patterns on EO are largely determined by the characteristics of the environment (IDE + compiler) and today remain open.
 
 Also, EO has no local variables or any kind of stack-lifetime storage. Instead, any name refers to an object (stored in heap) that may be accessed through the scope of any other object via the dot-notation mechanism. Even anonymous objects may allow programmers to access its local scope (including parent and decoration hierarchies) freely. In addition, EO has no access modification instruments. This makes closures technique almost similar to the partial application mechanism. Moreover, the publicity of any attribute of any object makes encapsulation impossible in the language. This differentiates EO from functional programming languages and, also, from object-oriented languages. Absence of instruments of access modification (or simulation of it) may be a severe violation of object-oriented principle of encapsulation, which may lead to insecure environments breaking business logic of problem domains.
 
 EO is fundamentally applicable to all the patterns considered. 2) For some patterns, EO is able to give a fairly concise and intuitively clear code, since the language combines the features of Functional Program (FP) and OOP. 3) the issues of effective implementation of patterns on EO are largely determined by the characteristics of the environment (IDE + compiler).
 
-\chapter{References}
-\section{Opportunities}
-JPeek : This module was built into the pipeline of the JPeek tool, which we now call, EO-JPeek.
-\url{https://github.com/HSE-Eolang/eo-jpeek}
-
-Algorithms implementation: ( Dijkstra; Prim; Kruskal; Ford-Falkerson ), is it possible to implement hard enough algorithms with EO? Would EO manage big enough input data? May EO code be functional and useful, yet idiomatic? We tried to address these questions in this work.
-\url{https://github.com/polystat/eo-graphs}
-
-Design Patterns: This is to help better assess the EO programming language and suggest alternatives of design patterns in EO that could replace such patterns which are not supported in the language. This repository contains descriptions and EO implementation of some popular software design patterns.
-\url{https://github.com/HSE-Eolang/eodesignpatterns}
-
-Simple Tutorial: With a help of this repository you will get familiar with EO programming. Moreover, this repository has the documentation on the language and its standard library.
-\url{https://github.com/HSE-Eolang/eo_labs}
-
-
-The EO sandbox with examples: This repository contains the examples of EO programs with description.
-\url{https://github.com/cqfn/eo/tree/master/sandbox/hse}
-
-\section{Contacts}
-Hadi Saleh: 
-\url{https://www.hse.ru/staff/hadisaleh}
-mail: hsalekh@hse.ru
-
-
-Alexander Legalov:
-\url{https://www.hse.ru/org/persons/407667114}
-mail: alegalov@hse.ru
-
-
-Sergey Zykov:
-\url{https://www.hse.ru/org/persons/3468544}
-mail: szykov@hse.ru
-
-Eugene Popov:
-mail: gluttonous.pumpkin@gmail.com
-
-Vitaliy Korzun:
-mail: aventador3000@gmail.com
-
-Joseph Attakorah 
-mail: juxluvjoe@gmail.com
-\end{document}
