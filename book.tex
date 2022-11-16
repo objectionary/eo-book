@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage[tt=false, type1=true]{libertine}
-\usepackage[nonumbers]{ffcode}
+\usepackage[nonumbers,novert]{ffcode}
 \usepackage{to-be-determined}
 \usepackage{href-ul}
 \usepackage{graphicx}
@@ -434,15 +434,15 @@ It is important to remember that each EO program must be ended with a new line w
 
 \section{Data Type Objects}
 
-The EO Programming Language and The EO Standard Object Collection defines these data type objects: \texttt{bytes}, \texttt{bool}, \texttt{int}, \texttt{float}, \texttt{string}. All of them have \texttt{as-bytes} attribute, which is an abstraction of their representation as a sequence of bytes.
-All primitives also have \texttt{as-hash} attribute, which, being an \texttt{int}, is their own implementation of a hash function. They also have \texttt{eq} attribute, which is \texttt{TRUE} if the primitive is equal to another object, through the use of \texttt{ˆ.as-bytes.eq}
+The EO Programming Language and The EO Standard Object Collection defines these data type objects: \ff{bytes}, \ff{bool}, \ff{int}, \ff{float}, \ff{string}. All of them have \ff{as-bytes} attribute, which is an abstraction of their representation as a sequence of bytes.
+All primitives also have \ff{as-hash} attribute, which, being an \ff{int}, is their own implementation of a hash function. They also have \ff{eq} attribute, which is \ff{TRUE} if the primitive is equal to another object, through the use of \ff{ˆ.as-bytes.eq}
 
 \section{bytes Data Type Object}
-The \texttt{bytes} data type object represents an abstraction of an sequence of bytes and can be empty or contain an theoretically unlimited number of bytes.
-Fully Qualified Name: \texttt{org.eolang.bytes} (no aliasing or FQN reference required since the object is automatically imported).
+The \ff{bytes} data type object represents an abstraction of an sequence of bytes and can be empty or contain an theoretically unlimited number of bytes.
+Fully Qualified Name: \ff{org.eolang.bytes} (no aliasing or FQN reference required since the object is automatically imported).
 
 \subsection{Syntax}
-The \texttt{bytes} data type object may be parsed by the EO compiler directly from the source code. The syntax rules for \texttt{bytes} values are as follows.
+The \ff{bytes} data type object may be parsed by the EO compiler directly from the source code. The syntax rules for \ff{bytes} values are as follows.
 EBNF Notation:
 \begin{ffcode}
     BYTES   ::= BYTE ( ‘-’ BYTE ) | ‘--’
@@ -471,8 +471,8 @@ IN$:
 \subsection{bytes Attributes}
 
 \subsubsection{as-\textit{type} Attribute}
-The object \texttt{bytes} has these four attributes, to turn itself into one of four primitive data objects: \texttt{as-int}, \texttt{as-bool}, \texttt{as-float}, and \texttt{as-string}. 
-The attribute \texttt{as-int} expects the size of the sequence to be less or equal to eight. The attribute \texttt{as-bool} is \texttt{FALSE} only if all bytes equal to zero. The attribute \texttt{as-float} expects exactly eight bytes.
+The object \ff{bytes} has these four attributes, to turn itself into one of four primitive data objects: \ff{as-int}, \ff{as-bool}, \ff{as-float}, and \ff{as-string}.
+The attribute \ff{as-int} expects the size of the sequence to be less or equal to eight. The attribute \ff{as-bool} is \ff{FALSE} only if all bytes equal to zero. The attribute \ff{as-float} expects exactly eight bytes.
 
 Example
 \begin{ffcode}
@@ -500,8 +500,8 @@ IN$:
 \end{ffcode}
 
 \subsubsection{eq Attribute}
-The \texttt{eq} attribute object is used for testing if two bytes objects are equal. The \texttt{eq} attribute object has one free attribute of type \texttt{bytes} that is the second object (the first object is the base object of the \texttt{eq} attribute).
-If the \texttt{eq} attribute object is applied, it represents the result of the equality test (either true (if the objects are equal) or false (otherwise)).
+The \ff{eq} attribute object is used for testing if two bytes objects are equal. The \ff{eq} attribute object has one free attribute of type \ff{bytes} that is the second object (the first object is the base object of the \ff{eq} attribute).
+If the \ff{eq} attribute object is applied, it represents the result of the equality test (either true (if the objects are equal) or false (otherwise)).
 
 Example
 \begin{ffcode}
@@ -525,7 +525,7 @@ IN$:
 \end{ffcode}
 
 \subsubsection{and, or, xor Attributes}
-Attributes objects \texttt{and}, \texttt{or}, \texttt{xor} are used for the bitwise operation of the same name. These attributes objects has one free attribute of type \texttt{bytes} that is the second object (the first object is the base object of these attributes).
+Attributes objects \ff{and}, \ff{or}, \ff{xor} are used for the bitwise operation of the same name. These attributes objects has one free attribute of type \ff{bytes} that is the second object (the first object is the base object of these attributes).
 
 Example
 \begin{ffcode}
@@ -557,7 +557,7 @@ IN$:
 \end{ffcode}
 
 \subsubsection{not Attributes}
-The \texttt{not} attribute object is used for the bitwise operation of the same name. This attribute object has no free attributes.
+The \ff{not} attribute object is used for the bitwise operation of the same name. This attribute object has no free attributes.
 
 Example
 \begin{ffcode}
@@ -581,7 +581,7 @@ IN$:
 \end{ffcode}
 
 \subsubsection{left, right Attributes}
-Attributes objects \texttt{left}, \texttt{right} are used for left and right bitwise shift. This attributes objects has one free attribute of type \texttt{int} that is the second object (the first object is the base object of these attributes). This free attribute specifies how many bits to shift.
+Attributes objects \ff{left}, \ff{right} are used for left and right bitwise shift. This attributes objects has one free attribute of type \ff{int} that is the second object (the first object is the base object of these attributes). This free attribute specifies how many bits to shift.
 
 Example
 \begin{ffcode}
@@ -609,7 +609,7 @@ IN$:
 \end{ffcode}
 
 \subsubsection{size Attribute}
-The \texttt{size} attribute object is used to find out the total number of bytes in the bytes sequence. This attribute object has no free attributes.
+The \ff{size} attribute object is used to find out the total number of bytes in the bytes sequence. This attribute object has no free attributes.
 
 Example
 \begin{ffcode}
@@ -631,7 +631,7 @@ IN$:
 \end{ffcode}
 
 \subsubsection{slice Attribute}
-The \texttt{slice} attribute object is used to represents a bytes sub-sequence inside the current one. This attribute object has two free attributes of type \texttt{int}. The first attribute is the number of the element from which the sub-sequence starts, the second - at which the sub-sequence ends (included)
+The \ff{slice} attribute object is used to represents a bytes sub-sequence inside the current one. This attribute object has two free attributes of type \ff{int}. The first attribute is the number of the element from which the sub-sequence starts, the second - at which the sub-sequence ends (included)
 
 Example
 \begin{ffcode}
@@ -654,7 +654,7 @@ IN$:
 \end{ffcode}
 
 \subsubsection{concat Attribute}
-The \texttt{concat} attribute object is used to make a new sequence, which is a concatenation of two byte sequences: the current and the provided one. This attribute object has one free attribute of type \texttt{bytes}. This free attribute provides a sequence of bytes to concatenate.
+The \ff{concat} attribute object is used to make a new sequence, which is a concatenation of two byte sequences: the current and the provided one. This attribute object has one free attribute of type \ff{bytes}. This free attribute provides a sequence of bytes to concatenate.
 
 Example
 \begin{ffcode}
@@ -717,8 +717,8 @@ IN$:
 The if attribute object is used for value substitution based on a condition that can be evaluated as a bool object.
 The if attribute object has two free attributes:
 
-\texttt{t} for the substitution if the base bool object is true.
-\texttt{f} for the substitution if the base bool object is false.
+\ff{t} for the substitution if the base bool object is true.
+\ff{f} for the substitution if the base bool object is false.
 If the if attribute object is fully applied, it represents the corresponding substitution value.
 
 Example
@@ -1604,11 +1604,11 @@ The object org.eolang.collections.list is a decorator of org.eolang.array. So th
 The reduce attribute object is used to perform the reduction operation of its base list object. The reduction is a process of accumulating a set of objects into one aggregated object.
 The reduce attribute object has two free attributes:
 
-\texttt{a} for the initial value of the accumulator.
-\texttt{f} for the object that represents the reduction function. It must have two free attributes:
+\ff{a} for the initial value of the accumulator.
+\ff{f} for the object that represents the reduction function. It must have two free attributes:
 The first attribute is the current value of the accumulator.
 The second attribute is the current object of the array.
-The \texttt{f} attribute object aggregates the objects of the array in the accumulator. Objects of the array arrive into the \texttt{f} in the order these objects are stored in the array.
+The \ff{f} attribute object aggregates the objects of the array in the accumulator. Objects of the array arrive into the \ff{f} in the order these objects are stored in the array.
 When applied, the reduce attribute object represents the resulting reduced accumulator object.
 
 Example
