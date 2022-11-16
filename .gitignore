@@ -4,6 +4,6 @@ _minted-book/
 *.out
 *.synctex*
 *.toc
-*.pdf
+book.pdf
 *.fls
 *.fdb_latexmk
