@@ -27,76 +27,50 @@ The first programming languages appeared relatively recently: various researcher
 
 As you might expect, the first programming languages, like the first computers, were quite primitive and focused on numerical calculations. These were purely theoretical scientific calculations (primarily mathematical and physical), and applied problems, in particular in the field of military affairs. Programs written in early programming languages were linear sequences of elementary operations with registers in which data was stored.
 
-It should be noted that early programming languages were optimized for the hardware architecture of the particular computer for which they were intended, and  although they provided high computing efficiency, standardization was still a long way off. A program that was quite workable on one computer often could not be executed on another.
-
-Thus, the early programming languages depended significantly on what is called the computing environment, and roughly corresponded to modern machine code or assembly languages.
+It should be noted that early programming languages were optimized for the hardware architecture of the particular computer for which they were intended, and  although they provided high computing efficiency, standardization was still a long way off. A program that was quite workable on one computer often could not be executed on another. Thus, the early programming languages depended significantly on what is called the computing environment, and roughly corresponded to modern machine code or assembly languages.
 
 The 1950s were marked by the emergence of programming languages of the so-called "high level", in comparison with the previously considered predecessors, respectively called low-level languages. At the same time, the difference lies in increasing the efficiency of developers' work by abstracting or distracting from specific hardware parts. One instruction (operator) of a high language the level corresponded to a sequence of several low-level instructions, or commands. Based on the fact that the program, in fact, was a set of directives addressed to the computer, this approach to programming was called imperative.
 
-Another feature of high-level languages was the ability to reuse previously written program blocks that perform certain actions, through their identification and subsequent access to them, for example, by name. Such blocks are called functions or procedures, and programming has become more orderly. In addition, with the advent of high-level languages, the dependence of implementation on hardware has significantly decreased. The price for this was the emergence of specialized programs that convert the instructions of the emerging languages into the codes of a particular machine, or translators, as well as some loss in the speed of calculations, which, however, was compensated by a significant gain in the speed of application development and the unification of program code.
+Another feature of high-level languages was the ability to reuse previously written program blocks that perform certain actions, through their identification and subsequent access to them, for example, by name. Such blocks are called functions or procedures, and programming has become more orderly. In addition, with the advent of high-level languages, the dependence of implementation on hardware has significantly decreased. The price for this was the emergence of specialized programs that convert the instructions of the emerging languages into the codes of a particular machine, or translators, as well as some loss in the speed of calculations, which, however, was compensated by a significant gain in the speed of application development and the unification of program code. It is worth noting that the operators and keywords of the new programming languages were more meaningful than the faceless digital sequences of codes, which also provided an increase in the productivity of programmers.
 
-It is worth noting that the operators and keywords of the new programming languages were more meaningful than the faceless digital sequences of codes, which also provided an increase in the productivity of programmers.
-
-Naturally, learning new programming languages required significant time and money, and the efficiency of implementation on the previous hardware capabilities decreased. However, these difficulties were temporary, and, as the practice of programming showed, many of the first high-level languages were so successfully implemented that they are actively used today. One such example is the Fortran language, which implements computational algorithms. Another example is the APL language, which transformed into BPL and then into C. The basic constructions of the latter have remained unchanged for several decades and are present, for example, in the C-sharp language.
-
-Examples of other programming languages are ALGOL, COBOL, Pascal, and Basic.
+Naturally, learning new programming languages required significant time and money, and the efficiency of implementation on the previous hardware capabilities decreased. However, these difficulties were temporary, and, as the practice of programming showed, many of the first high-level languages were so successfully implemented that they are actively used today. One such example is the Fortran language, which implements computational algorithms. Another example is the APL language, which transformed into BPL and then into C. The basic constructions of the latter have remained unchanged for several decades and are present, for example, in the C-sharp language. Examples of other programming languages are ALGOL, COBOL, Pascal, and Basic.
 
 In the 1960s, a new approach to programming emerged, which still successfully competes with the imperative approach: the declarative approach. Its essence lies in the fact that the program is not a set of commands, but a description of the actions that need to be performed. This approach, as we will see later, is much simpler and more transparent formalized by mathematical means. Hence the fact that it is easier to check programs for errors (validation), as well as for compliance with a given technical specification (verification).
 
 A high degree of abstraction is also an advantage of this approach. In fact, the programmer does not operate with a set of instructions, but with abstract concepts that can be quite generalized. At the initial stage of development, declarative programming languages found it difficult to compete with imperative ones due to objective difficulties in creating an effective implementation of translators. Programs ran slower, but they could solve more abstract problems with less effort.
 
-One of the ways to develop a declarative style of programming was the functional approach that arose with the advent and development of the LISP language, with which the EO language discussed below is in many respects similar. A distinctive feature of this approach is the fact that any program written in such a language can be interpreted as a function with one or more arguments. This approach makes it possible to transparently model the text of programs by mathematical means, which means that it is very interesting from a theoretical point of view.
+One of the ways to develop a declarative style of programming was the functional approach that arose with the advent and development of the LISP language, with which the EO language discussed below is in many respects similar. A distinctive feature of this approach is the fact that any program written in such a language can be interpreted as a function with one or more arguments. This approach makes it possible to transparently model the text of programs by mathematical means, which means that it is very interesting from a theoretical point of view. 
 
-Complex programs with this approach are built by aggregation of functions. In this case, the text of the program is a function, some arguments of which can also be considered as functions.
+Complex programs with this approach are built by aggregation of functions. In this case, the text of the program is a function, some arguments of which can also be considered as functions. Thus, the reuse of code is reduced to calling the previously described function, the structure of which, unlike the procedure of the imperative language, is mathematically transparent. Moreover, the types of individual functions used in functional languages can be variable. Thus, it is possible to process heterogeneous data (for example, ordering list items in ascending order for integers, individual characters and strings), or polymorphism.
 
-Thus, the reuse of code is reduced to calling the previously described function, the structure of which, unlike the procedure of the imperative language, is mathematically transparent. Moreover, the types of individual functions used in functional languages can be variable. Thus, it is possible to process heterogeneous data (for example, ordering list items in ascending order for integers, individual characters and strings), or polymorphism.
+Another important advantage of implementing functional programming languages is the automated dynamic allocation of computer memory for data storage. At the same time, the programmer gets rid of the routine duty to control the data, and if necessary, can run the function of "garbage collection" - cleaning the memory from those data that the program no longer needs (usually this process is periodically initiated by the computer). Thus, when creating programs in functional languages, the developer of the programmer focuses on the field of research (subject area) and to a lesser extent cares about routine operations (ensuring the correct presentation of data from the point of view of the computer, "garbage collection", etc.).
 
-Another important advantage of implementing functional programming languages is the automated dynamic allocation of computer memory for data storage. At the same time, the programmer gets rid of the routine duty to control the data, and if necessary, can run the function of "garbage collection" - cleaning the memory from those data that the program no longer needs (usually this process is periodically initiated by the computer).
+Since function is a natural formalism for functional programming languages, the implementation of various aspects of programming related to functions is greatly simplified. In particular, it becomes intuitively transparent to write recursive functions, i.e.  functions that call themselves as an argument. 
 
-Thus, when creating programs in functional languages, the developer of the programmer focuses on the field of research (subject area) and to a lesser extent cares about routine operations (ensuring the correct presentation of data from the point of view of the computer, "garbage collection", etc.).
-
-Since function is a natural formalism for functional programming languages, the implementation of various aspects of programming related to functions is greatly simplified.
-
-In particular, it becomes intuitively transparent to write recursive functions, i.e.  functions that call themselves as an argument.
-
-In addition, it becomes natural to implement the processing of recursive data structures (for example, lists - basic elements, say, for the LISP family of languages, trees, etc.).
-
-By implementing a pattern mapping mechanism, languages such as ML and Haskellare very well applicable for character processing.
-
-Examples of functional programming languages in addition to the mentioned LISP, ML, Haskell  are also SML, as well as F-sharp.
+In addition, it becomes natural to implement the processing of recursive data structures (for example, lists - basic elements, say, for the LISP family of languages, trees, etc.). By implementing a pattern mapping mechanism, languages such as ML and Haskellare very well applicable for character processing. Examples of functional programming languages in addition to the mentioned LISP, ML, Haskell  are also SML, as well as F-sharp.
 
 In the 1970s, another branch of declarative programming languages related to projects in the field of artificial intelligence, namely logical programming languages, arose. According to the logical approach to programming, a program is a set of rules or logical statements. In addition, logical cause-and-effect relationships are allowed in the program, in particular on the basis of an implication operation. Thus, logical programming languages are based on classical logic and are applicable to logical inference systems, in particular for so-called expert systems. Logical programming languages naturally formalize behavioral logic, and they are applicable to descriptions of decision-making rules, for example, in systems focused on supporting business processes.
 
 An important advantage of the approach is a sufficiently high level of machine independence, as well as the possibility of rollbacks - a return to the previous sub-goal with a negative result of the analysis of one of the options in the process of finding a solution (say, the next move when playing chess), which eliminates the need to find a solution by a complete search of options and increases the efficiency of implementation.
 
-One of the disadvantages of the logical approach in conceptual terms is the specificity of the class of problems to be solved. Another practical flaw is the difficulty of effective implementation for real-time decision-making, say for life support systems.
-
-The nonlinearity of the program structure is a common feature of the declarative approach and, strictly speaking, an original characteristic, not an objective drawback.
-
-Examples of logical programming languages include Prolog  (the name comes from the words  PROgramming  in  LOGic)andMercury.
+One of the disadvantages of the logical approach in conceptual terms is the specificity of the class of problems to be solved. Another practical flaw is the difficulty of effective implementation for real-time decision-making, say for life support systems. The nonlinearity of the program structure is a common feature of the declarative approach and, strictly speaking, an original characteristic, not an objective drawback. Examples of logical programming languages include Prolog  (the name comes from the words  PROgramming  in  LOGic)andMercury.
 
 An important step towards the improvement of programming languages was the emergence of an object-oriented approach to programming and a corresponding class of languages. Within the framework of this approach, the program is a description of objects, their properties (or attributes), aggregates (or classes), relations between them, methods their interactions and operations on objects (or methods). The undoubted advantage of this approach is the conceptual proximity to the subject area of arbitrary structure and purpose. The mechanism of inheritance of attributes and methods allows you to build derived concepts on the basis of basic ones and thus create models arbitrarily complex subject area with specified properties.
 
 Another theoretically interesting and practically important property of the object-oriented approach is the support of the mechanism for processing events that change the attributes of objects and simulate their interaction in the subject area. Moving through the hierarchy of classes from more general concepts of the subject area to more specific (or from more complex to simpler) and vice versa, the programmer gets the ability to change the degree of abstraction or concreteness of the view of the real world it models.
 
-The use of previously developed (perhaps other teams of programmers) libraries of objects and methods can significantly save labor costs in the production of software, especially typical.
-
-Objects, classes, and methods can be polymorphic, making the implemented software more flexible and versatile.
+The use of previously developed (perhaps other teams of programmers) libraries of objects and methods can significantly save labor costs in the production of software, especially typical. Objects, classes, and methods can be polymorphic, making the implemented software more flexible and versatile.
 
 The complexity of adequate (consistent and complete) formalization of object theory gives rise to difficulties in testing and verification of the created software. Perhaps this circumstance is one of the most significant drawbacks of the object-oriented approach to programming.
 The most famous example of an object-oriented programming language is C++, which developed from the imperative language C. The EO language discussed below also has certain features of object-oriented, as evidenced by its name (EO - Elegant  Objects).
 The development of the event-controlled concept of the object-oriented approach was the emergence in the 1990s of a whole class of programming languages, which were called scripting languages, or scripts.
 
-Within the framework of this approach, the program is a set of possible data processing scenarios, the choice of which is initiated by the occurrence of an event (clicking on the mouse button, hitting the cursor in a particular position, changing the attributes of an object, overflowing the memory buffer, etc.).Events can be initiated by both the operating system (in particular, Windows) and the user.
+Within the framework of this approach, the program is a set of possible data processing scenarios, the choice of which is initiated by the occurrence of an event (clicking on the mouse button, hitting the cursor in a particular position, changing the attributes of an object, overflowing the memory buffer, etc.). Events can be initiated by both the operating system (in particular, Windows) and the user.
 
 The main advantages of the languages of this class are inherited from object-oriented programming languages. This is intuitive clarity of descriptions, proximity to the subject area, a high degree of abstraction, good portability. The extensive reusability of code is also inherited by scripting languages from object-oriented ancestors.
-An essential positive feature of scripting languages is their compatibility with advanced tools for computer-aided design and rapid implementation of software, or the so-called CASE-(Computer-Aided  Software Engineering) and RAD- (Rapid  Application Development) tools.
+An essential positive feature of scripting languages is their compatibility with advanced tools for computer-aided design and rapid implementation of software, or the so-called CASE - (Computer-Aided  Software Engineering) and RAD - (Rapid  Application Development) tools. One of the most advanced tools for computer-aided design and application development is Microsoft Visual Studio .NET.
 
-One of the most advanced tools for computer-aided design and application development is Microsoft Visual Studio .NET.
-
-Naturally, along with the advantages of the object-oriented approach, scripting languages inherited a number of shortcomings. The latter primarily include the complexity of testing and verification of programs and the possibility of multiple side effects occurring during operation, manifested due to the complex nature of the interaction of objects and the environment, represented by interfaces. 
-
-At the heart of the concept of the EO language is the potential minimization of these negative side effects. Examples of scripted programming languages are JavaScript and  VBScript.
+Naturally, along with the advantages of the object-oriented approach, scripting languages inherited a number of shortcomings. The latter primarily include the complexity of testing and verification of programs and the possibility of multiple side effects occurring during operation, manifested due to the complex nature of the interaction of objects and the environment, represented by interfaces. At the heart of the concept of the EO language is the potential minimization of these negative side effects. Examples of scripted programming languages are JavaScript and  VBScript.
 
 Another very important class of programming languages are parallel computing support languages. Programs written in these languages are a collection of descriptions of processes that can be executed both in reality simultaneously and in pseudo-parallel mode. In the latter case, the device, processing processes, operates in a time-sharing mode, allocating time to process the data coming from the processes as needed (and sometimes taking into account the sequence or priority of operations).
 
@@ -105,20 +79,21 @@ Parallel computing languages allow you to achieve a noticeable gain in efficienc
 Another very significant area of application of parallel computing languages is real-time systems, in which the user needs to receive a response from the system immediately after the request. Systems of this kind are responsible, in particular, for life support and responsible decision-making.
 
 The reverse side of the advantages of the class of programming languages under consideration is the high cost of software development, and therefore, the development of relatively small programs for a wide (for example, household purposes) is often unprofitable.
-Examples of programming languages that support parallel computing include Ada,Modula-2, and  Oz.
+Examples of programming languages that support parallel computing include Ada, Modula-2, and Oz.
 
 So, we have covered the  history and evolution of programming languages  and the main approaches to the development of software systems. An attempt is made to classify languages and approaches to programming, as well as an analysis of the advantages and disadvantages inherent in certain approaches and languages. Note that the above classification should not be considered the only true and absolute, since programming languages are constantly evolving and improving, and recent shortcomings are eliminated with the advent of the necessary tools or theoretical justifications (such as phi-calculus).
-
+\\
+\\
 Summing up, we briefly list the considered approaches to programming:
 \begin{itemize}
-    \item Early non-structural approaches;
+    \item early non-structural approaches;
     \item structural or modular approach (the task is divided into subtasks, then into algorithms, their structural diagrams are drawn up and implementation occurs);
     \item functional  approach;
     \item logical approach;
     \item object-oriented approach;
     \item mixed approach (some approaches can be combined);
     \item component-oriented (the software project is considered as a set of components, this approach is adopted, in particular, in Oracle Java and Microsoft .NET);
-    \item A purely object approach (a mathematically ideal variant that has not yet been implemented practically, but certain fragments are conceptually presented in the EO language discussed below).
+    \item a purely object approach (a mathematically ideal variant that has not yet been implemented practically, but certain fragments are conceptually presented in the EO language discussed below).
 \end{itemize}
 
 
@@ -2158,45 +2133,45 @@ Provides an interface for creating families of interconnected or interdependent 
 
 \subsubsection{Implementation}
 \begin{ffcode}
-1.	+package sandbox
-2.	+alias stdout org.eolang.io.stdout
-3.	+alias sprintf org.eolang.txt.sprintf
-4.	
-5.	[type] > abstractFactory
-6.	  if. > concreteFactory
-7.	    eq.
-8.	      type
-9.	      "1"
-10.	    concreteFactory1
-11.	    concreteFactory2
-12.	
-13.	  [] > createProductA
-14.	    createProductA. > @
-15.	      ^.concreteFactory
-16.	  [] > createProductB
-17.	    createProductB. > @
-18.	      ^.concreteFactory
-19.	
-20.	[] > concreteFactory1
-21.	  [] > createProductA
-22.	    1 > @
-23.	  [] > createProductB
-24.	    2 > @
-25.	
-26.	[] > concreteFactory2
-27.	  [] > createProductA
-28.	    "one" > @
-29.	  [] > createProductB
-30.	    "two" > @
-31.	
-32.	[args...] > appAbstractFactory
-33.	  abstractFactory > objFactory
-34.	    args.at 0
-35.	  stdout > @
-36.	    sprintf
-37.	      "ProductA: %s\nProductB: %s\n"
-38.	      objFactory.createProductA
-39.	      objFactory.createProductB 
+1.  +package sandbox
+2.  +alias stdout org.eolang.io.stdout
+3.  +alias sprintf org.eolang.txt.sprintf
+4.  
+5.  [type] > abstractFactory
+6.    if. > concreteFactory
+7.      eq.
+8.        type
+9.        "1"
+10.     concreteFactory1
+11.     concreteFactory2
+12. 
+13.   [] > createProductA
+14.     createProductA. > @
+15.       ^.concreteFactory
+16.   [] > createProductB
+17.     createProductB. > @
+18.       ^.concreteFactory
+19. 
+20. [] > concreteFactory1
+21.   [] > createProductA
+22.     1 > @
+23.   [] > createProductB
+24.     2 > @
+25. 
+26. [] > concreteFactory2
+27.   [] > createProductA
+28.     "one" > @
+29.   [] > createProductB
+30.     "two" > @
+31. 
+32. [args...] > appAbstractFactory
+33.   abstractFactory > objFactory
+34.     args.at 0
+35.   stdout > @
+36.     sprintf
+37.       "ProductA: %s\nProductB: %s\n"
+38.       objFactory.createProductA
+39.       objFactory.createProductB 
 
 \end{ffcode}
 
@@ -2295,57 +2270,57 @@ A request initiated by a client is moved along the chain until some ConcreteHand
 
 \subsubsection{Implementation}
 \begin{ffcode}
-1.	+package sandbox
-2.	+alias stdout org.eolang.io.stdout
-3.	+alias sprintf org.eolang.txt.sprintf
-4.	
-5.	[nextHandler] > defaultHandler
-6.	  [message] > process
-7.	    "" > @
-8.	
-9.	[] > handler1
-10.	  [message] > process
-11.	    if. > @
-12.	      message.eq "1"
-13.	      "one"
-14.	      ^.nextHandler.process message
-15.	  defaultHandler > @
-16.	    handler2
-17.	
-18.	[] > handler2
-19.	  [message] > process
-20.	    if. > @
-21.	      message.eq "2"
-22.	      "two"
-23.	      ^.nextHandler.process message
-24.	  defaultHandler > @
-25.	    handler3
-26.	
-27.	[] > handler3
-28.	  [message] > process
-29.	    if. > @
-30.	      message.eq "3"
-31.	      "three"
-32.	      ^.nextHandler.process message
-33.	  defaultHandler > @
-34.	    handler4
-35.	
-36.	[] > handler4
-37.	  [message] > process
-38.	    if. > @
-39.	      message.eq "4"
-40.	      "four"
-41.	      ^.nextHandler.process message
-42.	  defaultHandler > @
-43.	    defaultHandler
-44.	
-45.	[args...] > appChain
-46.	  handler1 > hChain
-47.	  stdout > @
-48.	    sprintf
-49.	      "%s\n"
-50.	      hChain.process
-51.	        args.at 0 
+1.  +package sandbox
+2.  +alias stdout org.eolang.io.stdout
+3.  +alias sprintf org.eolang.txt.sprintf
+4.  
+5.  [nextHandler] > defaultHandler
+6.    [message] > process
+7.      "" > @
+8.  
+9.  [] > handler1
+10.   [message] > process
+11.     if. > @
+12.       message.eq "1"
+13.       "one"
+14.       ^.nextHandler.process message
+15.   defaultHandler > @
+16.     handler2
+17. 
+18. [] > handler2
+19.   [message] > process
+20.     if. > @
+21.       message.eq "2"
+22.       "two"
+23.       ^.nextHandler.process message
+24.   defaultHandler > @
+25.     handler3
+26. 
+27. [] > handler3
+28.   [message] > process
+29.     if. > @
+30.       message.eq "3"
+31.       "three"
+32.       ^.nextHandler.process message
+33.   defaultHandler > @
+34.     handler4
+35. 
+36. [] > handler4
+37.   [message] > process
+38.     if. > @
+39.       message.eq "4"
+40.       "four"
+41.       ^.nextHandler.process message
+42.   defaultHandler > @
+43.     defaultHandler
+44. 
+45. [args...] > appChain
+46.   handler1 > hChain
+47.   stdout > @
+48.     sprintf
+49.       "%s\n"
+50.       hChain.process
+51.         args.at 0 
 
 \end{ffcode}
 
@@ -2361,7 +2336,7 @@ Encapsulates a query in an object, thereby allowing clients to be parameterized 
 \subsubsection{Participants}
 \begin{enumerate}
     \item - Command — command: declares the interface to perform the operation.
-    \item -	ConcreteCommand is a specific  team: defines the relationship between the Receiver receiving object and the action; implements the Execute operation by calling the corresponding operations of the  Receiverobject.
+    \item - ConcreteCommand is a specific  team: defines the relationship between the Receiver receiving object and the action; implements the Execute operation by calling the corresponding operations of the  Receiverobject.
     \item — Client— client: Creates a ConcreteCommand class object and sets its recipient.
     \item - Invoker— initiator: calls the command to execute the request.
     \item - Receiver  — recipient: has information about how to perform the operations necessary to meet the request. Any class can act as a recipient.
@@ -2392,22 +2367,22 @@ In Eolang, the concept of null does not exist as every object is meant to dataiz
 
 \subsubsection{Implementation}
 \begin{ffcode}
-1.	+package sandbox
-2.	+alias stdout org.eolang.io.stdout
-3.	+alias sprintf org.eolang.txt.sprintf
-4.	+alias list org.eolang.collections.list
-5.	
-6.	[] > null
-7.	  "null" > @
-8.	
-9.	[args...] > appNull
-10.	  stdout > @
-11.	    sprintf
-12.	      "%s\n"
-13.	      if.
-14.	        (list args).is-empty
-15.	        null
-16.	        args.at 0 
+1.  +package sandbox
+2.  +alias stdout org.eolang.io.stdout
+3.  +alias sprintf org.eolang.txt.sprintf
+4.  +alias list org.eolang.collections.list
+5.  
+6.  [] > null
+7.    "null" > @
+8.  
+9.  [args...] > appNull
+10.   stdout > @
+11.     sprintf
+12.       "%s\n"
+13.       if.
+14.         (list args).is-empty
+15.         null
+16.         args.at 0 
 
 \end{ffcode}
 
@@ -2431,29 +2406,29 @@ In Eolang, a copy of an object can be made, and new functionality be added. Here
 
 \subsubsection{Implementation}
 \begin{ffcode}
-1.	+package sandbox
-2.	+alias stdout org.eolang.io.stdout
-3.	+alias sprintf org.eolang.txt.sprintf
-4.	+alias text org.eolang.txt.text
-5.	
-6.	[] > carsDecorate
-7.	  8 > @
-8.	
-9.	[num] > someCars
-10.	   decorateWithMoreCars num > @
-11.	
-12.	   [number] > decorateWithMoreCars
-13.	     plus. > @
-14.	       carsDecorate
-15.	       number
-16.	
-17.	[args...] > appDecorator
-18.	  stdout > @
-19.	    sprintf
-20.	      "%d\n"
-21.	      someCars
-22.	        as-int.
-23.	          text (args.at 0)
+1.  +package sandbox
+2.  +alias stdout org.eolang.io.stdout
+3.  +alias sprintf org.eolang.txt.sprintf
+4.  +alias text org.eolang.txt.text
+5.  
+6.  [] > carsDecorate
+7.    8 > @
+8.  
+9.  [num] > someCars
+10.    decorateWithMoreCars num > @
+11. 
+12.    [number] > decorateWithMoreCars
+13.      plus. > @
+14.        carsDecorate
+15.        number
+16. 
+17. [args...] > appDecorator
+18.   stdout > @
+19.     sprintf
+20.       "%d\n"
+21.       someCars
+22.         as-int.
+23.           text (args.at 0)
 
 \end{ffcode}
 
@@ -2749,4 +2724,3 @@ Also, EO has no local variables or any kind of stack-lifetime storage. Instead, 
 EO is fundamentally applicable to all the patterns considered. 2) For some patterns, EO is able to give a fairly concise and intuitively clear code, since the language combines the features of Functional Program (FP) and OOP. 3) the issues of effective implementation of patterns on EO are largely determined by the characteristics of the environment (IDE + compiler).
 
 \end{document}
-
