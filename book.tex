@@ -140,7 +140,7 @@ An attribute is a pair of a name and a value, where a value of an attribute is a
 \subsection{Free \& Bound Attributes.}
 Binding is an operation of associating an attribute's value with some object. An attribute may be bound to some object only once.
 An attribute that is not bound to any object is named a free attribute. An attribute that has some object associated with its value is called a bound attribute.
-Free attributes may be declared through the object abstraction only. Binding may be performed either during object declaration using the bind ($>$) operator (see the abstraction section for more information) or through object copying (see the application section for details).
+Free attributes may be declared through the object abstraction only. Binding may be performed either during object declaration using the bind (\ff{>}) operator (see the \ref{sec:abstracion} section for more information) or through object copying (see the \ref{sec:application} section for details).
 
 \subsection{Accessing Attributes. The Dot Notation}
 There are no access modifiers in the EO programming language. All attributes of all objects are publicly visible and accessible. To access attributes of objects, the dot notation is used. The dot notation can be used to retrieve values of attributes and not to bind attributes with objects.
@@ -161,21 +161,21 @@ times. > calc
   10
 \end{ffcode}
 
-Here, plus is an attribute of the object 5 and times is an attribute of the attribute object plus (or, more precisely, an attribute of an object that plus abstracts or dataizes to, which is an integer number int).
+Here, plus is an attribute of the object \ff{5} and \ff{times} is an attribute of the attribute object \ff{plus} (or, more precisely, an attribute of an object that \ff{plus} abstracts or dataizes to, which is an integer number \ff{int}).
 
-\subsection{The '@' attribute}
-The \@ attribute is named phi (after the Greek letter $\varphi$). The \@ character is reserved for the phi attribute and cannot be used for any other purpose. Every object has its own and only \@ attribute. The \@ attribute can be bound to a value only once.
-The \@ attribute is used for decorating objects. An object bound to the @ attribute is referred to as a decoratee (i.e., an object that is being decorated) while the base object of the \@ attribute is a decorator (i.e., an object that decorates the decoratee). Since the \@ attribute may be bound only once, every object may have only one decoratee object. More on the decoration see in this section.
-Besides, the \@ attribute is heavily used in the dataization process (see this section for more information).
+\subsection{The @ attribute}
+The \ff{@} attribute is named phi (after the Greek letter $\varphi$). The \ff{@} character is reserved for the phi attribute and cannot be used for any other purpose. Every object has its own and only \ff{@} attribute. The \ff{@} attribute can be bound to a value only once.
+The \ff{@} attribute is used for decorating objects. An object bound to the \ff{@} attribute is referred to as a decoratee (i.e., an object that is being decorated) while the base object of the \ff{@} attribute is a decorator (i.e., an object that decorates the decoratee). Since the \ff{@} attribute may be bound only once, every object may have only one decoratee object. More on the decoration see in this section.
+Besides, the \ff{@} attribute is heavily used in the dataization process (see this section for more information).
 
 \subsection{The \$ attribute}
-The \$ character is reserved for the special attribute self that every object has. The \$ attribute is used to refer to the object itself.
-The \$ attribute may be useful to use the result of the object's dataization process for declaring other object's attributes.
-The \$ attribute may be used to access attributes of an object inside of the object with the dot notation (e.g., \$.attrA), but this notation is redundant.
+The \ff{$} character is reserved for the special attribute self that every object has. The \ff{$} attribute is used to refer to the object itself.
+The \ff{$} attribute may be useful to use the result of the object's dataization process for declaring other object's attributes.
+The \ff{$} attribute may be used to access attributes of an object inside of the object with the dot notation (e.g., \ff{$.attrA}), but this notation is redundant.
 
 \subsection{The \textasciicircum attribute}
-The  \textasciicircum is used to refer to the parent object.
-The \textasciicircum attribute may be used to access attributes of a parent object inside of the current object with the dot notation (e.g., \textasciicircum.attrA).
+The  \ff{^} is used to refer to the parent object.
+The \ff{^} attribute may be used to access attributes of a parent object inside of the current object with the dot notation (e.g., \ff{^.attrA}).
 
 Example
 \begin{ffcode}
@@ -187,9 +187,9 @@ Example
       ^.magicNumber
       magicNumber
 \end{ffcode}
-Here \textasciicircum.magicNumber refers to the parent object's attribute and magicNumber refers to \$.magicNumber
+Here \ff{^.magicNumber} refers to the parent object's attribute and \ff{magicNumber} refers to \ff{^.magicNumber}
 
-\section{Abstraction}
+\section{Abstraction} \label{sec:abstracion}
 Abstraction is the operation of declaring a new object. Abstraction allows declaring both abstract and closed, anonymous and named objects.
 If we are to compare abstraction and application, we can conclude that abstraction allows broadening the field of concepts (objects) by declaring new objects. Application allows enriching the objects declared through abstraction by defining the actual links between the concepts.
 
@@ -197,46 +197,32 @@ If we are to compare abstraction and application, we can conclude that abstracti
 The abstraction syntax includes the following elements:
 
 \begin{enumerate}
-    \item (optional) One or more comment lines before (e.g., \# comment).
+    \item (\textit{optional}) One or more comment lines before (e.g., \ff{# comment}).
     \item A sequence of free attributes in square brackets. The sequence may be:
     \begin{enumerate}
-        \item Empty ([]). In this case, the declared object has no free attributes.
-        \item Containing one or more attribute names ([a] or [a b c d e]). In this case, the listed attribute names are the free attributes of the declared object.
-        \item Containing a variable-length attribute ([animals...]). The attribute must be at the end of the list of attributes to work properly. Internally, this attribute is represented by the array object.
+        \item Empty (\ff{[]}). In this case, the declared object has no free attributes.
+        \item Containing one or more attribute names (\ff{[a]} or \ff{[a b c d e]}). In this case, the listed attribute names are the free attributes of the declared object.
+        \item Containing a variable-length attribute (\ff{[animals...]}). The attribute must be at the end of the list of attributes to work properly. Internally, this attribute is represented by the array object.
     \end{enumerate}
-    \item (optional) Binding to a name ( $>$ myObject). Declared objects may be anonymous. However, anonymous objects must be used in application only (i.e., we can only supply anonymous objects for binding them to free attributes during application).
-    \item (optional) The object may be declared as constant (i.e., dataized only once (see this section)), if the object is bound to a name (see \#3). For this, the ! operator is used.
-    \item (optional) The object may be declared as an atom (i.e., its implementation is made out of the EO language (for instance, in Java)) if the object is bound to a name (see \#3). For this, the / operator is used (for example, /bool).
+    \item \label{item:2.3.1.3} (\textit{optional}) Binding to a name ( \ff{> myObject}). Declared objects may be anonymous. However, anonymous objects must be used in application only (i.e., we can only supply anonymous objects for binding them to free attributes during application).
+    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} operator is used.
+    \item (optional) The object may be declared as an atom (i.e., its implementation is made out of the EO language (for instance, in Java)) if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{/} operator is used (for example, \ff{/bool}).
 \end{enumerate}
-Anonymous Abstraction
-There are two types of anonymous abstraction: inline and plain multi-line.
-Plain Multi-line Anonymous Abstraction
+
+\subsection{Anonymous Abstraction}
+There are two types of anonymous abstraction: inline and plain multi-line. Here is example of plain multi-line anonymous abstraction:
 
 \begin{ffcode}
 [a b]
   a.plus b > @
 \end{ffcode}
-
-The same can be expressed in just one line.
-Inline Anonymous Abstraction
+The same can be expressed in just one line. Here is example of inline anonymous abstraction:
 
 \begin{ffcode}
 [a b] (a.plus b > @)
 \end{ffcode}
 
-EBNF
-
-\begin{ffcode}
-abstraction ::= ( COMMENT '^' )*
-            '[' ( attribute ( ' ' attribute )* )? ']'
-            (' ' '>' ' ' label '!'?) ( ' ' '/' NAME )? )?
-            
-attribute ::= label
-label ::= '@' | NAME '...'?
-NAME ::= [a-z][a-z0-9_A-Z]*
-\end{ffcode}
-
-\subsubsection{Examples}
+\subsubsection{More Examples}
 
 No free attributes abstraction
 \begin{ffcode}
@@ -247,7 +233,6 @@ No free attributes abstraction
   [a] > addSomeMagic
     magicalNumber.plus a > @
 \end{ffcode}
-
 Variable-length attribute abstraction
 \begin{ffcode}
 [args...] > app
@@ -257,7 +242,6 @@ Variable-length attribute abstraction
       args.at 0
       magicalObject.magicalNumber.plus a
 \end{ffcode}
-
 Anonymous abstraction
 \begin{ffcode}
 [args...] > app
@@ -270,7 +254,6 @@ Anonymous abstraction
         accumulator
         (text current).as-int
 \end{ffcode}
-
 Inline anonymous abstraction
 \begin{ffcode}
 [args...] > app
@@ -281,7 +264,7 @@ Inline anonymous abstraction
     [accumulator current] (accumulator.plus (text current).as-int > @)
 \end{ffcode}
 
-\section{Application}
+\section{Application} \label{sec:application}
 Application is the operation of copying an object previously declared with abstraction optionally binding all or part of its free attributes to some objects.
 If we are to compare abstraction and application, we can conclude that abstraction allows broadening the field of concepts (objects) by declaring new objects. Application produces more concrete and specific copies of objects declared through abstraction by defining the actual links between the concepts by binding their free attributes.
 
@@ -296,12 +279,12 @@ The application syntax is quite wide, so let's point out the constituents to per
     \end{enumerate}
     \item A sequence of objects to bind to the free attributes of the applied object. The sequence may be placed in-line (horizontally) or vertically, one indentation level deeper relatively the copied object level. The sequence may be:
     \begin{enumerate}
-        \item Empty. In this case, the applied object will stay abstract or closed, as it was before.
-        \item Containing one or more objects. In this case, the listed objects will be bound to the free attributes of the applied object in their order of appearance.
-        \item Containing one or more objects with names after each (like 1:a 5:b 9:c). In this case, the listed objects will be bound to the corresponding free attributes of the applied object.
+        \item \textit{Empty}. In this case, the applied object will stay abstract or closed, as it was before.
+        \item \textit{Containing one or more objects}. In this case, the listed objects will be bound to the free attributes of the applied object in their order of appearance.
+        \item \textit{Containing one or more objects with names after each} (like \ff{1:a} \ff{5:b} \ff{9:c}). In this case, the listed objects will be bound to the corresponding free attributes of the applied object.
     \end{enumerate}
-    \item (optional) Binding to a name ( $>$ myObject).
-    \item (optional) The copied object may be declared as constant (i.e., dataized only once (see this section)), if the object is bound to a name (see \#3). For this, the ! operator is used.
+    \item \label{item:2.4.1.3} (\textit{optiona}l) Binding to a name ( \ff{> myObject}).
+    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} operator is used.
 \end{enumerate}
 
 \subsubsection{Examples}
@@ -345,17 +328,17 @@ addTen 10 > twenty
 Decoration is the operation of extending one object's (the decoratee) attributes with attributes of the other object (the decorator). Through decoration, the decorator fetches all the attributes of the decoratee and adds up new own attributes. Hence, the decorator represents the decoratee with some extension in the functionality.
 
 Syntax
-The decorator's @ attribute should be bound to the decoratee object in order to perform the decoration operation.
+The decorator's \ff{@} attribute should be bound to the decoratee object in order to perform the decoration operation.
 The syntax for the decoration operation is as follows:
 
 \begin{ffcode}
 [] > theDecorator
   theDecoratee > @
 \end{ffcode}
-Here, theDecorator can access all the attributes of theDecoratee and use them to define its own attributes.
+Here, \ff{theDecorator} can access all the attributes of \ff{theDecoratee} and use them to define its own attributes.
 
 \subsection{Example}
-Say, we have the purchase object that represents a purchase of some item that has a name, cost, and quantity. The purchaseTotal decorates it and adds new functionality of calculating the total.
+Say, we have the purchase object that represents a purchase of some item that has a name, cost, and quantity. The \ff{purchaseTotal} decorates it and adds new functionality of calculating the total.
 
 \begin{ffcode}
 [itemName itemCost itemQuantity] > purchase
@@ -368,20 +351,20 @@ Say, we have the purchase object that represents a purchase of some item that ha
     @.itemQuantity
 \end{ffcode}
 
-Now we can access all attributes of purchase and purchaseTotal through a copy of purchaseTotal.
+Now we can access all attributes of purchase and \ff{purchaseTotal} through a copy of purchaseTotal.
 
 \section{Dataization}
-Dataization is the operation of evaluation of data laying behind an object. The dataization process (denoted hereby as D(something)) is recursive and consists of the following steps:
+Dataization is the operation of evaluation of data laying behind an object. The dataization process (denoted hereby as $D(something)$) is recursive and consists of the following steps:
 
 \begin{enumerate}
-    \item D(obj) = obj if obj is a data object. Data objects are int, float, string, char, bytes.
-    \item If the obj is an atom (atoms are objects that are implemented outside EO), then D(obj) is the data returned by the code behind the atom.
-    \item Otherwise, D(obj) = D(obj\.@). That is, if the object is neither data nor an atom, then the object "asks" its decoratee to find the data behind it.
+    \item $D(obj) = obj$ if $obj$ is a data object. Data objects are \ff{int}, \ff{float}, \ff{string}, \ff{char}, \ff{bytes}.
+    \item If the obj is an atom (atoms are objects that are implemented outside EO), then $D(obj)$ is the data returned by the code behind the atom.
+    \item Otherwise, $D(obj) = D(obj.@)$. That is, if the object is neither data nor an atom, then the object "asks" its decoratee to find the data behind it.
 \end{enumerate}
 
-It is important to note that if the @ attribute of the object (or any underlying object in the dataization recursive evaluation tree) is absent (free), then the dataization will fail.
-If we want to dataize the object x, all objects and attributes that are used in the definition of the @ attribute of the x will be dataized. Like this, if we want to dataize the attribute x.attr, all objects and attributes that are used in the definition of its @ attribute will be dataized.
-The opposite is true. If the attribute x.attr or the object x itself are not used in the declaration of y, then D(y) will not dataize them and they will not be evaluated and executed. Thus, the dataization operation may be referred to as the lazy object evaluation (i.e., EO dataizes objects only when this is needed).
+It is important to note that if the \ff{@} attribute of the object (or any underlying object in the dataization recursive evaluation tree) is absent (free), then the dataization will fail.
+If we want to dataize the object \ff{x}, all objects and attributes that are used in the definition of the \ff{@} attribute of the \ff{x} will be dataized. Like this, if we want to dataize the attribute \ff{x.attr}, all objects and attributes that are used in the definition of its \ff{@} attribute will be dataized.
+The opposite is true. If the attribute \ff{x.attr} or the object \ff{x} itself are not used in the declaration of \ff{y}, then $D(y)$ will not dataize them and they will not be evaluated and executed. Thus, the dataization operation may be referred to as the lazy object evaluation (i.e., EO dataizes objects only when this is needed).
 
 
 \section{EO syntax}
@@ -2724,3 +2707,4 @@ Also, EO has no local variables or any kind of stack-lifetime storage. Instead, 
 EO is fundamentally applicable to all the patterns considered. 2) For some patterns, EO is able to give a fairly concise and intuitively clear code, since the language combines the features of Functional Program (FP) and OOP. 3) the issues of effective implementation of patterns on EO are largely determined by the characteristics of the environment (IDE + compiler).
 
 \end{document}
+
