@@ -419,9 +419,9 @@ Example:
     sprintf
       "%d\n"
       FF-FF-FF-FF-FF-FF-FF-FF.as-int
-    
-Running
-
+\end{ffcode}  
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: -1
 IN$: 
@@ -446,9 +446,9 @@ Here is an example of using these attributes:
       00-.as-bool
       3F-80-00-00-00-00-00-00.as-float
       41-.as-string
-    
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: -1
 OUT>: false
@@ -473,9 +473,9 @@ stdout > @
     eq.
      FF-FF-FF-FE
      FF-FF-FF-FF
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: false
 IN$: 
@@ -501,9 +501,9 @@ Attributes objects \ff{and}, \ff{or}, \ff{xor} are used for the bitwise operatio
       eq.
         FF-.xor FF-
         00-
-    
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: true
 OUT>: true
@@ -525,9 +525,9 @@ The \ff{not} attribute object is used for the bitwise operation of the same name
       eq.
         FF-.not
         00-
-    
-Running
-    
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: true
 IN$: 
@@ -551,9 +551,9 @@ Attributes objects \ff{left}, \ff{right} are used for left and right bitwise shi
       eq.
         10-.right 3
         02-
-    
-Running
-    
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: true
 OUT>: true
@@ -573,9 +573,9 @@ The \ff{size} attribute object is used to find out the total number of bytes in 
     sprintf
       "%d\n"
       FF-FF-F0.size
-    
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: 3
 IN$: 
@@ -595,9 +595,9 @@ The \ff{slice} attribute object is used to represents a bytes sub-sequence insid
       "%s\n"
       as-string.
         (FF-41-42-43-FF-FF.slice 1 3)
-    
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: ABC
 IN$: 
@@ -617,10 +617,9 @@ The \ff{concat} attribute object is used to make a new sequence, which is a conc
       "%s\n"
       as-string.
         41-42.concat 43-44
-
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: ABCD
 IN$: 
@@ -648,9 +647,9 @@ Example:
       "%b\n%b\n"
       TREU
       FALSE
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: true
 OUT>: false
@@ -688,9 +687,9 @@ If the \ff{if} attribute object is fully applied, it represents the correspondin
       (5.lt 2).if
         2
         5
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: the first value is true
 OUT>: the second value is false
@@ -727,9 +726,9 @@ In this example, all the answers from the previous example (the \ff{if} attribut
       (5.lt 2).not.if
         2
         5
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: [NOT Edition (all the answers are inversed with
 .not)]
@@ -767,9 +766,9 @@ If the \ff{and} attribute object is applied, it represents the conjunction of th
         b
         c
         d
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: a && b = true
 OUT>: a && b && c = true
@@ -804,9 +803,9 @@ If the \ff{or} attribute object is applied, it represents the disjunction of the
         b
         c
         d
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: a || b = false
 OUT>: a || b || c = false
@@ -841,9 +840,9 @@ Since objects are immutable, the \ff{memory} object should be used as the loop c
               x.times (x.times i)
           x.write
             x.plus 1
-            
-Running
-
+\end{ffcode}
+\textbf{Output} 
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: 0 x 0 x 0 = 0
 OUT>: 1 x 1 x 1 = 1
@@ -885,9 +884,9 @@ Example:
       "%f\n%f\n"
       1.5
       -3.71
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: 1.500000
 OUT>: -3.710000
@@ -909,9 +908,9 @@ If the \ff{eq} attribute object is applied, it represents the result of the equa
       "%b\n%b\n"
       1.5.eq 1.5
       -3.71.eq 3.71
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: true
 OUT>: false
@@ -941,9 +940,9 @@ Example 1:
       "Hello, "
       "World! Welcome to The \"EO Docs\"!"
       "\n"
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: Hello, World! Welcome to The "EO Docs"!
 IN$: 
@@ -961,9 +960,9 @@ Example 2:
       "".eq ""
       "Hey".eq "Hey"
       "Hey".eq "hey"
-
-Running
-
+\end{ffcode}
+\textbf{Output} 
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: true
 OUT>: true
@@ -998,9 +997,9 @@ If the \ff{trim} attribute object is applied (called), it represents the resulti
         text "            !           "
       trim.
         text "\n"
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: Hello There!IN$: 
 \end{ffcode}
@@ -1036,9 +1035,9 @@ If the \ff{as-int} attribute object is applied (called), it represents the parse
       text "8"
     as-int.
       text "-0"
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: 1700
 OUT>: -1500
@@ -1076,9 +1075,9 @@ Example 1:
       1009283
       0xf.plus 1
       0xa
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: -157
 OUT>: 1009283
@@ -1100,9 +1099,9 @@ Example 2:
       0xf
       15
     15.eq (0xf.plus 1)
-    
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: true
 OUT>: false
@@ -1128,9 +1127,9 @@ If the less attribute object is fully applied, it represents the result of the t
       lt.
         0
         0
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: true
 OUT>: false
@@ -1154,9 +1153,9 @@ If the \ff{plus} attribute object is fully applied, it represents the resulting 
         0x10
         16
       -16.plus 0x10
-
-Running
-
+\end{ffcode}
+\textbf{Output} 
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: 32
 OUT>: 0
@@ -1180,9 +1179,9 @@ If the \ff{minus} attribute object is fully applied, it represents the resulting
         0x10
         16
       -16.minus 0x10
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: 0
 OUT>: -32
@@ -1206,9 +1205,9 @@ If the \ff{neg} attribute object is applied (called), it represents the resultin
       0x10.neg
       (17.plus 3).neg
       17.neg.plus 3
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: -5
 OUT>: -16
@@ -1238,7 +1237,9 @@ If the \ff{times} attribute object is fully applied, it represents the resulting
       ((10.times 10).times 10).times 10
       10.times 10.times 10.times 10
 
-Running
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 
 IN$: ./run.sh
 OUT>: 0
@@ -1264,9 +1265,9 @@ If the \ff{div} attribute object is fully applied, it represents the resulting q
       "%d\n"
       10.div 2
       10.div 3
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: 5
 OUT>: 3
@@ -1305,7 +1306,9 @@ The relationship between the \ff{mod} and \ff{div} operations is as follows:
       (number -113).mod 10
       (number -113).mod -10
 
-Running
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 
 IN$: ./run.sh
 OUT>: 0
@@ -1337,9 +1340,9 @@ Example:
       (number 2).pow -10
       (number 2).pow 0
       (number 2).pow 1
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: 1024
 OUT>: -8
@@ -1372,7 +1375,9 @@ Example 1. The Plain Old “Hello, World”:
 
 [args...] > app
   (stdout "Hello, World!\n") > @
-Running
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: Hello, World!
 IN$: 
@@ -1387,7 +1392,9 @@ Example 2. Print the First Word of the User's Input:
     at.
       args
       0
-Running
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh Hello Bye Thanks Ok
 OUT>: HelloIN$: 
 \end{ffcode}
@@ -1426,8 +1433,9 @@ For the format syntax reference, see this article. Here are examples of using \f
     "Hey"
 
   (stdout formatted_string) > @
-
-Running
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: int: 2, bool: false, string: Hey
 IN$: 
@@ -1456,9 +1464,9 @@ When applied, the \ff{at} attribute object represents the object stored at the p
       "%s\n%s\n"
       args.at 0
       args.at 1
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh Hello, World!
 OUT>: Hello,
 OUT>: World!
@@ -1485,7 +1493,9 @@ When applied, the \ff{with} attribute object represents the resulting \ff{array}
       argsExtended.at 1
       argsExtended.at 2
 
-Running
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 
 IN$: ./run.sh Hello, World!
 OUT>: Hello,
@@ -1543,7 +1553,9 @@ When applied, the reduce attribute object represents the resulting reduced accum
       "%d\n"
       sum
 
-Running
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 
 IN$: ./run.sh 1 2 3 4 5
 OUT>: 15
@@ -1571,9 +1583,9 @@ Fully Qualified Name: \ff{org.eolang.seq} (no aliasing or FQN reference required
     stdout "These objects\n"
     stdout "will be dataized\n"
     stdout "one by one, in sequential order\n"
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: Hello
 OUT>: These objects
@@ -1604,9 +1616,9 @@ To retrieve the object stored in the memory, dataization of the memory object is
     m.write (m.plus 1)
     m.write (m.plus 1)
     stdout (sprintf "%d\n" m)
-
-Running
-
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
 IN$: ./run.sh
 OUT>: 4
 IN$: 
@@ -1779,10 +1791,9 @@ numbers, characters and boo leans can be represented
 as primitive values at runtime - but to the user they look like ordinary classes.
 
 \chapter{SWOT about EO}
-We compare Eolang efficiency to C++ and Java, discover the differences, identify pros and cons by SWOT analysis, define metrics for comparison, and write test cases as well as automate testing and bench-marking for the different EO compiler versions. The main goal is to analyze Eolang efficiency.
+We compare Eolang efficiency to C++ and Java, discover the differences, identify pros and cons by SWOT analysis. The main goal is to analyze Eolang efficiency.
 
-\section{Comparison Metrics}
-\subsection{Criteria for comparison}
+\section{Criteria for comparison}
 There are many criteria important to comparing or evaluating general purpose programming languages:
 
 \begin{enumerate}
@@ -1790,143 +1801,31 @@ There are many criteria important to comparing or evaluating general purpose pro
     
 The simplicity of a language design includes such measurable aspects as the minimality of required concepts and the integrity and consistency of its structures. Simpilicity here relates to ease of programming. Simple is beautiful is the golden mantra in programming. While efficiency and performance are major factors, simplicity and maintenance cost wins over them in many use cases. These become a deciding factor while choosing a programming language, exploring features in a language or even deciding on standard coding practices within an organization.
 
-Binary result: yes/no.
     \item \textbf{Readability}.
     
 Readability refers to the ease with which codes can be read and understood. This relates to maintainability, an important factor as many programs greatly outlive their expected lifetimes.
 
-Binary result: yes/no.
     \item \textbf{Compilation speed}.
     
-This metric identifies the program's total execution time(ms). This can comparatively help determine how long it takes to run an algorithm in different languages.
+This metric identifies the program's total execution time. This can comparatively help determine how long it takes to run an algorithm in different languages.
 
-Result: 1..5, 5-high speed,1-low speed
     \item \textbf{Memory usage}.
     
 The memory usage criteria identifies the  total amount of memory that were used due to program execution. Some programming languages may be efficient in memory consumption while others are not. This criteria is important for clarifying the differences between EO, C++ and Java.
 
-Result: 1..5, 5-low usage,1-high usage.
     \item \textbf{LOC (Lines of code)}.
     
 This refers to the total number of LOC that were used to develop a program. This metric is used to measure the size and complexity of a software project. It is measured by counting the number of lines in text of the program's source code. LOC can be used to predict the amount of effort that would be required to develop a program, as well as estimate programming productivity or maintainability once the software is developed.
 
-Result:1..5, 5-high amount,1-low amount.
     \item \textbf{Debugging help}.
     
 This criteria helps clarify the amount of tools and help available for the process of detecting and removing of existing and potential errors or bugs in a software code that can cause it to behave unexpectedly or crash.
-
-Binary result: yes/no.
 \end{enumerate}
-
-In order to compare Eolang efficiency to C++ and Java and detect the differences, we select a number of algorithms to implement in all three languages. The following algorithms were chosen:
-\begin{enumerate}
-    \item Prim's algorithm
-    \item Dijkstra's algorithm
-    \item Kruskal's algorithm
-    \item Ford-fulkerson's algorithm
-\end{enumerate}
-
-The justification for choosing these specific algorithms is that graph algorithms are usually complex, contain loops and recursive calls, and can be tested and compared based on different criteria. 
-
-The test results of the implementation of these algorithms are capture under the following headings:
-
-\begin{enumerate}
-    \item vNum - the number of edges
-    \item Time - the time of program execution
-    \item Memory - the total memory used while program execution
-\end{enumerate}
-
-\subsection{Prim's algorithm}
-Prim's algorithm is an algorithm for constructing the minimum spanning tree of a connected weighted undirected graph.
-
-The input of the algorithm is a connected weighted undirected graph, which is represented by a sequence of integers separated by spaces.
-Each group of 3 numbers describes an arc of the graph: the first two numbers are adjacent vertices, the third is the weight of the edge. 
-
-Ex. 0 2 4 2 4 1 4 1 5 1 3 2 3 0 7
-
-First, a random vertex is selected. The edge of the minimum weight incident to the selected vertex is searched for. This is the first edge of the spanning tree.
-Next, an edge of the graph of the minimum weight is added to the tree in which only one of the vertices belongs to the tree.
-When the number of tree edges is equal to the number of nodes in the graph minus one (the number of nodes in the graph and the tree are equal), the algorithm ends.
-
-The result of the work of programs implementing the algorithm is a sequence of edges of the minimal spanning tree:
-Ex. (2 4 - 1) (0 2 - 4) (4 1 - 5) (1 3 - 2)  
-
-Time Complexity: O((V + E) log V)
-
-\subsection{Dijkstra's algorithm}
-Dijkstra’s algorithm is very similar to Prim’s algorithm for minimum spanning tree. Like Prim’s MST, we generate a SPT (shortest path tree) with a given source as a root. We maintain two sets, one set contains vertices included in the shortest-path tree, other set includes vertices not yet included in the shortest-path tree. At every step of the algorithm, we find a vertex that is in the other set (set of not yet included) and has a minimum distance from the source.
-Below are the detailed steps used in Dijkstra’s algorithm to find the shortest path from a single source vertex to all other vertices in the given graph. 
-
-Algorithm
-\begin{enumerate}
-    \item Create a set sptSet (shortest path tree set) that keeps track of vertices included in the shortest-path tree, i.e., whose minimum distance from the source is calculated and finalized. Initially, this set is empty. 
-    \item Assign a distance value to all vertices in the input graph. Initialize all distance values as INFINITE. Assign distance value as 0 for the source vertex so that it is picked first. 
-    \item While sptSet doesn’t include all vertices 
-    
-a) Pick a vertex u which is not there in sptSet and has a minimum distance value. 
-
-b) Include u to sptSet. 
-
-c) Update distance value of all adjacent vertices of u. To update the distance values, iterate through all adjacent vertices. For every adjacent vertex v, if the sum of distance value of u (from source) and weight of edge u-v, is less than the distance value of v, then update the distance value of v. 
-\end{enumerate}
-
-Time Complexity: O(E log V)
-
-\subsection{Kruskal's algorithm}
-The Kruskal's algorithm is used to find the minimum spanning tree of a graph. A minimum spanning tree (MST) or minimum weight spanning tree for a weighted, connected, undirected graph is a spanning tree with a weight less than or equal to the weight of every other spanning tree. The weight of a spanning tree is the sum of weights given to each edge of the spanning tree. A minimum spanning tree has (V – 1) edges where V is the number of vertices in the given graph.
-
-To find the MST using the Kruskal's algorithm:
-\begin{enumerate}
-    \item Sort all the edges in non-decreasing order of their weight.
-    \item (Union-Find algorithm) Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far. If cycle is not formed, include this edge. Else, discard it.
-    \item Repeat step no. 2 until there are (V-1) edges in the spanning tree.
-\end{enumerate}
-
-Time Complexity: O(E log V)
-
-\subsection{Ford-Falkerson Algorithm}
-The Ford-Falkerson Algorithm is used to solve the maximum flow problem. This algorithm depends on the concept of residual graph.
-
-To understand and implement it, let us first look at the concept of Residual Graph.
-
-Residual Graph of a flow network is a graph which indicates additional possible flow. If there is a path from source to sink in residual graph, then it is possible to plus flow. Every edge of a residual graph has a value called residual capacity which is equal to original capacity of the edge minus current flow. Residual capacity is basically the current capacity of the edge. Let us now talk about implementation details. Residual capacity is 0 if there is no edge between two vertices of residual graph. We can initialize the residual graph as original graph as there is no initial flow and initially residual capacity is equal to original capacity. To find an augmenting path, we can either do a BFS or DFS of the residual graph. We have used DFS in below implementation. Using DFS, we can find out if there is a path from source to sink.
-
-The important thing is, we need to update residual capacities in the residual graph. We subtract path flow from all edges along the path and we plus path flow along the reverse edges We need to plus path flow along reverse edges because may later need to send flow in reverse direction.
-
-\subsubsection{Time Complexity:}
-Time complexity of the above algorithm is O(max\_flow E).
-
-\subsection{Comparison Metrics - \emph{Algorithms}}
-\label{table:metrics}
-\begin{center}
-    \begin{tabular}{|p{0.1\linewidth}|p{0.25\linewidth}|l|}
-\hline
-Language&Metric&Grade \\ \hline
-C++ &Simplicity &yes \\
-Java &Simplicity &yes \\
-EO &Simplicity &no \\ \hline
-C++ &Readability &yes\\
-Java &Readability &yes\\
-EO &Readability &no\\\hline
-C++ &Compilation speed&5(time:3 ms.)\\
-Java &Compilation speed&4(time:1.18 s.)\\
-EO &Compilation speed&1(time:30 s.)\\\hline
-C++ &Memory usage&5(memory:30 mb.)\\
-Java &Memory usage&3(memory:340 mb.)\\
-EO &Memory usage&1(memory:2.96 gb.)\\\hline
-C++ &LOC&5 (350 LOC)\\
-Java &LOC&3 (500 LOC)\\
-EO &LOC&1 (770 LOC)\\\hline
-C++ &Debugging help&yes\\
-Java &Debugging help&yes\\
-EO &Debugging help&yes\\\hline
-\end{tabular}
-\end{center}
-
 
 \section{SWOT Analysis}
 
 The criteria listed above are equally important because they affect the development cost and effort required over the lifetime of the program, and also affect the usefulness and quality of the developed program.
+% TODO: is that right?
 It is important to note that several points are difficult to compare for several reasons, as far as various programming languages are concerned. One of the controversial points is that Eolang is generally positioned as a language intended for static code analysis, which, however, is not explicitly advertised and there is no special emphasis on this in the current project. However, this leads to the fact that initially, it is essentially a subject-oriented and not a universal language that does not allow effectively displaying not only the styles of writing programs but also having a much smaller set of expressive means for describing algorithms and data.
 
 \subsection{STRENGTHS}
@@ -1934,14 +1833,15 @@ Here, in general, a fairly simple semantic model of the language can be noted, w
 
 The solutions proposed in the language increase the reliability of the generated code, albeit often at the expense of efficiency. But for the main target of analysis and reliability improvement, this is not a significant factor.
 
-When compared to C ++ and Java languages, it can be noted that in these languages there are many unreliable constructs for programming. The languages themselves have many redundant and overlapping constructs, which often do not allow the generation of unambiguous and reliable code.
+When compared to C++ and Java languages, it can be noted that in these languages there are many unreliable constructs for programming. The languages themselves have many redundant and overlapping constructs, which often do not allow the generation of unambiguous and reliable code.
 
 \textbf{Compactness, extensibility and openness } can be used to describe the strength of Eolang.
 
 
 \subsection{WEAKNESSES}
-One of the weaknesses is that the limited capabilities of the language do not allow it to be used in many subject areas in comparison with C ++ and Java. That is, where high performance computing is required.
+One of the weaknesses is that the limited capabilities of the language do not allow it to be used in many subject areas in comparison with C++ and Java. That is, where high performance computing is required.
 
+% TODO:
 Another point to mention is \textbf{lack of tools} that provide support for parallel and distributed computing, which is currently used in one form or another in almost all modern programming languages.
 
 And not enough attention is paid to the formation of the type system. Using a typeless solution can turn out to be unreliable in many situations, which, in turn, may lead to difficulties associated with static code analysis. In addition, in some cases, to increase control over data when writing programs in Eolang, additional constructions will have to be introduced to model data types and explicitly check them either during static analysis or at runtime.
@@ -1950,21 +1850,23 @@ For C++ and Java, static typing is used to control the data at compile time. In 
 
 Currently, the EO community is limited. There are not many conferences, local meetups, forums, Facebook groups, open-source projects based on the language and people willing to help. 
 
-Also, as mentioned in section \ref{table:metrics}, Eolang lacks \textbf{simplicity}. The EO language is barely simple to read and write and has a quite steep learning curve for new programmers. In comparison to the other languages in context, corresponding code in Eolang takes consumes more lines \textbf{(LOC)}. The comparison made in section \ref{table:metrics} shows that Eolang has minimal efficiency in terms of \textbf{memory consumption} and \textbf{compilation speed}. Thus, Eolang consumes a lot of resources, and increasing becomes complex as the code base gets large. These plus to the weaknesses of the language.
+Also Eolang lacks \textbf{simplicity}. The EO language is barely simple to read and write and has a quite steep learning curve for new programmers. In comparison to the other languages in context, corresponding code in Eolang takes consumes more lines \textbf{(LOC)}. Eolang has low efficiency in terms of \textbf{memory consumption} and \textbf{compilation speed}. Thus, Eolang consumes a lot of resources, and increasing becomes complex as the code base gets large. These plus to the weaknesses of the language.
 
+% TODO
 Lastly, conceptual incompleteness. The Eolang concept or idea is not fully or completely described.
 
 \subsection{OPPORTUNITIES}
 Most likely it is prudent to start with the possibilities since they determine the specifics of the language. The limitations through the OO paradigm and recursive computations based on the absence of object mutability possibly simplify the code for static analysis, but at the same time significantly reduces the number of effective techniques used in real programming. When creating algorithms, you often have to write longer and more inefficient code, which is difficult to further optimize when reduced to a real executor. At the same time, as the practice of using functional programming languages shows, the use of similar techniques increases the reliability of programs and ensures the formation of controlled code.
 
-When comparing with C ++ and Java, it is enough to note here that both proposed languages are universal and include tools for writing programs that allow one to choose between reliable and efficient programming. In principle, it is possible to list these tools, emphasizing what is not in Eolang, emphasizing that this significantly expands the possibilities of programming, but often at the expense of the reliability of the code.
+When comparing with C++ and Java, it is enough to note here that both proposed languages are universal and include tools for writing programs that allow one to choose between reliable and efficient programming. In principle, it is possible to list these tools, emphasizing what is not in Eolang, emphasizing that this significantly expands the possibilities of programming, but often at the expense of the reliability of the code.
 
 Also, the platform independence of Eolang provides an opportunity to potentially interoperate the language with many other languages and use existing libraries.
 
+%TODO: potential formalizability of semantics
 Additionally, there is potential \textbf{formalizability of semantics}, the presence of formal calculus of objects, the convergence of object and functional paradigms, potentially short and reliable code.
 
 \subsection{THREATS}
-Among the main threats, we could consider the use of the language not for its main purpose, which can lead to writing code that will be less expressive than the code written in C ++ and Java. At the same time, attempts to model the constructs of these languages in Eolang can lead to more cumbersome and less reliable code. In particular, explicit modeling of data types will require validation at runtime or may lead to the development of additional analysis programs to isolate and match data types during the static analysis phase.
+Among the main threats, we could consider the use of the language not for its main purpose, which can lead to writing code that will be less expressive than the code written in C++ and Java. At the same time, attempts to model the constructs of these languages in Eolang can lead to more cumbersome and less reliable code. In particular, explicit modeling of data types will require validation at runtime or may lead to the development of additional analysis programs to isolate and match data types during the static analysis phase.
 
 It may also be worth noting the problem associated with the lack of type control when entering data when the incoming data in the presence of a \textbf{typeless} language model will be difficult to control. There are similar threats in other languages, but the presence of a static type system or explicit dynamic typing allows the ability to control the input and transformation of data directly using language constructs without additional modeling. Also, the typeless nature of the language drives it more in the direction of functional approach rather than OOP, as intended. It would be threatening to use Eolang as a system programming language since it lacks strong typing, compared to many system programming languages which rather are strongly typed to help manage complexity.
 
@@ -1972,8 +1874,11 @@ It may also be worth noting the problem associated with the lack of type control
 
 \section{Background}
 Design is one of the most difficult task in software development  and Developers, who have eagerly adopted them over the past years, needed to understand not only design patterns but the software systems before they can maintain them, even in cases where documentation and/or design models are missing or of a poor quality. In most cases only the source code as the basic form of documentation is available. Maintenance is a time-consuming activity within software development, and it requires a good understanding of the system in question. The knowledge about design patterns can help developers to understand the underlying architecture faster. Using design patterns is a widely accepted method to improve software development.
+
 A design pattern is a general reusable solution to a commonly occurring  problem in software design. A design pattern isn't a finished design that can be transformed directly into code neither are they static entities, but evolving descriptions of best practices. It is a description or template for how to solve a problem that can be used in many different situations. A design pattern systematically names, motivates, and explains a general design that addresses a recurring design problem in object-oriented systems. It describes the problem, the solution, when to apply the solution, and its consequences. It also gives implementation hints.
-Design patterns help to effectively speed up development and engineering processes by providing proven development patterns/paradigms. Quality software design requires considering issues that may not be visible until later in the implementation. Reusing design patterns helps to avoid subtle issues that may be catastrophic and help improve code reliability for programmers and architects familiar with the patterns. 
+
+Design patterns help to effectively speed up development and engineering processes by providing proven development patterns/paradigms. Quality software design requires considering issues that may not be visible until later in the implementation. Reusing design patterns helps to avoid subtle issues that may be catastrophic and help improve code reliability for programmers and architects familiar with the patterns.
+
 Design patterns provide general solutions, documented in a format that doesn't require specifics tied to a particular problem. They help software engineers to communicate using well-known, well understood names for software interactions. Common design patterns can be improved over time, making them more robust than ad-hoc designs. In short, the advantages of design patterns include decoupling a request from specific operations (Chain of Responsibility and Command), making a system independent from software and hardware platforms (Abstract Factory and Bridge), independent from algorithmic solutions (Iterator, Strategy, Visitor), or avoid modifying implementations (Adapter, Decorator, Visitor). Design patterns, overall, helps to thoroughly and designed well implemented frameworks enabling a degree of software reusability that can significantly improve software quality.
 
 
@@ -1985,70 +1890,68 @@ Provides an interface for creating families of interconnected or interdependent 
 
 \subsubsection{Participants}
 \begin{enumerate}
-    \item AbstractFactory — abstract factory: declares an interface for operations that create abstract product objects.
-    \item ConcreteFactory — specific factory: implements operations that create specific objects-products.
-    \item AbstractProduct — abstract product: declares the interface for the type of object-product.
-    \item ConcreteProduct — specific product: defines the product object created by the corresponding particular factory, and implements the AbstractProductinterface.
-    \item Client: uses only interfaces that are declared in the AbstractFactory and  AbstractProduct classes.
+    \item \ff{AbstractFactory} — abstract factory: declares an interface for operations that create abstract product objects.
+    \item \ff{ConcreteFactory} — specific factory: implements operations that create specific objects-products.
+    \item \ff{AbstractProduct} — abstract product: declares the interface for the type of object-product.
+    \item \ff{ConcreteProduct} — specific product: defines the product object created by the corresponding particular factory, and implements the \ff{AbstractProductinterface}.
+    \item \ff{Client}: uses only interfaces that are declared in the \ff{AbstractFactory} and \ff{AbstractProduct} classes.
 \end{enumerate}
 
 \subsubsection{Implementation}
 \begin{ffcode}
-1.  +package sandbox
-2.  +alias stdout org.eolang.io.stdout
-3.  +alias sprintf org.eolang.txt.sprintf
-4.  
-5.  [type] > abstractFactory
-6.    if. > concreteFactory
-7.      eq.
-8.        type
-9.        "1"
-10.     concreteFactory1
-11.     concreteFactory2
-12. 
-13.   [] > createProductA
-14.     createProductA. > @
-15.       ^.concreteFactory
-16.   [] > createProductB
-17.     createProductB. > @
-18.       ^.concreteFactory
-19. 
-20. [] > concreteFactory1
-21.   [] > createProductA
-22.     1 > @
-23.   [] > createProductB
-24.     2 > @
-25. 
-26. [] > concreteFactory2
-27.   [] > createProductA
-28.     "one" > @
-29.   [] > createProductB
-30.     "two" > @
-31. 
-32. [args...] > appAbstractFactory
-33.   abstractFactory > objFactory
-34.     args.at 0
-35.   stdout > @
-36.     sprintf
-37.       "ProductA: %s\nProductB: %s\n"
-38.       objFactory.createProductA
-39.       objFactory.createProductB 
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
+
+[type] > abstractFactory
+  if. > concreteFactory
+    eq.
+      type
+      "1"
+    concreteFactory1
+    concreteFactory2
+
+  [] > createProductA
+    createProductA. > @
+      ^.concreteFactory
+  [] > createProductB
+    createProductB. > @
+      ^.concreteFactory
+
+  [] > concreteFactory1
+    [] > createProductA
+      1 > @
+    [] > createProductB
+      2 > @
+
+  [] > concreteFactory2
+    [] > createProductA
+      "one" > @
+    [] > createProductB
+      "two" > @
+
+[args...] > appAbstractFactory
+  abstractFactory > objFactory
+    args.at 0
+  stdout > @
+    sprintf
+      "ProductA: %s\nProductB: %s\n"
+      objFactory.createProductA
+      objFactory.createProductB 
 
 \end{ffcode}
-
-
 \textbf{Output}
 \begin{ffcode}
-$ ./run.sh 1
-ProductA: 1
-ProductB: 2
-$ ./run.sh 2
-ProductA: one
-ProductB: two
+IN$: ./run.sh 1
+OUT>: ProductA: 1
+OUT>: ProductB: 2
+IN$: ./run.sh 2
+OUT>: ProductA: one
+OUT>: ProductB: two
 \end{ffcode}
 
 
-This program creates objects of integers or strings depending on the args parameter [0]. If  args[0] = 1, then objects 1 and 2 will be created, otherwise -  "one"  and  "two".
+This program creates objects of integers or strings depending on the \ff{args} parameter \ff{[0]}. If  \ff{args[0] == 1}, then objects \ff{1} and \ff{2} will be created, otherwise -  \ff{"one"}  and  \ff{"two"}.
 The template assumes the use of interfaces that are not present in the  EO. In this case, an attempt was made to implement the interface through the EO  object has a type parameter depending on which a specific implementation of the object factory is selected. This makes the interface object dependent on the set of implementations of this interface (when adding anew implementation, you must make changes to the interface object).
 
 \section{Singleton (singles)}
@@ -2058,17 +1961,17 @@ A singleton is a pattern that generates objects.
 Ensures that the class has only one instance and provides a global access point to it.
 
 \subsubsection{Participants}
-Singleton Singleton:
+Singleton \ff{Singleton}:
 \begin{enumerate}
-    \item Defines an Instance operation that allows clients to access a single instance. Instance is a class operation,  that is,  a static method of a class
+    \item Defines an \ff{Instance} operation that allows clients to access a single instance. \ff{Instance} is a class operation,  that is,  a static method of a class
     \item May be responsible for creating your own unique instance.
 \end{enumerate}
 
 \subsubsection{Relations}
-Clients access an instance of the Singleton class only through its Instance operation. 
+Clients access an instance of the \ff{Singleton} class only through its \ff{Instance} operation. 
 
 \subsubsection{Implementation}
-There are no classes in the EO, so this pattern is not implemented in its pure form. If we define Singleton in  terms  of  EO as an object that is guaranteed to have only one copy, then the implementation of this object is also impossible for the following reasons:
+There are no classes in the EO, so this pattern is not implemented in its pure form. If we define \ff{Singleton} in  terms  of  EO as an object that is guaranteed to have only one copy, then the implementation of this object is also impossible for the following reasons:
 \begin{enumerate}
     \item There are no references in the EO.  Any use of an object in a location other than the place of definition is a copy of this object.
     \item EO  does not have the ability to restrict access to objects or prevent it from being copied. You cannot restrict the creation of copies of an object.
@@ -2081,11 +1984,11 @@ A prototype is a pattern that generates objects.
 \subsubsection{Purpose}
 Specifies the types of objects to create using the prototype instance and creates new objects by copying the prototype.
 
-
+\subsubsection{Participants}
 \begin{enumerate}
-    \item — prototype: declares an interface for cloning itself.
-    \item — Concrete Prototype: implements the operation of cloning itself.
-    \item  — client: creates a new object by asking the prototype to clone itself.
+    \item \ff{Prototype}- prototype: declares an interface for cloning itself.
+    \item \ff{ConcretePrototype} - concrete prototype: implements the operation of cloning itself.
+    \item \ff{Client}: creates a new object by asking the prototype to clone itself.
 \end{enumerate}
 
 \subsubsection{Implementation}
@@ -2102,14 +2005,14 @@ Separate abstraction from its implementation so that both can be changed indepen
 
 \subsubsection{Participants}
 \begin{enumerate}
-    \item Abstraction — abstraction: defines the abstraction interface, and stores a reference to an object of type Implementor.
-    \item RefinedAbstraction —  refined abstraction: extends the interface defined by abstraction.
-    \item Implementor — implementer: defines the interface for the implementation classes. it does not have to exactly match the interface of the abstraction class. In fact both interfaces can be completely different. usually the interface of the Implementor class provides only primitive operations, and the  Abstraction class defines higher-level operations based on these primitives.
-    \item ConcreteImplementor —  specific implementer: implements the interface of the Implementor class and defines its specific implementation.
+    \item \ff{Abstraction} — abstraction: defines the abstraction interface, and stores a reference to an object of type Implementor.
+    \item \ff{RefinedAbstraction} —  refined abstraction: extends the interface defined by abstraction.
+    \item \ff{Implementor} — implementer: defines the interface for the implementation classes. it does not have to exactly match the interface of the abstraction class. In fact both interfaces can be completely different. usually the interface of the Implementor class provides only primitive operations, and the  Abstraction class defines higher-level operations based on these primitives.
+    \item \ff{ConcreteImplementor} —  specific implementer: implements the interface of the Implementor class and defines its specific implementation.
 \end{enumerate}
 
 \subsubsection{Relations}
-The Abstraction object redirects client requests to its  Implementor object.
+The \ff{Abstraction} object redirects client requests to its  \ff{Implementor} object.
 
 \section{Chain of responsibility}
 A chain of responsibilities is a pattern of behavior of objects.
@@ -2121,72 +2024,77 @@ Avoids binding the sender of the request to its recipient by providing the abili
 
 \subsubsection{Participants}
 \begin{enumerate}
-    \item Handler —  handler: defines the interface for processing requests; (optionally) implements communication with the successor.
-    \item ConcreteHandler — specific handler: processes the request for which it is responsible; Has access to his successor; If ConcreteHandler  is able to process the request, it does so, if it cannot, it sends it to its successor;
-    \item Client: Sends a request to some ConcreteHandler object in the chain.
+    \item \ff{Handler} —  handler: defines the interface for processing requests; (optionally) implements communication with the successor.
+    \item \ff{ConcreteHandler} — specific handler: processes the request for which it is responsible; Has access to his successor; If \ff{ConcreteHandler}  is able to process the request, it does so, if it cannot, it sends it to its successor;
+    \item \ff{Client}: sends a request to some \ff{ConcreteHandler} object in the chain.
 \end{enumerate}
 
 \subsubsection{Relation}
-A request initiated by a client is moved along the chain until some ConcreteHandler object takes responsibility for processing it.
+A request initiated by a client is moved along the chain until some \ff{ConcreteHandler} object takes responsibility for processing it.
 
 \subsubsection{Implementation}
 \begin{ffcode}
-1.  +package sandbox
-2.  +alias stdout org.eolang.io.stdout
-3.  +alias sprintf org.eolang.txt.sprintf
-4.  
-5.  [nextHandler] > defaultHandler
-6.    [message] > process
-7.      "" > @
-8.  
-9.  [] > handler1
-10.   [message] > process
-11.     if. > @
-12.       message.eq "1"
-13.       "one"
-14.       ^.nextHandler.process message
-15.   defaultHandler > @
-16.     handler2
-17. 
-18. [] > handler2
-19.   [message] > process
-20.     if. > @
-21.       message.eq "2"
-22.       "two"
-23.       ^.nextHandler.process message
-24.   defaultHandler > @
-25.     handler3
-26. 
-27. [] > handler3
-28.   [message] > process
-29.     if. > @
-30.       message.eq "3"
-31.       "three"
-32.       ^.nextHandler.process message
-33.   defaultHandler > @
-34.     handler4
-35. 
-36. [] > handler4
-37.   [message] > process
-38.     if. > @
-39.       message.eq "4"
-40.       "four"
-41.       ^.nextHandler.process message
-42.   defaultHandler > @
-43.     defaultHandler
-44. 
-45. [args...] > appChain
-46.   handler1 > hChain
-47.   stdout > @
-48.     sprintf
-49.       "%s\n"
-50.       hChain.process
-51.         args.at 0 
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
 
+[nextHandler] > defaultHandler
+  [message] > process
+    "" > @
+
+[] > handler1
+  [message] > process
+    if. > @
+      message.eq "1"
+      "one"
+      ^.nextHandler.process message
+  defaultHandler > @
+    handler2
+
+[] > handler2
+  [message] > process
+    if. > @
+      message.eq "2"
+      "two"
+      ^.nextHandler.process message
+  defaultHandler > @
+    handler3
+
+[] > handler3
+  [message] > process
+    if. > @
+      message.eq "3"
+      "three"
+      ^.nextHandler.process message
+  defaultHandler > @
+    handler4
+
+[] > handler4
+  [message] > process
+    if. > @
+      message.eq "4"
+      "four"
+      ^.nextHandler.process message
+  defaultHandler > @
+    defaultHandler
+
+[args...] > app
+  handler1 > hChain
+  stdout > @
+    sprintf
+      "%s\n"
+      hChain.process
+        args.at 0 
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
+IN$: ./run.sh 1
+OUT>: one
+IN$: ./run.sh 2
+OUT>: ProductB: two
 \end{ffcode}
 
-
-The input parameter args[0] is passed sequentially to 4 handlers, each of which processes its value (numbers from 1 to 4 are converted into words if another parameter is entered, an empty string is returned).
+The input parameter \ff{args[0]} is passed sequentially to 4 handlers, each of which processes its value (numbers from 1 to 4 are converted into words if another parameter is entered, an empty string is returned).
 
 \section{Command}
 Command pattern is a behavioral design pattern.
@@ -2196,11 +2104,11 @@ Encapsulates a query in an object, thereby allowing clients to be parameterized 
 
 \subsubsection{Participants}
 \begin{enumerate}
-    \item - Command — command: declares the interface to perform the operation.
-    \item - ConcreteCommand is a specific  team: defines the relationship between the Receiver receiving object and the action; implements the Execute operation by calling the corresponding operations of the  Receiverobject.
-    \item — Client— client: Creates a ConcreteCommand class object and sets its recipient.
-    \item - Invoker— initiator: calls the command to execute the request.
-    \item - Receiver  — recipient: has information about how to perform the operations necessary to meet the request. Any class can act as a recipient.
+    \item \ff{Command} — command: declares the interface to perform the operation.
+    \item \ff{ConcreteCommand} is a specific  team: defines the relationship between the \ff{Receiver} receiving object and the action; implements the \ff{Execute} operation by calling the corresponding operations of the \ff{Receiverobject}.
+    \item Client: creates \ff{ConcreteCommand} class object and sets its recipient.
+    \item \ff{Invoker}— initiator: calls the command to execute the request.
+    \item \ff{Receiver} — recipient: has information about how to perform the operations necessary to meet the request. Any class can act as a recipient.
 \end{enumerate}
 
 \subsubsection{Relations}
@@ -2215,42 +2123,38 @@ Encapsulates a query in an object, thereby allowing clients to be parameterized 
 The Null Object Pattern is one of the behavioral design patterns.
 
 \subsubsection{Purpose}
-Null object pattern is used to replace check of NULL object instance to simplify the use of dependencies that can be undefined.
+Null object pattern is used to replace check of \ff{NULL} object instance to simplify the use of dependencies that can be undefined.
 
 \subsubsection{Problem}
-In Null Object pattern, a null object replaces check of NULL object instance. Instead of putting if check for a null value, Null Object reflects a do-nothing relationship. Such Null object can also be used to provide default behaviour in case data is not available. The concept of null objects comes from the idea that some methods return null instead of real objects and may lead to having many checks for null in your code. 
+In Null Object pattern, a \ff{null} object replaces check of NULL object instance. Instead of putting if check for a \ff{null} value, Null Object reflects a do-nothing relationship. Such Null Object can also be used to provide default behaviour in case data is not available. The concept of \ff{null} objects comes from the idea that some methods return \ff{null} instead of real objects and may lead to having many checks for \ff{null} in your code. 
 
+In Java and C++, the key to the Null Object pattern is an abstract class that defines the interface for all objects of this type. The Null Object is implemented as a subclass of this abstract class. Because it conforms to the interface of an abstract class, it can be used any place this type of object is needed. Null Object should not have any state.
 
-In Java and C++, the key to the Null Object pattern is an abstract class that defines the interface for all objects of this type. The Null Object is implemented as a subclass of this abstract class. Because it conforms to the abstract class' interface, it can be used any place this type of object is needed. Null object should not have any state.
-
-
-In Eolang, the concept of null does not exist as every object is meant to dataize to a value, and as such given a value on creation. As classes and interfaces do not exist here either, the closest implementation in Eolang would be to have every object implement a null attribute that either dataizes to a Boolean or a string representing a lack of value/data or whatever the default value of an object may be. In this case, there may still be checks to see if null is true or false or contains the expected string.
+In Eolang, the concept of \ff{null} does not exist as every object is meant to dataize to a value, and as such given a value on creation. As classes and interfaces do not exist here either, the closest implementation in Eolang would be to have every object implement a \ff{null} attribute that either dataizes to a Boolean or a string representing a lack of value/data or whatever the default value of an object may be. In this case, there may still be checks to see if \ff{null} is true or false or contains the expected string.
 
 \subsubsection{Implementation}
 \begin{ffcode}
-1.  +package sandbox
-2.  +alias stdout org.eolang.io.stdout
-3.  +alias sprintf org.eolang.txt.sprintf
-4.  +alias list org.eolang.collections.list
-5.  
-6.  [] > null
-7.    "null" > @
-8.  
-9.  [args...] > appNull
-10.   stdout > @
-11.     sprintf
-12.       "%s\n"
-13.       if.
-14.         (list args).is-empty
-15.         null
-16.         args.at 0 
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
++alias list org.eolang.collections.list
 
+[] > null
+  "null" > @
+
+[args...] > app
+  stdout > @
+    sprintf
+      "%s\n"
+      if.
+        (list args).is-empty
+        null
+        args.at 0 
 \end{ffcode}
-
 \textbf{Output:}
 \begin{ffcode}
-$ ./run.sh
-null
+IN$: ./run.sh
+OUT>: null
 \end{ffcode}
 
 \section{Decorator}
@@ -2267,42 +2171,36 @@ In Eolang, a copy of an object can be made, and new functionality be added. Here
 
 \subsubsection{Implementation}
 \begin{ffcode}
-1.  +package sandbox
-2.  +alias stdout org.eolang.io.stdout
-3.  +alias sprintf org.eolang.txt.sprintf
-4.  +alias text org.eolang.txt.text
-5.  
-6.  [] > carsDecorate
-7.    8 > @
-8.  
-9.  [num] > someCars
-10.    decorateWithMoreCars num > @
-11. 
-12.    [number] > decorateWithMoreCars
-13.      plus. > @
-14.        carsDecorate
-15.        number
-16. 
-17. [args...] > appDecorator
-18.   stdout > @
-19.     sprintf
-20.       "%d\n"
-21.       someCars
-22.         as-int.
-23.           text (args.at 0)
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
++alias text org.eolang.txt.text
 
+[] > carsDecorate
+  8 > @
+
+[num] > someCars
+  decorateWithMoreCars num > @
+  [number] > decorateWithMoreCars
+    plus. > @
+      carsDecorate
+      number
+
+[args...] > app
+  stdout > @
+    sprintf
+      "%d\n"
+      someCars
+        as-int.
+          text (args.at 0)
 \end{ffcode}
-
-In this example, the object “someCars” increases the number of cars in decarDecorator is for itself.
-
 \textbf{Output}
-
 \begin{ffcode}
-$ ./run.sh 5
-13
+IN$: ./run.sh 5
+OUT>: 13
 \end{ffcode}
 
-It can be concluded that decorator design pattern naturally exits in Eolang.
+In this example, the object \ff{someCars} increases the number of cars in \ff{carsDecorate} is for itself.
 
 \section{Builder}
 Suppose, we have a class with a variety of input parameters. The input parameters are used to configure instances of the class. Some of the parameters may be optional, while some of them are mandatory to be set up. Hence, the following techniques of configuration of instances of the class may be applied:
@@ -2315,14 +2213,15 @@ Suppose, we have a class with a variety of input parameters. The input parameter
 The Builder pattern may be considered a universal solution to the problem. The pattern defines the Builder class, which has methods (stages) for building objects. The user code can call the stages in any order, omitting some of them (optional configurations). Also, the Builder class may check that all the required parameters are set up. At the end of construction, user code is required to call a method that finishes the construction process and returns a ready-made object. The pattern encapsulates the creational sensitive logic inside the Builder class and makes the configuration process manageable to the user code.
 
 \subsubsection{Code Instances Involved}
-Builder is an abstract class that defines the contract of the creational steps of Products for its successors (concrete builders). Also, the Builder superclass defines the finizaliotion method. 
+\ff{Builder} is an abstract class that defines the contract of the creational steps of Products for its successors (concrete builders). Also, the \ff{Builder} superclass defines the finizaliotion method. 
 Product is an interface for products (instances being created and configured through the Builder pattern). The interface defines the contract for all products so that these may be managed by Builders.
 (optional) Director is a class, which defines higher-level (that is, higher than the level of "understanding" of the builder itself, for example, rules for mandatory fields and compliance with business logic) scripts for building objects. The director can be used to reuse some high-level business logic for constructing objects based on various builder implementations.
 
 \subsubsection{Relations}
-Implementations of the Product interface are products. Inheritors of the Builder class provide concrete implementations for the building steps (or borrow some of those steps from the superclass). The Director (optional entity) class can manage builders in a general style (based on some configuration) in accordance with the higher-level logic of business rules. The client code can contact the Director, giving it the configuration, or build an object using the Builder directly.
+Implementations of the \ff{Product} interface are products. Inheritors of the \ff{Builder} class provide concrete implementations for the building steps (or borrow some of those steps from the superclass). The \ff{Director} (optional entity) class can manage builders in a general style (based on some configuration) in accordance with the higher-level logic of business rules. The client code can contact the \ff{Director}, giving it the configuration, or build an object using the \ff{Builder} directly.
 
 \subsubsection{Implementation}
+% TODO: partial application
 First, we should mention that the problem solved by the Builder pattern may be addressed by the partial application mechanism embedded into the language as one of its features. The partial application mechanism allows programmers to partially apply objects (i.e., create objects with some or all of the input attributes omitted and then, optionally, set unbound attributes after throughout the program). This technique may be utilized as a more concise alternative to constructor overloading. Here is an example:
 \begin{ffcode}
 [a b c name] > triangle
@@ -2347,12 +2246,11 @@ First, we should mention that the problem solved by the Builder pattern may be a
    "My Triangle":name
   triangle > triangleNamed
     "My Another Triangle":name
-
 \end{ffcode}
 
-
-Here, we have the triangle object with input attributes a, b, c, and name. The triangle object has two bound attributes: perimeter (which relies on a, b, and c) and toString (which relies on name). Object app demonstrates the partial application mechanism. So, triangleA has only the a attribute bound, triangleABC has all the sides (a, b, c) sat up, triangleABCNamed has all the sides and its name configured, and triangleNamed has the name only. All three triangles are constructed through partial application (meaning, some of the attributes are left unbound or were bound after). The above example demonstrates an alternative solution to the problem of optional configuration of objects. However, this solution does not encapsulate the creation process of objects. Hence, the Builder pattern still may have its place in the EO environment.
-
+Here, we have the \ff{triangle} object with input attributes \ff{a}, \ff{b}, \ff{c}, and \ff{name}. The \ff{triangle} object has two bound attributes: \ff{perimeter} (which relies on \ff{a}, \ff{b}, and \ff{c}) and \ff{toString} (which relies on \ff{name}). Object app demonstrates the partial application mechanism. So, \ff{triangleA} has only the a attribute bound, \ff{triangleABC} has all the sides (\ff{a}, \ff{b}, \ff{c}) sat up, \ff{triangleABCNamed} has all the sides and its name configured, and \ff{triangleNamed} has the name only. All three triangles are constructed through partial application (meaning, some of the attributes are left unbound or were bound after). The above example demonstrates an alternative solution to the problem of optional configuration of objects. However, this solution does not encapsulate the creation process of objects. Hence, the Builder pattern still may have its place in the EO environment.
+\\
+\\
 Consider the following example:
 
 \begin{ffcode}
@@ -2412,7 +2310,8 @@ Consider the following example:
 \end{ffcode}
 
 
-Here we implemented the principles of the Builder pattern through measures supplied by the EO language. The builder object contains the subbuilder attribute object that implements the construction steps (setA, setB, setC, setName) as well as validation sub-steps (validateSide, validateName) and the finalize attribute that finishes the construction process and returns the resulting object. Initially, the instantiation of the builder object is substituted with a copy of the subbuilder object with an empty (meaning, all free attributes are unbound) copy of the constructing object. On each construction step, the subbuilder object returns itself by passing a changed version of the constructing object to its constructor. The construction steps have validation substeps that may implement some complex business logic. Validation steps may return an error or a validated object, which may lead to an interruption of the program execution and prevent inconsistency of the business logic.
+Here we implemented the principles of the Builder pattern through measures supplied by the EO language. The \ff{builder} object contains the \ff{subbuilder} attribute object that implements the construction steps (\ff{setA}, \ff{setB}, \ff{setC}, \ff{setName}) as well as validation sub-steps (\ff{validateSide}, \ff{validateName}) and the \ff{finalize} attribute that finishes the construction process and returns the resulting object. Initially, the instantiation of the \ff{builder} object is substituted with a copy of the \ff{subbuilder} object with an empty (meaning, all free attributes are unbound) copy of the constructing object. On each construction step, the \ff{subbuilder} object returns itself by passing a changed version of the constructing object to its constructor. The construction steps have validation substeps that may implement some complex business logic. Validation steps may return an error or a validated object, which may lead to an interruption of the program execution and prevent inconsistency of the business logic.
+
 In conclusion, we would like to notice that the problem originally stated above (problem of optional configuration of objects with a lot of input parameters) and solved with the Builder pattern may not be actual to EO since it has the partial application mechanism that allows programmers to perform such configuration and, in addition, EO does not allow objects to have more than four free attributes (although, this restriction may be mitigated through passing complex object structures as free attributes). Nevertheless, the EO implementation of the Builder pattern may find its utilization in scopes where encapsulation of the creational process of objects is required. For instance, it may be needed when business logic validation of values passed for binding to free attributes is required.
 
 
@@ -2420,26 +2319,25 @@ In conclusion, we would like to notice that the problem originally stated above 
 The Factory Method Pattern is a creational object-oriented design pattern.
 
 \subsubsection{Purpose}
-Defines the creational method in the Creator superclass that defines a rule (that is, an interface or a contract) for creating an object (product) of some supertype Product. This method is used by the superclass or its more specific implementations, and the factory method can also be called from outside the class by other entities within the application. Concrete implementations of the Creator class with a factory method can return subtypes of the Product type, thereby "tailoring" a specific implementation of the product class to the one required by the factory method contract. Hence, the pattern allows programmers to implement seamless configuration of the architecture of the application.
+Defines the creational method in the \ff{Creator} superclass that defines a rule (that is, an interface or a contract) for creating an object (product) of some supertype \ff{Product}. This method is used by the superclass or its more specific implementations, and the factory method can also be called from outside the class by other entities within the application. Concrete implementations of the \ff{Creator} class with a factory method can return subtypes of the \ff{Product} type, thereby "tailoring" a specific implementation of the product class to the one required by the factory method contract. Hence, the pattern allows programmers to implement seamless configuration of the architecture of the application.
 
 \subsubsection{Problem}
 The pattern addresses the problem of extending the architecture of an application. By specifying  the product contract (Product Interface) and by defining the class contract with the Factory Method Class, the architect separates the responsibility for creating the product itself from other methods of the creator class. This can be useful when:
 \begin{enumerate}
-    \item It is not known what types of the Product class may be used in the future, but it may be appropriate to leave a headroom for a potential extension of the application architecture. Otherwise, this can be interpreted as an implementation of the "Open / Closed” principle (O in SOLID).
+    \item It is not known what types of the \ff{Product} class may be used in the future, but it may be appropriate to leave a headroom for a potential extension of the application architecture. Otherwise, this can be interpreted as an implementation of the "Open / Closed” principle (O in SOLID).
     \item Implementation of the principle of "Single Responsibility" (S in SOLID). The code responsible for setting (configuring) a specific version of the product can be placed in a single place, for example, in a class that configures the application based on the environment settings. Here, the Dependency Injection mechanism can also be used to perform such a configuration in an invisible manner.
     \item The pattern allows programmers to separate the logic of product creation from other logic of the creator class. This facilitates the reuse of identical code.
 \end{enumerate}
 
-
 \subsubsection{Code Instances Involved}
-Creator is an abstract class that defines the contract of the reutilized steps (here, it is someOperation) and the creational step (createProduct) of Products for its successors (concrete creators). 
+\ff{Creator} is an abstract class that defines the contract of the reutilized steps (here, it is \ff{someOperation}) and the creational step (\ff{createProduct}) of Products for its successors (concrete creators). 
 Product is an interface for products (instances being created and configured through the Factory Method pattern). The interface defines the contract for all products so that these may be managed by the pattern.
 
 \subsubsection{Relation}
-Implementations of the Product interface are products. Inheritors of the Creator class provide concrete implementations for the creational method and inherit the rest methods. The concrete implementation of the creational method may return different implementations of Product, which implies the substitution of logic (or configurability of the application). 
+Implementations of the \ff{Product} interface are products. Inheritors of the \ff{Creator} class provide concrete implementations for the creational method and inherit the rest methods. The concrete implementation of the creational method may return different implementations of \ff{Product}, which implies the substitution of logic (or configurability of the application). 
 
 \subsubsection{Implementation}
-The EO programming language does not have interfaces, classes, and types. Because of it, we may omit defining the Product interface contract (since it would not impose any requirements). Consider the following implementation of the pattern in EO: 
+The EO programming language does not have interfaces, classes, and types. Because of it, we may omit defining the \ff{Product} interface contract (since it would not impose any requirements). Consider the following implementation of the pattern in EO: 
 
 \begin{ffcode}
 [] > creator
@@ -2470,10 +2368,11 @@ The EO programming language does not have interfaces, classes, and types. Becaus
   # gets value from the testing server
   [] > getWeight
           24 > @
-
 \end{ffcode}
 
-Here, we have the creator object with the performOperation attribute (the logic to be reused) and the createObject attribute (the logic to be redefined for flexible substitution of objects). The concreteCreatorA and concreteCreatorB objects have the creator object as their decoratee, so that these might inherit the reusable logic. Both objects define the createObject attribute that hides the original attribute of the same name from the decoration hierarchy. Objects productA and productB implement the attribute of interest (getWeight) differently. One of them may at the value from the production server, while another takes it from the testing environment. This example demonstrates the implementation of the classic version of the pattern in EO. However, we may consider a more EO-idiomatic example, free from additional structures (concrete creators) utilized in statically typed class-based object-oriented languages such as Java or C++. Consider the following example: 
+Here, we have the creator object with the \ff{performOperation} attribute (the logic to be reused) and the \ff{createObject} attribute (the logic to be redefined for flexible substitution of objects). The \ff{concreteCreatorA} and \ff{concreteCreatorB} objects have the creator object as their decoratee, so that these might inherit the reusable logic. Both objects define the \ff{createObject} attribute that hides the original attribute of the same name from the decoration hierarchy. Objects \ff{productA} and \ff{productB} implement the attribute of interest (\ff{getWeight}) differently. One of them may at the value from the production server, while another takes it from the testing environment. This example demonstrates the implementation of the classic version of the pattern in EO. 
+
+However, we may consider a more EO-idiomatic example, free from additional structures (concrete creators) utilized in statically typed class-based object-oriented languages such as Java or C++. Consider the following example: 
 
 \begin{ffcode}
 [concreteCreator] > creator
@@ -2495,6 +2394,10 @@ Here, we have the creator object with the performOperation attribute (the logic 
     24 > @
 
 [args...] > app
+  stdout > @
+    sprintf
+      "%d\n"
+      creatorObject.performOperation
   creator > creatorObject
     []
       [] > createObject
@@ -2504,8 +2407,15 @@ Here, we have the creator object with the performOperation attribute (the logic 
           productA
 
 \end{ffcode}
+\textbf{Output}
+\begin{ffcode}
+IN$: ./run.sh hello
+OUT>: 43
+IN$: ./run.sh test
+OUT>: 25
+\end{ffcode}
 
-Here, we used the technique of passing concreteCreator as a free attribute of the object creator. Its concreteCreator is passed in the app object. The decoratee has the only attribute createObject that the creator object inherits and relies on. The createObject attribute decides what version of a product should be chosen based on the environment configuration. This implementation of the pattern may be considered as more idiomatic and flexible from the EO perspective.
+Here, we used the technique of passing \ff{concreteCreator} as a free attribute of the object creator. It's \ff{concreteCreator} is passed in the app object. The decoratee has the only attribute \ff{createObject} that the creator object inherits and relies on. The \ff{createObject} attribute decides what version of a product should be chosen based on the environment configuration. This implementation of the pattern may be considered as more idiomatic and flexible from the EO perspective.
 
 
 \section{The Closures Functional Programming Technique}
@@ -2523,7 +2433,7 @@ console.log(add5(2));  // 7
 console.log(add10(2)); // 12
 \end{ffcode}
 
-Here, we have the makeAdder function that returns an anonymous function capturing its outer state x. The state is then utilized when the returned function is applied with its own parameter y. In other words, the inner anonymous function remembers the value of x and uses it even when the actual value disappeared from the stack. This technique may be useful to emulate access modificators in functional languages: 
+Here, we have the \ff{makeAdder} function that returns an anonymous function capturing its outer state \ff{x}. The state is then utilized when the returned function is applied with its own parameter \ff{y}. In other words, the inner anonymous function remembers the value of \ff{x} and uses it even when the actual value disappeared from the stack. This technique may be useful to emulate access modificators in functional languages: 
 
 \begin{ffcode}
 var counter = (function() {
@@ -2557,9 +2467,9 @@ counter.decrement();
 console.log(counter.value());  // 1.
 \end{ffcode}
 
-Here, the outer function counter returns a complex object-like structure containing functions that capture the state of the counter function. The state of the counter function is also complex: it has a mutable local variable privateCounter, and the changeBy function that mutates the value in the unified manner. The user code may not access the value and the mutating functions directly: both of them disappeared from the stack. However, the closures returned by the outer function still may do it. Hence, the technique allows functional programmers to simulate private state. 
+Here, the outer function \ff{counter} returns a complex object-like structure containing functions that capture the state of the \ff{counter} function. The state of the \ff{counter} function is also complex: it has a mutable local variable \ff{privateCounter}, and the \ff{changeBy} function that mutates the value in the unified manner. The user code may not access the value and the mutating functions directly: both of them disappeared from the stack. However, the closures returned by the outer function still may do it. Hence, the technique allows functional programmers to simulate private state. 
 
-We surely may reproduce the similar technique of capturing the lexical scope in EO:
+We surely may reproduce the similar technique of capturing the lexical scope in EO. Here is an example:
 \begin{ffcode}
 [] > counter
   memory 0 > privateCounter
@@ -2573,16 +2483,17 @@ We surely may reproduce the similar technique of capturing the lexical scope in 
       ^.changeBy (-1) > @
     [] > value
       ^.privateCounter > @
-
 \end{ffcode}
 
 \section{Summary about patterns}
 
-It is possible to conclude that (1) EO is principally applicable to all the considered patterns; (2) For some patterns, EO is able to give a fairly concise and intuitively clear code, since the language combines the features of Functional Programming and OOP; (3) the issues of effective implementation of patterns on EO are largely determined by the characteristics of the environment (IDE + compiler) and today remain open.
+It is possible to conclude that:
+\begin{enumerate}
+    \item EO is principally applicable to all the considered patterns;
+    \item For some patterns, EO is able to give a fairly concise and intuitively clear code, since the language combines the features of Functional Programming (FP) and OOP;
+    \item The issues of effective implementation of patterns on EO are largely determined by the characteristics of the environment (IDE + compiler) and today remain open.
+\end{enumerate}
 
 Also, EO has no local variables or any kind of stack-lifetime storage. Instead, any name refers to an object (stored in heap) that may be accessed through the scope of any other object via the dot-notation mechanism. Even anonymous objects may allow programmers to access its local scope (including parent and decoration hierarchies) freely. In addition, EO has no access modification instruments. This makes closures technique almost similar to the partial application mechanism. Moreover, the publicity of any attribute of any object makes encapsulation impossible in the language. This differentiates EO from functional programming languages and, also, from object-oriented languages. Absence of instruments of access modification (or simulation of it) may be a severe violation of object-oriented principle of encapsulation, which may lead to insecure environments breaking business logic of problem domains.
 
-EO is fundamentally applicable to all the patterns considered. 2) For some patterns, EO is able to give a fairly concise and intuitively clear code, since the language combines the features of Functional Program (FP) and OOP. 3) the issues of effective implementation of patterns on EO are largely determined by the characteristics of the environment (IDE + compiler).
-
 \end{document}
-
