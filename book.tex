@@ -137,7 +137,7 @@ Application can turn an abstract object to a closed one
 \section{Attributes}
 An attribute is a pair of a name and a value, where a value of an attribute is another object. That is because "Everything in EO is an object". Hence, for instance, an attribute name of an object person may be also referred to as plainly the object name of the object person.
 
-\subsection{Free \& Bound Attributes.}
+\subsection{Free and Bound Attributes.}
 Binding is an operation of associating an attribute's value with some object. An attribute may be bound to some object only once.
 An attribute that is not bound to any object is named a free attribute. An attribute that has some object associated with its value is called a bound attribute.
 Free attributes may be declared through the object abstraction only. Binding may be performed either during object declaration using the bind (\ff{>}) operator (see the \ref{sec:abstracion} section for more information) or through object copying (see the \ref{sec:application} section for details).
@@ -151,7 +151,6 @@ The Horizontal Dot Notation
 \begin{ffcode}
 (5.plus 7).times 10 > calc
 \end{ffcode}
-
 The Vertical Dot Notation
 \begin{ffcode}
 times. > calc
@@ -163,15 +162,15 @@ times. > calc
 
 Here, plus is an attribute of the object \ff{5} and \ff{times} is an attribute of the attribute object \ff{plus} (or, more precisely, an attribute of an object that \ff{plus} abstracts or dataizes to, which is an integer number \ff{int}).
 
+\subsection{The \$ locator}
+Locator points to the place where to find an attribute. The \ff{$} character is reserved for the special locator self that every object has. The \ff{$} locator is used to refer to the object itself.
+The \ff{$} locator may be useful to use the result of the object's dataization process for declaring other object's attributes.
+The \ff{$} locator may be used to access attributes of an object inside of the object with the dot notation (e.g., \ff{$.attrA}), but this notation is redundant.
+
 \subsection{The @ attribute}
 The \ff{@} attribute is named phi (after the Greek letter $\varphi$). The \ff{@} character is reserved for the phi attribute and cannot be used for any other purpose. Every object has its own and only \ff{@} attribute. The \ff{@} attribute can be bound to a value only once.
 The \ff{@} attribute is used for decorating objects. An object bound to the \ff{@} attribute is referred to as a decoratee (i.e., an object that is being decorated) while the base object of the \ff{@} attribute is a decorator (i.e., an object that decorates the decoratee). Since the \ff{@} attribute may be bound only once, every object may have only one decoratee object. More on the decoration see in this section.
 Besides, the \ff{@} attribute is heavily used in the dataization process (see this section for more information).
-
-\subsection{The \$ attribute}
-The \ff{$} character is reserved for the special attribute self that every object has. The \ff{$} attribute is used to refer to the object itself.
-The \ff{$} attribute may be useful to use the result of the object's dataization process for declaring other object's attributes.
-The \ff{$} attribute may be used to access attributes of an object inside of the object with the dot notation (e.g., \ff{$.attrA}), but this notation is redundant.
 
 \subsection{The \textasciicircum attribute}
 The  \ff{^} is used to refer to the parent object.
@@ -187,7 +186,23 @@ Example
       ^.magicNumber
       magicNumber
 \end{ffcode}
-Here \ff{^.magicNumber} refers to the parent object's attribute and \ff{magicNumber} refers to \ff{^.magicNumber}
+Here \ff{^.magicNumber} refers to the \ff{parentObject} object's attribute and \ff{magicNumber} refers to \ff{childObject} object's attribute
+
+\subsection{The \& attribute}
+An instance of an abstact object (see the section \ref{sec:abstracion} section) may need to have access to the
+object where the abstract was defined. Here is an example of it:
+\begin{ffcode}
+[] > parentObject
+  [f] > childObject1
+    f 10 > @
+  [f] > childObject2
+    ^.childObject1 > @
+      [x]
+        &.f.plus x > @
+\end{ffcode}
+The objects \ff{childObject1} and \ff{childObject2} has one free attribute \ff{f}. The object \ff{childObject2} decorates \ff{childObject1} to which an anonymous object (see \ref{subsec:anonymous-abstracion}) with one free attribute \ff{x} is applied. The anonymous inner abstract object has to get access to the attribute \ff{f} of \ff{cildObject2}. However, \ff{^.f} won't work, because the parent of it is a copy of \ff{childObject1}, and the parent of \ff{childObject1} is the object \ff{parentObject}. Thus, there is no way to get access to \ff{childObject1.f} using parent attributes.
+
+The \textit{home} attribute \ff{&} helps here. Once an anonymous inner abstract object is created, its home attribute is set to the \ff{childObject2}. Its parent attribute \ff{^} is also set to the object \ff{childObject2}, but is later changed by the \ff{childObject1} when a copy of it is being made. However, the home attribute remains the same.
 
 \section{Abstraction} \label{sec:abstracion}
 Abstraction is the operation of declaring a new object. Abstraction allows declaring both abstract and closed, anonymous and named objects.
@@ -209,7 +224,7 @@ The abstraction syntax includes the following elements:
     \item (optional) The object may be declared as an atom (i.e., its implementation is made out of the EO language (for instance, in Java)) if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{/} operator is used (for example, \ff{/bool}).
 \end{enumerate}
 
-\subsection{Anonymous Abstraction}
+\subsection{Anonymous Abstraction} \label{subsec:anonymous-abstracion}
 There are two types of anonymous abstraction: inline and plain multi-line. Here is example of plain multi-line anonymous abstraction:
 
 \begin{ffcode}
@@ -320,8 +335,10 @@ Essentially, application is used to bind free attributes of abstract objects to 
 
 We can partially apply it to create a new, more specific concept:
 \begin{ffcode}
-sum 10 > addTen
-addTen 10 > twenty
+sum > addTen
+  10:a
+addTen > twenty
+  10:b
 \end{ffcode}
 
 \section{Decoration}
@@ -661,9 +678,10 @@ IN$:
 \subsubsection{if Attribute}
 The \ff{if} attribute object is used for value substitution based on a condition that can be evaluated as a \ff{bool} object.
 The \ff{if} attribute object has two free attributes:
-
-\ff{t} for the substitution if the base \ff{bool} object is \ff{TRUE}.
-\ff{f} for the substitution if the base \ff{bool} object is \ff{FALSE}.
+\begin{itemize}
+    \item \ff{t} for the substitution if the base \ff{bool} object is \ff{TRUE}.
+    \item \ff{f} for the substitution if the base \ff{bool} object is \ff{FALSE}.
+\end{itemize}
 If the \ff{if} attribute object is fully applied, it represents the corresponding substitution value. Here is an example of using \ff{if} attribute:
 \begin{ffcode}
 +package sandbox
@@ -1841,7 +1859,7 @@ When compared to C++ and Java languages, it can be noted that in these languages
 \subsection{WEAKNESSES}
 One of the weaknesses is that the limited capabilities of the language do not allow it to be used in many subject areas in comparison with C++ and Java. That is, where high performance computing is required.
 
-% TODO:
+% TODO: is that right&?
 Another point to mention is \textbf{lack of tools} that provide support for parallel and distributed computing, which is currently used in one form or another in almost all modern programming languages.
 
 And not enough attention is paid to the formation of the type system. Using a typeless solution can turn out to be unreliable in many situations, which, in turn, may lead to difficulties associated with static code analysis. In addition, in some cases, to increase control over data when writing programs in Eolang, additional constructions will have to be introduced to model data types and explicitly check them either during static analysis or at runtime.
@@ -1852,7 +1870,7 @@ Currently, the EO community is limited. There are not many conferences, local me
 
 Also Eolang lacks \textbf{simplicity}. The EO language is barely simple to read and write and has a quite steep learning curve for new programmers. In comparison to the other languages in context, corresponding code in Eolang takes consumes more lines \textbf{(LOC)}. Eolang has low efficiency in terms of \textbf{memory consumption} and \textbf{compilation speed}. Thus, Eolang consumes a lot of resources, and increasing becomes complex as the code base gets large. These plus to the weaknesses of the language.
 
-% TODO
+% TODO: do we need this sentence?
 Lastly, conceptual incompleteness. The Eolang concept or idea is not fully or completely described.
 
 \subsection{OPPORTUNITIES}
@@ -2221,7 +2239,6 @@ Product is an interface for products (instances being created and configured thr
 Implementations of the \ff{Product} interface are products. Inheritors of the \ff{Builder} class provide concrete implementations for the building steps (or borrow some of those steps from the superclass). The \ff{Director} (optional entity) class can manage builders in a general style (based on some configuration) in accordance with the higher-level logic of business rules. The client code can contact the \ff{Director}, giving it the configuration, or build an object using the \ff{Builder} directly.
 
 \subsubsection{Implementation}
-% TODO: partial application
 First, we should mention that the problem solved by the Builder pattern may be addressed by the partial application mechanism embedded into the language as one of its features. The partial application mechanism allows programmers to partially apply objects (i.e., create objects with some or all of the input attributes omitted and then, optionally, set unbound attributes after throughout the program). This technique may be utilized as a more concise alternative to constructor overloading. Here is an example:
 \begin{ffcode}
 [a b c name] > triangle
