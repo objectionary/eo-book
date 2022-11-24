@@ -220,8 +220,8 @@ The abstraction syntax includes the following elements:
         \item Containing a variable-length attribute (\ff{[animals...]}). The attribute must be at the end of the list of attributes to work properly. Internally, this attribute is represented by the array object.
     \end{enumerate}
     \item \label{item:2.3.1.3} (\textit{optional}) Binding to a name ( \ff{> myObject}). Declared objects may be anonymous. However, anonymous objects must be used in application only (i.e., we can only supply anonymous objects for binding them to free attributes during application).
-    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} operator is used.
-    \item (optional) The object may be declared as an atom (i.e., its implementation is made out of the EO language (for instance, in Java)) if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{/} operator is used (for example, \ff{/bool}).
+    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} qualifier is used.
+    \item (optional) The object may be declared as an atom (i.e., its implementation is made out of the EO language (for instance, in Java)) if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{/} qualifier is used (for example, \ff{/bool}).
 \end{enumerate}
 
 \subsection{Anonymous Abstraction} \label{subsec:anonymous-abstracion}
@@ -299,7 +299,7 @@ The application syntax is quite wide, so let's point out the constituents to per
         \item \textit{Containing one or more objects with names after each} (like \ff{1:a} \ff{5:b} \ff{9:c}). In this case, the listed objects will be bound to the corresponding free attributes of the applied object.
     \end{enumerate}
     \item \label{item:2.4.1.3} (\textit{optiona}l) Binding to a name ( \ff{> myObject}).
-    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} operator is used.
+    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} qualifier is used.
 \end{enumerate}
 
 \subsubsection{Examples}
@@ -1464,9 +1464,38 @@ IN$:
 The EO Standard Object Collection contains the array object for working with arrays of objects.
 Fully Qualified Name: \ff{org.eolang.array} (no aliasing or FQN reference required since the object is automatically imported).
 
+There is a special syntax for making arrays, which looks similar to object copying. Here is an example of making arrays with \ff{*} literal:
+\begin{ffcode}
++package sandbox
++alias org.eolang.io.stdout
++alias org.eolang.txt.sprintf
+
+* > arrayObject
+  "elem"
+  1
+  (* 1 TRUE "3")
+
+[args...] > app
+  stdout > @
+    sprintf
+      "%s\n%d\n%d\n"
+      arrayObject.at 0
+      arrayObject.at 1
+      (arrayObject.at 2).at 1
+\end{ffcode}
+\textbf{Output}
+\begin{ffcode}
+IN$: ./run.sh
+OUT>: elem
+OUT>: 1
+OUT>: true
+IN$: 
+\end{ffcode}
+In this example we can see, that \ff{array} can consist of objects of different types, even nested arrays. See \ref{subsubsec:at-attr} to find out about \ff{at} attribute.
+
 \subsection{array Attributes}
 
-\subsubsection{at Attribute}
+\subsubsection{at Attribute} \label{subsubsec:at-attr}
 The \ff{at} attribute object is used to retrieve an object stored at the position \ff{i} of the base \ff{array} object.
 The position \ff{i} must be within \ff{0} and the \ff{length} of the array inclusively.
 When applied, the \ff{at} attribute object represents the object stored at the position \ff{i} of the base \ff{array} object. Here is an example of using \ff{at} attribute:
