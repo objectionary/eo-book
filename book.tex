@@ -204,6 +204,21 @@ The objects \ff{childObject1} and \ff{childObject2} has one free attribute \ff{f
 
 The \textit{home} attribute \ff{&} helps here. Once an anonymous inner abstract object is created, its home attribute is set to the \ff{childObject2}. Its parent attribute \ff{^} is also set to the object \ff{childObject2}, but is later changed by the \ff{childObject1} when a copy of it is being made. However, the home attribute remains the same.
 
+\subsection{The $<$ attribute}
+Each object has a special attribute \ff{<}, which is an integer refering to a unique identifier of an object in the entire runtime scope of a program. All of the following expressions are true:
+\begin{ffcode}
+TRUE.<.eq (TRUE.<)
+42.<.eq (42.<)
+plus.<.eq (plus.<)
+\end{ffcode}
+All of the following expressions are false:
+\begin{ffcode}
+42.<.eq (7.<)
+(2.plus 2).<.eq (4.<)
+(* 1 2).<.eq ((* 1 2).<)
+\end{ffcode}
+See \ref{subsubsec:comp-attrs} to find out about \ff{eq} attribute of \ff{int} type object.
+
 \section{Abstraction} \label{sec:abstracion}
 Abstraction is the operation of declaring a new object. Abstraction allows declaring both abstract and closed, anonymous and named objects.
 If we are to compare abstraction and application, we can conclude that abstraction allows broadening the field of concepts (objects) by declaring new objects. Application allows enriching the objects declared through abstraction by defining the actual links between the concepts.
@@ -332,7 +347,6 @@ Essentially, application is used to bind free attributes of abstract objects to 
 [a b] > sum
   a.plus b > @
 \end{ffcode}
-
 We can partially apply it to create a new, more specific concept:
 \begin{ffcode}
 sum > addTen
@@ -340,6 +354,8 @@ sum > addTen
 addTen > twenty
   10:b
 \end{ffcode}
+
+%TODO: reference to description of ':' qualifier
 
 \section{Decoration}
 Decoration is the operation of extending one object's (the decoratee) attributes with attributes of the other object (the decorator). Through decoration, the decorator fetches all the attributes of the decoratee and adds up new own attributes. Hence, the decorator represents the decoratee with some extension in the functionality.
@@ -369,6 +385,9 @@ Say, we have the purchase object that represents a purchase of some item that ha
 \end{ffcode}
 
 Now we can access all attributes of purchase and \ff{purchaseTotal} through a copy of purchaseTotal.
+
+\section{Qualifiers}
+
 
 \section{Dataization}
 Dataization is the operation of evaluation of data laying behind an object. The dataization process (denoted hereby as $D(something)$) is recursive and consists of the following steps:
@@ -499,7 +518,7 @@ IN$:
 \end{ffcode}
 
 \subsubsection{and, or, xor Attributes}
-Attributes objects \ff{and}, \ff{or}, \ff{xor} are used for the bitwise operation of the same name. These attributes objects has one free attribute of type \ff{bytes} that is the second object (the first object is the base object of these attributes). Here is an example of using these attributes:
+Attribute objects \ff{and}, \ff{or}, \ff{xor} are used for the bitwise operation of the same name. These attribute objects has one free attribute of type \ff{bytes} that is the second object (the first object is the base object of these attributes). Here is an example of using these attributes:
 \begin{ffcode}
 +package sandbox
 +alias stdout org.eolang.io.stdout
@@ -551,7 +570,7 @@ IN$:
 \end{ffcode}
 
 \subsubsection{left, right Attributes}
-Attributes objects \ff{left}, \ff{right} are used for left and right bitwise shift. This attributes objects has one free attribute of type \ff{int} that is the second object (the first object is the base object of these attributes). This free attribute specifies how many bits to shift. Here is an example of using these attributes:
+Attribute objects \ff{left}, \ff{right} are used for left and right bitwise shift. This attribute objects has one free attribute of type \ff{int} that is the second object (the first object is the base object of these attributes). This free attribute specifies how many bits to shift. Here is an example of using these attributes:
 
 \begin{ffcode}
 +package sandbox
@@ -1128,9 +1147,9 @@ IN$:
 
 \subsection{int Attributes}
 
-\subsubsection{lt Attribute}
-The \ff{lt} attribute object is used for testing if its base int object is less than its \ff{x} free attribute (i.e. \ff{$ < x}).
-If the less attribute object is fully applied, it represents the result of the testing (either \ff{TRUE} (if the base object is less than \ff{x} free attribute of the less) or \ff{FALSE} (otherwise)). Here is an example of using \ff{lt} attribute:
+\subsubsection{eq, lt, lte, gt, gte Attribute} \label{subsubsec:comp-attrs}
+Attribute objects \ff{eq}, \ff{lt}, \ff{lte}, \ff{gt}, \ff{gte} are used for comparisons their base int object with their \ff{x} free attribute (i.e. \ff{$ == x}, \ff{$ < x}, \ff{$ <= x}, \ff{$ > x}, \ff{$ >= x} respectively).
+If these attribute objects are fully applied, they represents the result of the comparisons (either \ff{TRUE} (the comparison is correct) or \ff{FALSE} (otherwise)). Here is an example of using these attributes:
 
 \begin{ffcode}
 +package sandbox
@@ -1140,21 +1159,25 @@ If the less attribute object is fully applied, it represents the result of the t
 [args...] > app
   stdout > @
     sprintf
-      "%b\n%b\n"
+      "%b\n%b\n%b\n%b\n%b\n"
+      0.eq 0
       -7.lt 0
-      lt.
-        0
-        0
+      1.lte 1
+      5.gt -2
+      1.gte 1
 \end{ffcode}
 \textbf{Output}
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: true
-OUT>: false
+OUT>: true
+OUT>: true
+OUT>: true
+OUT>: true
 IN$: 
 \end{ffcode}
 
-\subsubsection{plus Attribute}
+\subsubsection{plus Attribute} 
 The \ff{plus} attribute object is used to calculate the sum of its base \ff{int} object and the free attribute \ff{x} of type \ff{int} (i.e. \ff{$ + x}).
 If the \ff{plus} attribute object is fully applied, it represents the resulting sum of the integer numbers. Here is an example of using \ff{plus} attribute:
 
