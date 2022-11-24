@@ -226,6 +226,7 @@ If we are to compare abstraction and application, we can conclude that abstracti
 \subsection{Syntax}
 The abstraction syntax includes the following elements:
 
+%TODO: resolve all references to qualifiers
 \begin{enumerate}
     \item (\textit{optional}) One or more comment lines before (e.g., \ff{# comment}).
     \item A sequence of free attributes in square brackets. The sequence may be:
@@ -384,10 +385,34 @@ Say, we have the purchase object that represents a purchase of some item that ha
     @.itemQuantity
 \end{ffcode}
 
-Now we can access all attributes of purchase and \ff{purchaseTotal} through a copy of purchaseTotal.
+Now we can access all attributes of purchase and \ff{purchaseTotal} through a copy of \ff{purchaseTotal}.
 
 \section{Qualifiers}
+In EO qualifiers are special symbols for modifying objects. They can change the behavior of the objects they apply to.
 
+\subsection{The : Qualifier}
+The \ff{:} qualifier may be used to denote the exact name of the free attribute to be bound to the provided argument. It's easier to understand with an example:
+\\
+\\
+We have a point in 3D space:
+\begin{ffcode}
+[x y z] > point
+\end{ffcode}
+We can make an application like we did before:
+\begin{ffcode}
+point
+  1
+  2
+  3
+\end{ffcode}
+But we also can use \ff{:} qualifier and denote the exact name of the free attributes:
+\begin{ffcode}
+point
+  3:z
+  1:x
+  2:y
+\end{ffcode}
+The second notation is equivalent to the first one. The only difference is that when we use the \ff{:} qualifier, we don't have to respect the order of the free attributes.
 
 \section{Dataization}
 Dataization is the operation of evaluation of data laying behind an object. The dataization process (denoted hereby as $D(something)$) is recursive and consists of the following steps:
