@@ -414,6 +414,45 @@ point
 \end{ffcode}
 The second notation is equivalent to the first one. The only difference is that when we use the \ff{:} qualifier, we don't have to respect the order of the free attributes.
 
+\subsection{The ... Qualifier}
+The \ff{...} qualifier is used to denote a varargs. The last free attribute in an abstract object may be a vararg, meaning that any number or zero arguments may be provided. All of them will be packaged in an array by the compiler, for example:
+\begin{ffcode}
+[x...] > sum |$\label{ln:sum-def}$|
+sum 8 13 -9 |$\label{ln:sum-instance}$|
+\end{ffcode}
+Here, at the first line the abstract object \ff{sum} is defined with a free vararg attribute \ff{x}. At the second line a copy of the abstract object is made with three arguments. The internals of the \ff{sum} will see \ff{x} as an \ff{array} with three elements inside. 
+\\
+\\
+It is possible to provide an array as a parameter for vararg attribute (both variants are semantically equivalent):
+\begin{ffcode}
+* 42 7 > a
+sum ...a
+sum 42 7
+\end{ffcode}
+
+%TODO: how to use ` in header
+\subsection{The ' Qualifier}
+The \ff{`} qualifier used to make a copy of an object without giving any parameters to it. Here is an example of using \ff{`} qualifier:
+\begin{ffcode}
+point' > p
+p 3 5 6 > p1
+\end{ffcode}
+Here, two objects will be created, \ff{p} and \ff{p1}, where the former is an abstract one, a copy of \ff{point}, while the later is a closed one with two parameters specified.
+
+\subsection{The ! Qualifier}
+The \ff{!} qualifier is used to make the object it applies to a constant. EO is a declarative language with lazy evaluations. This means that this code would read the input stream two times:
+\begin{ffcode}
+[] > hello
+  stdout > say
+    sprintf
+      "The length of %s is %d"
+      stdin.next-line > x!
+      x.length
+\end{ffcode}
+The \ff{sprintf} object (see \ref{subsec:sprintf}) will go to the \ff{x} two times. First time, in order to use it as a substitute for \ff{\%s} and the second time for \ff{\%d}. There will be two round-trips to the standard input stream, which obviously is not correct. The \ff{!} qualifier at the \ff{x!} solves the problem, making the object by the name \ff{x} a \textit{constant}. This means that all attributes of \ff{x} are \textit{cached}. Important to notice that the cache is \textit{not deep}: the attributes of attributes are not cached. 
+
+Here, \ff{x} is an attribute of the object \ff{hello}, even though it is not defined as explicitly as \ff{say}. Anywhere a new name shows up after the \ff{>} symbol, it is a declaration of a new attribute in the nearest object abstraction.
+
 \section{Dataization}
 Dataization is the operation of evaluation of data laying behind an object. The dataization process (denoted hereby as $D(something)$) is recursive and consists of the following steps:
 
@@ -1422,7 +1461,7 @@ Here, \ff{2^(-10)} results in \ff{0} as well as raising all the integer numbers 
 \section{Command Line Interface Output}
 The EO Standard Object Collection contains two objects for the CLI output: \ff{sprintf} for strings formatting and \ff{stdout} for plain text output.
 
-\subsection{Plain Text Output - stdout}
+\subsection{Plain Text Output - stdout} \label{subsec:stdout}
 For plain text output, the \ff{stdout} object is used.
 Fully Qualified Name: 
 \\
@@ -1467,7 +1506,7 @@ OUT>: HelloIN$:
 
 Note: here, the \ff{"Hello"} is printed with no EOL character at the end of the line because of the absence of it in the user input.
 
-\subsection{Formatting Strings - sprintf}
+\subsection{Formatting Strings - sprintf} \label{subsec:sprintf}
 For strings formatting, the \ff{sprintf} object is used.
 String formatting is the process of data injection into the string, optionally applying format patterns to the data.
 Fully Qualified Name: \ff{org.eolang.txt.sprintf}.
