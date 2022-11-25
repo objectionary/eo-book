@@ -449,9 +449,36 @@ The \ff{!} qualifier is used to make the object it applies to a constant. EO is 
       stdin.next-line > x!
       x.length
 \end{ffcode}
-The \ff{sprintf} object (see \ref{subsec:sprintf}) will go to the \ff{x} two times. First time, in order to use it as a substitute for \ff{\%s} and the second time for \ff{\%d}. There will be two round-trips to the standard input stream, which obviously is not correct. The \ff{!} qualifier at the \ff{x!} solves the problem, making the object by the name \ff{x} a \textit{constant}. This means that all attributes of \ff{x} are \textit{cached}. Important to notice that the cache is \textit{not deep}: the attributes of attributes are not cached. 
+The \ff{sprintf} object (see \ref{subsec:sprintf}) will go to the \ff{x} two times. First time, in order to use it as a substitute for \ff{%s} and the second time for \ff{%d}. There will be two round-trips to the standard input stream, which obviously is not correct. The \ff{!} qualifier at the \ff{x!} solves the problem, making the object by the name \ff{x} a \textit{constant}. This means that all attributes of \ff{x} are \textit{cached}. Important to notice that the cache is \textit{not deep}: the attributes of attributes are not cached. 
 
 Here, \ff{x} is an attribute of the object \ff{hello}, even though it is not defined as explicitly as \ff{say}. Anywhere a new name shows up after the \ff{>} symbol, it is a declaration of a new attribute in the nearest object abstraction.
+
+\subsection{The + Qualifier}
+The \ff{+} qualifier is called a meta qualifier and is used for meta statements. Meta statements are passed to the compiler and their meaning is compiler dependent and may differ between target platforms. You can see a case of using meta statements in the example below:
+\begin{ffcode}
++package org.example
++alias org.eolang.io.stdout
+[args...] > app
+  stdout > @
+    "Hello, world!\n"
+\end{ffcode}
+This program instructs the compiler to put all objects from the file into the package \ff{org.example} and helps it resolve the name \ff{stdout} (see \ref{subsec:stdout}), which is external to the file.
+
+\subsection{The / Qualifier}
+Some objects in EO programs may need to be platform specific and can't be composed from other existing objects---they are called \textit{atoms}.
+For example \ff{stdout} (see \ref{subsec:stdout}) is an atom. Its implementation would be provided by the runtime. This is how the object may be defined:
+\begin{ffcode}
++rt jvm org.eolang:eo-runtime:0.7.0
++rt ruby eolang:0.1.0
+[text] > stdout /bool
+\end{ffcode}
+The \ff{/bool} suffix informs the compiler that this object must
+not be compiled from EO to the target language. The object
+with this suffix already exists in the target language and most
+probably could be found in the library specified by the \ff{rt}
+meta. The exact library to import has to be selected by the compiler. In the example above, there are two libraries specified: for JVM and for Ruby.
+
+The \ff{bool} part after the \ff{/} qualifier is the name of object, which \ff{stdout} decorates. The name may be replaced by a question mark, if uncertain about the object being decorated. Atoms in EO are similar to native methods in Java and extern methods in C\#: this mechanism is also known as foreign function interface (FFI).
 
 \section{Dataization}
 Dataization is the operation of evaluation of data laying behind an object. The dataization process (denoted hereby as $D(something)$) is recursive and consists of the following steps:
