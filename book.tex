@@ -162,17 +162,17 @@ times. > calc
 
 Here, plus is an attribute of the object \ff{5} and \ff{times} is an attribute of the attribute object \ff{plus} (or, more precisely, an attribute of an object that \ff{plus} abstracts or dataizes to, which is an integer number \ff{int}).
 
-\subsection{The \$ locator}
+\subsection{The \texttt{\$} locator}
 Locator points to the place where to find an attribute. The \ff{$} character is reserved for the special locator self that every object has. The \ff{$} locator is used to refer to the object itself.
 The \ff{$} locator may be useful to use the result of the object's dataization process for declaring other object's attributes.
 The \ff{$} locator may be used to access attributes of an object inside of the object with the dot notation (e.g., \ff{$.attrA}), but this notation is redundant.
 
-\subsection{The @ attribute}
+\subsection{The \texttt{@} attribute}
 The \ff{@} attribute is named phi (after the Greek letter $\varphi$). The \ff{@} character is reserved for the phi attribute and cannot be used for any other purpose. Every object has its own and only \ff{@} attribute. The \ff{@} attribute can be bound to a value only once.
 The \ff{@} attribute is used for decorating objects. An object bound to the \ff{@} attribute is referred to as a decoratee (i.e., an object that is being decorated) while the base object of the \ff{@} attribute is a decorator (i.e., an object that decorates the decoratee). Since the \ff{@} attribute may be bound only once, every object may have only one decoratee object. More on the decoration see in this section.
 Besides, the \ff{@} attribute is heavily used in the dataization process (see this section for more information).
 
-\subsection{The \textasciicircum attribute}
+\subsection{The \texttt{\^} attribute}
 The  \ff{^} is used to refer to the parent object.
 The \ff{^} attribute may be used to access attributes of a parent object inside of the current object with the dot notation (e.g., \ff{^.attrA}).
 
@@ -188,7 +188,7 @@ Example
 \end{ffcode}
 Here \ff{^.magicNumber} refers to the \ff{parentObject} object's attribute and \ff{magicNumber} refers to \ff{childObject} object's attribute
 
-\subsection{The \& attribute}
+\subsection{The \texttt{\&} attribute}
 An instance of an abstact object (see the section \ref{sec:abstracion} section) may need to have access to the
 object where the abstract was defined. Here is an example of it:
 \begin{ffcode}
@@ -204,7 +204,7 @@ The objects \ff{childObject1} and \ff{childObject2} has one free attribute \ff{f
 
 The \textit{home} attribute \ff{&} helps here. Once an anonymous inner abstract object is created, its home attribute is set to the \ff{childObject2}. Its parent attribute \ff{^} is also set to the object \ff{childObject2}, but is later changed by the \ff{childObject1} when a copy of it is being made. However, the home attribute remains the same.
 
-\subsection{The $<$ attribute}
+\subsection{The \texttt{<} attribute}
 Each object has a special attribute \ff{<}, which is an integer refering to a unique identifier of an object in the entire runtime scope of a program. All of the following expressions are true:
 \begin{ffcode}
 TRUE.<.eq (TRUE.<)
@@ -226,18 +226,17 @@ If we are to compare abstraction and application, we can conclude that abstracti
 \subsection{Syntax}
 The abstraction syntax includes the following elements:
 
-%TODO: resolve all references to qualifiers
 \begin{enumerate}
     \item (\textit{optional}) One or more comment lines before (e.g., \ff{# comment}).
     \item A sequence of free attributes in square brackets. The sequence may be:
     \begin{enumerate}
         \item Empty (\ff{[]}). In this case, the declared object has no free attributes.
         \item Containing one or more attribute names (\ff{[a]} or \ff{[a b c d e]}). In this case, the listed attribute names are the free attributes of the declared object.
-        \item Containing a variable-length attribute (\ff{[animals...]}). The attribute must be at the end of the list of attributes to work properly. Internally, this attribute is represented by the array object.
+        \item Containing a variable-length (see \ref{subsec:"..."-qualifier}) attribute (\ff{[animals...]}). The attribute must be at the end of the list of attributes to work properly. Internally, this attribute is represented by the array object.
     \end{enumerate}
     \item \label{item:2.3.1.3} (\textit{optional}) Binding to a name ( \ff{> myObject}). Declared objects may be anonymous. However, anonymous objects must be used in application only (i.e., we can only supply anonymous objects for binding them to free attributes during application).
-    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} qualifier is used.
-    \item (optional) The object may be declared as an atom (i.e., its implementation is made out of the EO language (for instance, in Java)) if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{/} qualifier is used (for example, \ff{/bool}).
+    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} qualifier (see \ref{subsec:"!"-qualifier}) is used.
+    \item (optional) The object may be declared as an atom (i.e., its implementation is made out of the EO language (for instance, in Java)) if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{/} qualifier (see \ref{subsec:"/"-qualifier}) is used (for example, \ff{/bool}).
 \end{enumerate}
 
 \subsection{Anonymous Abstraction} \label{subsec:anonymous-abstracion}
@@ -312,10 +311,10 @@ The application syntax is quite wide, so let's point out the constituents to per
     \begin{enumerate}
         \item \textit{Empty}. In this case, the applied object will stay abstract or closed, as it was before.
         \item \textit{Containing one or more objects}. In this case, the listed objects will be bound to the free attributes of the applied object in their order of appearance.
-        \item \textit{Containing one or more objects with names after each} (like \ff{1:a} \ff{5:b} \ff{9:c}). In this case, the listed objects will be bound to the corresponding free attributes of the applied object.
+        \item \textit{Containing one or more objects with names after each} (like \ff{1:a} \ff{5:b} \ff{9:c}). In this case, the listed objects will be bound to the corresponding free attributes of the applied object (see \ref{subsec:":"-qualifier}).
     \end{enumerate}
     \item \label{item:2.4.1.3} (\textit{optiona}l) Binding to a name ( \ff{> myObject}).
-    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} qualifier is used.
+    \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} qualifier (see \ref{subsec:"!"-qualifier}) is used.
 \end{enumerate}
 
 \subsubsection{Examples}
@@ -356,8 +355,6 @@ addTen > twenty
   10:b
 \end{ffcode}
 
-%TODO: reference to description of ':' qualifier
-
 \section{Decoration}
 Decoration is the operation of extending one object's (the decoratee) attributes with attributes of the other object (the decorator). Through decoration, the decorator fetches all the attributes of the decoratee and adds up new own attributes. Hence, the decorator represents the decoratee with some extension in the functionality.
 
@@ -390,7 +387,7 @@ Now we can access all attributes of purchase and \ff{purchaseTotal} through a co
 \section{Qualifiers}
 In EO qualifiers are special symbols for modifying objects. They can change the behavior of the objects they apply to.
 
-\subsection{The : Qualifier}
+\subsection{The \texttt{:} Qualifier} \label{subsec:":"-qualifier}
 The \ff{:} qualifier may be used to denote the exact name of the free attribute to be bound to the provided argument. It's easier to understand with an example:
 \\
 \\
@@ -414,7 +411,7 @@ point
 \end{ffcode}
 The second notation is equivalent to the first one. The only difference is that when we use the \ff{:} qualifier, we don't have to respect the order of the free attributes.
 
-\subsection{The ... Qualifier}
+\subsection{The \texttt{...} Qualifier} \label{subsec:"..."-qualifier}
 The \ff{...} qualifier is used to denote a varargs. The last free attribute in an abstract object may be a vararg, meaning that any number or zero arguments may be provided. All of them will be packaged in an array by the compiler, for example:
 \begin{ffcode}
 [x...] > sum |$\label{ln:sum-def}$|
@@ -430,8 +427,7 @@ sum ...a
 sum 42 7
 \end{ffcode}
 
-%TODO: how to use ` in header
-\subsection{The ' Qualifier}
+\subsection{The \texttt{`} Qualifier} \label{subsec:"`"-qualifier}
 The \ff{`} qualifier used to make a copy of an object without giving any parameters to it. Here is an example of using \ff{`} qualifier:
 \begin{ffcode}
 point' > p
@@ -439,7 +435,7 @@ p 3 5 6 > p1
 \end{ffcode}
 Here, two objects will be created, \ff{p} and \ff{p1}, where the former is an abstract one, a copy of \ff{point}, while the later is a closed one with two parameters specified.
 
-\subsection{The ! Qualifier}
+\subsection{The \texttt{!} Qualifier} \label{subsec:"!"-qualifier}
 The \ff{!} qualifier is used to make the object it applies to a constant. EO is a declarative language with lazy evaluations. This means that this code would read the input stream two times:
 \begin{ffcode}
 [] > hello
@@ -453,7 +449,7 @@ The \ff{sprintf} object (see \ref{subsec:sprintf}) will go to the \ff{x} two tim
 
 Here, \ff{x} is an attribute of the object \ff{hello}, even though it is not defined as explicitly as \ff{say}. Anywhere a new name shows up after the \ff{>} symbol, it is a declaration of a new attribute in the nearest object abstraction.
 
-\subsection{The + Qualifier}
+\subsection{The \texttt{+} Qualifier} \label{subsec:"+"-qualifier}
 The \ff{+} qualifier is called a meta qualifier and is used for meta statements. Meta statements are passed to the compiler and their meaning is compiler dependent and may differ between target platforms. You can see a case of using meta statements in the example below:
 \begin{ffcode}
 +package org.example
@@ -464,7 +460,7 @@ The \ff{+} qualifier is called a meta qualifier and is used for meta statements.
 \end{ffcode}
 This program instructs the compiler to put all objects from the file into the package \ff{org.example} and helps it resolve the name \ff{stdout} (see \ref{subsec:stdout}), which is external to the file.
 
-\subsection{The / Qualifier}
+\subsection{The \texttt{/} Qualifier} \label{subsec:"/"-qualifier}
 Some objects in EO programs may need to be platform specific and can't be composed from other existing objects---they are called \textit{atoms}.
 For example \ff{stdout} (see \ref{subsec:stdout}) is an atom. Its implementation would be provided by the runtime. This is how the object may be defined:
 \begin{ffcode}
@@ -495,7 +491,8 @@ The opposite is true. If the attribute \ff{x.attr} or the object \ff{x} itself a
 
 
 \section{EO syntax}
-\begin{figure*}[h]
+%TODO: make an up-to-date version of the syntax
+\begin{figure*}[ht]
   \centering
   \includegraphics[width=1\textwidth,]{EOsyntxax.jpg}
   \caption{EO syntax}
@@ -1803,19 +1800,19 @@ Groovy is a dynamic and optionally typed object oriented scripting language. Jus
 \subsection{EO}
 Already exists. The object abstracts behavior
 (or cohesion)  of other objects.
-
-LOC:
+\\
+\\
+Example:
 \begin{ffcode}
 [x a b c] > polynomial 
   (((x.pow 2).times a).plus (x.times b)).plus c > @
   
 \end{ffcode}
 \subsection{Java}
-To create an abstract class, just use the abstract 
-keyword before the class keyword,
-in the class declaration.
-
-LOC
+To create an abstract class, just use the abstract  keyword before the class keyword, in the class declaration.
+\\
+\\
+Example:
 \begin{ffcode}
 class Polynomial {
     public Polynomial
@@ -1831,11 +1828,10 @@ class Polynomial {
 }
 \end{ffcode}
 \subsection{Groovy}
-To create an abstract class, just use the abstract 
-keyword before the class keyword,
-in the class declaration.
-
-LOC
+To create an abstract class, just use the abstract  keyword before the class keyword, in the class declaration.
+\\
+\\
+Example:
 \begin{ffcode}
 class Polynomial {
     public Polynomial
@@ -1853,28 +1849,19 @@ public int compute() {
 \end{ffcode}
 
 \subsection{Kotlin}
-Like Java, abstract keyword is used to declare abstract classes in Kotlin.
-An abstract class cannot be instantiated (you cannot create objects of an abstract class). 
-However, you can inherit sub-classes from can them.
+Like Java, abstract keyword is used to declare abstract classes in Kotlin. An abstract class cannot be instantiated (you cannot create objects of an abstract class).  However, you can inherit sub-classes from can them.
 
 \section{Encapsulation}
 
 \subsection{EO}
-Doesn't exist and will not be introduced
+%TODO: need to say more about it
+Doesn't exist and will not be introduced.
 
 \subsection{Java}
-Encapsulation in Java is a mechanism of wrapping 
-the data (variables) and code acting on the 
-data (methods) together as a single unit.
-In encapsulation, the variables of a class will be
-hidden from other classes, and can be accessed
-only through the methods of their current class. 
-Therefore, it is also known as data hiding.
+Encapsulation in Java is a mechanism of wrapping  the data (variables) and code acting on the  data (methods) together as a single unit. In encapsulation, the variables of a class will be hidden from other classes, and can be accessed only through the methods of their current class.  Therefore, it is also known as data hiding.
 
 \subsection{Groovy}
-In Groovy, everything is public. There’s no idea 
-of private fields or methods. At least, not in the way
-they would be represented in C++ or Java.
+In Groovy, everything is public. There’s no idea  of private fields or methods. At least, not in the way they would be represented in C++ or Java.
 
 \subsection{Kotlin}
 OOP encapsulation in Kotlin unlike Python is enforced and has some fine grained levels (scope modifiers/keywords)
@@ -1882,46 +1869,34 @@ OOP encapsulation in Kotlin unlike Python is enforced and has some fine grained 
 \section{Inheritance}
 
 \subsection{EO}
-Doesn't exist and won't be introduced.
-The usual inheritance is presented by decorators (@)
-The main idea is that in the production (inheritance couses 
-many problems)
+Doesn't exist and won't be introduced. The usual inheritance is presented by decorators (\ff{@} attribute). The main idea is that in the production (inheritance couses  many problems)
 
 \subsection{Java}
 In Java, it is possible to inherit attributes and methods from one class to another. We group the "inheritance concept" into two categories: 
 \begin{itemize}
     \item sub-class (child) - the class that inherits from another class.
-    \item super-class (parent) - the class being 
-inherited from to inherit from a class, use the extends keyword.
+    \item super-class (parent) - the class being  inherited from to inherit from a class, use the \ff{extends} keyword.
 \end{itemize}
 
 \subsection{Groovy}
-Inheritance can be defined as the process where one class acquires the properties (methods and fields) of another. With the use of inheritance the information is made 
-manageable in a hierarchical order. The class which inherits the properties of other is known as subclass (derived class, child class) and the class whose  properties are inherited is known as super-class (base class, parent class). "extends" is the keyword used to inherit the properties of a class.
+Inheritance can be defined as the process where one class acquires the properties (methods and fields) of another. With the use of inheritance the information is made manageable in a hierarchical order. The class which inherits the properties of other is known as subclass (derived class, child class) and the class whose  properties are inherited is known as super-class (base class, parent class). \ff{extends} is the keyword used to inherit the properties of a class.
 
 \subsection{Kotlin}
-All classes in Kotlin have a common super-class Any, that is the default super-class for a class with no super-types declared. Any has three methods: equals(), hashCode() and toString(). Thus, they are defined for all Kotlin classes. By default, Kotlin classes are final: they can’t be inherited. To make a class inheritable, mark it with the open keyword.
+All classes in Kotlin have a common super-class \ff{Any}, that is the default super-class for a class with no super-types declared. Any has three methods: \ff{equals()}, \ff{hashCode()} and \ff{toString()}. Thus, they are defined for all Kotlin classes. By default, Kotlin classes are final: they can’t be inherited. To make a class inheritable, mark it with the \ff{open} keyword.
 
 \section{Polymorphism}
 
 \subsection{EO}
+%TODO: is this not implemented yet?
 Will be implemented (Ad hoc polymorphism)
 
-Duck typing in computer programming is an application of the duck test —
-"If it walks like a duck and it quacks like a duck, then it must be a duck
-" — to determine whether 
-an object can be used for a particular purpose. 
-With normal typing, suitability is determined by an object's type.
- In duck typing, an object's suitability is determined by the presence 
-of certain methods and properties, rather than the type of the object itself.
+Duck typing in computer programming is an application of the duck test — "If it walks like a duck and it quacks like a duck, then it must be a duck " — to determine whether  an object can be used for a particular purpose.  With normal typing, suitability is determined by an object's type. In duck typing, an object's suitability is determined by the presence  of certain methods and properties, rather than the type of the object itself.
 
 \subsection{Java}
-Inheritance lets us inherit attributes and methods from another class.
- Polymorphism uses those methods to perform different tasks. 
-This allows us to perform a single action in different ways.
+Inheritance lets us inherit attributes and methods from another class. Polymorphism uses those methods to perform different tasks. This allows us to perform a single action in different ways.
  
 \subsection{Groovy}
-If you do this in Java (splitting the classes out to their own files of course), it won't compile. Java looks at the reference type for available methods, so you will get a NoSuchMethodException. In Groovy, however, it looks at the type of the object, not the type of the reference so the method is found at runtime.
+If you do this in Java (splitting the classes out to their own files of course), it won't compile. Java looks at the reference type for available methods, so you will get a \ff{NoSuchMethodException}. In Groovy, however, it looks at the type of the object, not the type of the reference so the method is found at runtime.
 
 \subsection{Kotlin}
 Kotlin supports two forms of polymorphism because it is both strongly and statically typed. The first form of polymorphism happens when the code is compiled. The other form happens at runtime. Understanding both forms of polymorphism is critical when writing code in Kotlin.
@@ -1934,22 +1909,15 @@ Presented like Atom Data Type. It is an acronym of "Access to Memory". It is a t
 Moreover,object modeling/representation is used in different programming languages (Smalltalk, Oberon, Zonnon etc.). Function as an object model is commonly used in functional programming languages. Type inference in programming languages helps to deduce types
 
 \subsection{Java}
-Data types specify the different sizes and values that can be stored in the variable. 
-There are two types of data types in Java:
+Data types specify the different sizes and values that can be stored in the variable.  There are two types of data types in Java:
 
-Primitive data types: The primitive data types include Boolean, char, byte, short, 
-int, long, float and double.
-Non-primitive data types:
- The non-primitive data types include Classes, Interfaces and Arrays.
+Primitive data types: The primitive data types include \ff{boolean}, \ff{char}, \ff{byte}, \ff{short}, \ff{int}, \ff{long}, \ff{float} and \ff{double}. Non-primitive data types: The non-primitive data types include \ff{Classes}, \ff{Interfaces} and \ff{Arrays}.
 
 \subsection{Groovy}
 Groovy supports the same number of primitive types as Java.
 
 \subsection{Kotlin}
-In Kotlin, everything is an object in the sense that we can call member functions and properties on any variable. 
-Some of the types can have a special internal representation - for example, 
-numbers, characters and boo leans can be represented 
-as primitive values at runtime - but to the user they look like ordinary classes.
+In Kotlin, everything is an object in the sense that we can call member functions and properties on any variable.  Some of the types can have a special internal representation - for example,  numbers, characters and boo leans can be represented  as primitive values at runtime - but to the user they look like ordinary classes.
 
 \chapter{SWOT about EO}
 We compare Eolang efficiency to C++ and Java, discover the differences, identify pros and cons by SWOT analysis. The main goal is to analyze Eolang efficiency.
@@ -2023,7 +1991,6 @@ When comparing with C++ and Java, it is enough to note here that both proposed l
 
 Also, the platform independence of Eolang provides an opportunity to potentially interoperate the language with many other languages and use existing libraries.
 
-%TODO: potential formalizability of semantics
 Additionally, there is potential \textbf{formalizability of semantics}, the presence of formal calculus of objects, the convergence of object and functional paradigms, potentially short and reliable code.
 
 \subsection{THREATS}
