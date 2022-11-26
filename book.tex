@@ -491,7 +491,7 @@ The opposite is true. If the attribute \ff{x.attr} or the object \ff{x} itself a
 
 
 \section{EO syntax}
-%TODO: make an up-to-date version of the syntax
+% TODO: #11 make an up-to-date version of the syntax
 \begin{figure*}[ht]
   \centering
   \includegraphics[width=1\textwidth,]{EOsyntxax.jpg}
@@ -1782,6 +1782,8 @@ OUT>: 4
 IN$: 
 \end{ffcode}
 
+
+% TODO: #12 decide what we can do with this chapter
 \chapter{Comparison between EO, Java, Kotlin, Groovy}
 We tried to be as close to JVM languages as possible.
 We examine next languages:
@@ -1854,7 +1856,6 @@ Like Java, abstract keyword is used to declare abstract classes in Kotlin. An ab
 \section{Encapsulation}
 
 \subsection{EO}
-%TODO: need to say more about it
 Doesn't exist and will not be introduced.
 
 \subsection{Java}
@@ -1887,7 +1888,6 @@ All classes in Kotlin have a common super-class \ff{Any}, that is the default su
 \section{Polymorphism}
 
 \subsection{EO}
-%TODO: is this not implemented yet?
 Will be implemented (Ad hoc polymorphism)
 
 Duck typing in computer programming is an application of the duck test — "If it walks like a duck and it quacks like a duck, then it must be a duck " — to determine whether  an object can be used for a particular purpose.  With normal typing, suitability is determined by an object's type. In duck typing, an object's suitability is determined by the presence  of certain methods and properties, rather than the type of the object itself.
@@ -1919,6 +1919,7 @@ Groovy supports the same number of primitive types as Java.
 \subsection{Kotlin}
 In Kotlin, everything is an object in the sense that we can call member functions and properties on any variable.  Some of the types can have a special internal representation - for example,  numbers, characters and boo leans can be represented  as primitive values at runtime - but to the user they look like ordinary classes.
 
+% TODO: #13 is the information in this chapter relevant?
 \chapter{SWOT about EO}
 We compare Eolang efficiency to C++ and Java, discover the differences, identify pros and cons by SWOT analysis. The main goal is to analyze Eolang efficiency.
 
@@ -1954,7 +1955,7 @@ This criteria helps clarify the amount of tools and help available for the proce
 \section{SWOT Analysis}
 
 The criteria listed above are equally important because they affect the development cost and effort required over the lifetime of the program, and also affect the usefulness and quality of the developed program.
-% TODO: is that right?
+
 It is important to note that several points are difficult to compare for several reasons, as far as various programming languages are concerned. One of the controversial points is that Eolang is generally positioned as a language intended for static code analysis, which, however, is not explicitly advertised and there is no special emphasis on this in the current project. However, this leads to the fact that initially, it is essentially a subject-oriented and not a universal language that does not allow effectively displaying not only the styles of writing programs but also having a much smaller set of expressive means for describing algorithms and data.
 
 \subsection{STRENGTHS}
@@ -1970,7 +1971,7 @@ When compared to C++ and Java languages, it can be noted that in these languages
 \subsection{WEAKNESSES}
 One of the weaknesses is that the limited capabilities of the language do not allow it to be used in many subject areas in comparison with C++ and Java. That is, where high performance computing is required.
 
-% TODO: is that right&?
+% TODO: #13 is that right?
 Another point to mention is \textbf{lack of tools} that provide support for parallel and distributed computing, which is currently used in one form or another in almost all modern programming languages.
 
 And not enough attention is paid to the formation of the type system. Using a typeless solution can turn out to be unreliable in many situations, which, in turn, may lead to difficulties associated with static code analysis. In addition, in some cases, to increase control over data when writing programs in Eolang, additional constructions will have to be introduced to model data types and explicitly check them either during static analysis or at runtime.
@@ -1981,7 +1982,6 @@ Currently, the EO community is limited. There are not many conferences, local me
 
 Also Eolang lacks \textbf{simplicity}. The EO language is barely simple to read and write and has a quite steep learning curve for new programmers. In comparison to the other languages in context, corresponding code in Eolang takes consumes more lines \textbf{(LOC)}. Eolang has low efficiency in terms of \textbf{memory consumption} and \textbf{compilation speed}. Thus, Eolang consumes a lot of resources, and increasing becomes complex as the code base gets large. These plus to the weaknesses of the language.
 
-% TODO: do we need this sentence?
 Lastly, conceptual incompleteness. The Eolang concept or idea is not fully or completely described.
 
 \subsection{OPPORTUNITIES}
@@ -2380,6 +2380,7 @@ Here, we have the \ff{triangle} object with input attributes \ff{a}, \ff{b}, \ff
 \\
 Consider the following example:
 
+% TODO: #3
 \begin{ffcode}
 [] > builder
   subbuilder triangle > @
@@ -2466,6 +2467,7 @@ Implementations of the \ff{Product} interface are products. Inheritors of the \f
 \subsubsection{Implementation}
 The EO programming language does not have interfaces, classes, and types. Because of it, we may omit defining the \ff{Product} interface contract (since it would not impose any requirements). Consider the following implementation of the pattern in EO: 
 
+% TODO: #4
 \begin{ffcode}
 [] > creator
   # left to be redefined
