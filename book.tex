@@ -160,7 +160,7 @@ times. > calc
   10
 \end{ffcode}
 
-Here, plus is an attribute of the object \ff{5} and \ff{times} is an attribute of the attribute object \ff{plus} (or, more precisely, an attribute of an object that \ff{plus} abstracts or dataizes to, which is an integer number \ff{int}).
+Here, \ff{plus} is an attribute of the object \ff{5} and \ff{times} is an attribute of the attribute object \ff{plus} (or, more precisely, an attribute of an object that \ff{plus} abstracts or dataizes to, which is an integer number \ff{int}).
 
 \subsection{The \texttt{\$} locator}
 Locator points to the place where to find an attribute. The \ff{$} character is reserved for the special locator self that every object has. The \ff{$} locator is used to refer to the object itself.
@@ -200,7 +200,7 @@ object where the abstract was defined. Here is an example of it:
       [x]
         &.f.plus x > @
 \end{ffcode}
-The objects \ff{childObject1} and \ff{childObject2} has one free attribute \ff{f}. The object \ff{childObject2} decorates \ff{childObject1} to which an anonymous object (see \ref{subsec:anonymous-abstracion}) with one free attribute \ff{x} is applied. The anonymous inner abstract object has to get access to the attribute \ff{f} of \ff{cildObject2}. However, \ff{^.f} won't work, because the parent of it is a copy of \ff{childObject1}, and the parent of \ff{childObject1} is the object \ff{parentObject}. Thus, there is no way to get access to \ff{childObject1.f} using parent attributes.
+The objects \ff{childObject1} and \ff{childObject2} has one free attribute \ff{f}. The object \ff{childObject2} decorates \ff{childObject1} to which an anonymous object (see \ref{subsec:anonymous-abstracion}) with one free attribute \ff{x} is applied. The anonymous inner abstract object has to get access to the attribute \ff{f} of \ff{childObject2}. However, \ff{^.f} won't work, because the parent of it is a copy of \ff{childObject1}, and the parent of \ff{childObject1} is the object \ff{parentObject}. Thus, there is no way to get access to \ff{childObject1.f} using parent attributes.
 
 The \textit{home} attribute \ff{&} helps here. Once an anonymous inner abstract object is created, its home attribute is set to the \ff{childObject2}. Its parent attribute \ff{^} is also set to the object \ff{childObject2}, but is later changed by the \ff{childObject1} when a copy of it is being made. However, the home attribute remains the same.
 
