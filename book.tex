@@ -161,7 +161,7 @@ times. > calc
   10
 \end{ffcode}
 
-Here, plus is an attribute of the object \ff{5} and \ff{times} is an attribute of the attribute object \ff{plus} (or, more precisely, an attribute of an object that \ff{plus} abstracts or dataizes to, which is an integer number \ff{int}).
+Here, \ff{plus} is an attribute of the object \ff{5} and \ff{times} is an attribute of the attribute object \ff{plus} (or, more precisely, an attribute of an object that \ff{plus} abstracts or dataizes to, which is an integer number \ff{int}).
 
 \subsection{The \texttt{\$} locator}
 Locator points to the place where to find an attribute. The \ff{$} character is reserved for the special locator self that every object has. The \ff{$} locator is used to refer to the object itself.
@@ -201,7 +201,7 @@ object where the abstract was defined. Here is an example of it:
       [x]
         &.f.plus x > @
 \end{ffcode}
-The objects \ff{childObject1} and \ff{childObject2} has one free attribute \ff{f}. The object \ff{childObject2} decorates \ff{childObject1} to which an anonymous object (see \ref{subsec:anonymous-abstracion}) with one free attribute \ff{x} is applied. The anonymous inner abstract object has to get access to the attribute \ff{f} of \ff{cildObject2}. However, \ff{^.f} won't work, because the parent of it is a copy of \ff{childObject1}, and the parent of \ff{childObject1} is the object \ff{parentObject}. Thus, there is no way to get access to \ff{childObject1.f} using parent attributes.
+The objects \ff{childObject1} and \ff{childObject2} has one free attribute \ff{f}. The object \ff{childObject2} decorates \ff{childObject1} to which an anonymous object (see \ref{subsec:anonymous-abstracion}) with one free attribute \ff{x} is applied. The anonymous inner abstract object has to get access to the attribute \ff{f} of \ff{childObject2}. However, \ff{^.f} won't work, because the parent of it is a copy of \ff{childObject1}, and the parent of \ff{childObject1} is the object \ff{parentObject}. Thus, there is no way to get access to \ff{childObject1.f} using parent attributes.
 
 The \textit{home} attribute \ff{&} helps here. Once an anonymous inner abstract object is created, its home attribute is set to the \ff{childObject2}. Its parent attribute \ff{^} is also set to the object \ff{childObject2}, but is later changed by the \ff{childObject1} when a copy of it is being made. However, the home attribute remains the same.
 
@@ -517,17 +517,17 @@ Create new file \ff{lab1.eo} in sandbox folder, and enter the code below:
 It is important to remember that each EO program must be ended with a new line without any symbols.
 
 
-\section{Data Type Objects}
+\section{Data Objects}
 
-The EO Programming Language and The EO Standard Object Collection defines these data type objects: \ff{bytes}, \ff{bool}, \ff{int}, \ff{float}, \ff{string}. All of them have \ff{as-bytes} attribute, which is an abstraction of their representation as a sequence of bytes.
+The EO Programming Language and The EO Standard Object Collection defines these data objects: \ff{bytes}, \ff{bool}, \ff{int}, \ff{float}, \ff{string}. All of them have \ff{as-bytes} attribute, which is an abstraction of their representation as a sequence of bytes.
 All primitives also have \ff{as-hash} attribute, which, being an \ff{int}, is their own implementation of a hash function. They also have \ff{eq} attribute, which is \ff{TRUE} if the primitive is equal to another object, through the use of \ff{ˆ.as-bytes.eq}
 
-\section{bytes Data Type Object}
-The \ff{bytes} data type object represents an abstraction of an sequence of bytes and can be empty or contain an theoretically unlimited number of bytes.
+\section{bytes Data Object}
+The \ff{bytes} data object represents an abstraction of an sequence of bytes and can be empty or contain an theoretically unlimited number of bytes.
 Fully Qualified Name: \ff{org.eolang.bytes} (no aliasing or FQN reference required since the object is automatically imported).
 
 \subsection{Syntax}
-The \ff{bytes} data type object may be parsed by the EO compiler directly from the source code. The syntax rules for \ff{bytes} values are as follows.
+The \ff{bytes} data object may be parsed by the EO compiler directly from the source code. The syntax rules for \ff{bytes} values are as follows.
 EBNF Notation:
 \begin{ffcode}
     BYTES   ::= BYTE ( ‘-’ BYTE ) | ‘--’
@@ -750,12 +750,12 @@ OUT>: ABCD
 IN$: 
 \end{ffcode}
 
-\section{bool Data Type Object}
-The \ff{bool} data type object represents a boolean value (either \ff{TRUE} or \ff{FALSE}) that can be used for performing logical operations.
+\section{bool Data Object}
+The \ff{bool} data object represents a boolean value (either \ff{TRUE} or \ff{FALSE}) that can be used for performing logical operations.
 Fully Qualified Name: \ff{org.eolang.bool} (no aliasing or CFQN reference required since the object is automatically imported).
 
 \subsection{Syntax}
-The \ff{bool} data type object may be parsed by the EO compiler directly from the source code. The syntax rules for \ff{bool} values are as follows. EBNF Notation:
+The \ff{bool} data object may be parsed by the EO compiler directly from the source code. The syntax rules for \ff{bool} values are as follows. EBNF Notation:
 \begin{ffcode}
 BOOL     ::= 'TRUE'
            | 'FALSE'
@@ -988,12 +988,12 @@ Here, the \ff{i} attribute of the \ff{f} iteration object is
 used to find the \ff{x^3}. However, the \ff{i} attribute may 
 stay unused inside the \ff{f}.
 
-\section{float Data Type Object}
-The \ff{float} data type object represents a double-precision 64-bit IEEE 754 floating-point number and can be used to perform various FPU computations.
+\section{float Data Object}
+The \ff{float} data object represents a double-precision 64-bit IEEE 754 floating-point number and can be used to perform various FPU computations.
 Fully Qualified Name: \ff{org.eolang.float} (no aliasing or FQN reference required since the object is automatically imported).
 
 \subsection{Syntax}
-The \ff{float} data type object may be parsed by the EO compiler directly from the source code. The syntax rules for values are as follows. EBNF Notation:
+The \ff{float} data object may be parsed by the EO compiler directly from the source code. The syntax rules for values are as follows. EBNF Notation:
 
 \begin{ffcode}
 FLOAT    ::= ( '+' | '-' )? [0-9]+ '.' [0-9]+
@@ -1019,7 +1019,9 @@ OUT>: -3.710000
 IN$: 
 \end{ffcode}
 
-\subsection{eq Attribute}
+\subsection{float Attributes}
+
+\subsubsection{eq Attribute}
 The \ff{eq} attribute object is used for testing if two \ff{float} objects are equal. The \ff{eq} attribute object has one free attribute \ff{x} of type \ff{float} that is the second object (the first object is the base object of the \ff{eq} attribute).
 If the \ff{eq} attribute object is applied, it represents the result of the equality test (either \ff{TRUE} (if the objects are equal) or \ff{FALSE} (otherwise)). Here is an example of using \ff{eq} attribute.
 
@@ -1043,12 +1045,12 @@ OUT>: false
 IN$: 
 \end{ffcode}
 
-\section{string Data Type Object}
-The \ff{string} data type object represents a string literal.
+\section{string Data Object}
+The \ff{string} data object represents a string literal.
 Fully Qualified Name: \ff{org.eolang.string} (no aliasing or FQN reference required since the object is automatically imported).
 
 \subsection{Syntax}
-The \ff{string} data type object may be parsed by the EO compiler directly from the source code. The syntax rules for values are as follows. EBNF Notatio:
+The \ff{string} data object may be parsed by the EO compiler directly from the source code. The syntax rules for values are as follows. EBNF Notatio:
 \begin{ffcode}
 
 STRING   ::= '"' ( '\"' | [^"] )* '"'
@@ -1097,7 +1099,7 @@ IN$:
 \end{ffcode}
 
 \subsection{Additional Attributes For Working With strings}
-The object \ff{org.eolang.txt.text} is a decorator of \ff{org.eolang.string}. So the \ff{text} object contains methods for working with strings. Before using these methods, you need to make such an application:
+The object \ff{org.eolang.txt.text} is a decorator of \ff{org.eolang.string}. So the \ff{text} object contains attributes for working with strings. Before using these attributes, you need to make such an application:
 \begin{ffcode}
 (org.eolang.txt.text "String").trim
 \end{ffcode}
@@ -1172,12 +1174,12 @@ OUT>: 0
 IN$: 
 \end{ffcode}
 
-\section{int Data Type Object}
-The \ff{int} data type object represents a 64-bit integer number.
+\section{int Data Object}
+The \ff{int} data object represents a 64-bit integer number.
 Fully Qualified Name: \ff{org.eolang.int} (no aliasing or FQN reference required since the object is automatically imported).
 
 \subsection{Syntax}
-The \ff{int} data type object may be parsed by the EO compiler directly from the source code. The syntax rules for values are as follows. EBNF Notation:
+The \ff{int} data object may be parsed by the EO compiler directly from the source code. The syntax rules for values are as follows. EBNF Notation:
 
 \begin{ffcode}
 INT      ::= ( '+' | '-' )? [0-9]+
@@ -1236,7 +1238,7 @@ IN$:
 
 \subsection{int Attributes}
 
-\subsubsection{eq, lt, lte, gt, gte Attribute} \label{subsubsec:comp-attrs}
+\subsubsection{eq, lt, lte, gt, gte Attributes} \label{subsubsec:comp-attrs}
 Attribute objects \ff{eq}, \ff{lt}, \ff{lte}, \ff{gt}, \ff{gte} are used for comparisons their base int object with their \ff{x} free attribute (i.e. \ff{$ == x}, \ff{$ < x}, \ff{$ <= x}, \ff{$ > x}, \ff{$ >= x} respectively).
 If these attribute objects are fully applied, they represents the result of the comparisons (either \ff{TRUE} (the comparison is correct) or \ff{FALSE} (otherwise)). Here is an example of using these attributes:
 
@@ -1404,10 +1406,8 @@ OUT>: 3
 IN$: 
 \end{ffcode}
 
-
-
 \subsection{Additional Attributes For Working With int Objects}
-The object \ff{org.eolang.math.number} is a decorator of \ff{org.eolang.int}. So the number object contains methods for working with \ff{int} data type objects. Before using these methods, you need to make such an application:
+The object \ff{org.eolang.math.number} is a decorator of \ff{org.eolang.int} and \ff{org.eolang.float}. Here we consider only attributes for working with \ff{int} data objects. Before using these attributes, you need to make such an application:
 \begin{ffcode}
 (org.eolang.math.number 2).mod 1
 \end{ffcode}
@@ -1667,7 +1667,7 @@ This example uses the \ff{args} array, which consists of the CLI options passed 
 
 \subsection{Additional Attributes For Working With arrays}
 
-The object \ff{org.eolang.collections.list} is a decorator of \ff{org.eolang.array}. So the \ff{list} object contains methods for working with arrays. Before using these methods, you need to make such an application:
+The object \ff{org.eolang.collections.list} is a decorator of \ff{org.eolang.array}. So the \ff{list} object contains attributes for working with arrays. Before using these attributes, you need to make such an application:
 \begin{ffcode}
     (org.eolang.collections.list array).is-empty
 \end{ffcode}
@@ -1753,7 +1753,7 @@ OUT>: one by one, in sequential order
 IN$: 
 \end{ffcode}
 
-\section{Mutable Storage in Memory. memory}
+\section{Mutable Storage in Memory - memory}
 The EO Standard Object Collection contains the memory object for mutable storage in RAM.
 Fully Qualified Name: \ff{org.eolang.memory} (no aliasing or FQN reference required since the object is automatically imported).
 
@@ -1905,7 +1905,7 @@ Kotlin supports two forms of polymorphism because it is both strongly and static
 \section{Data types}
 
 \subsection{EO}
-Presented like Atom Data Type. It is an acronym of "Access to Memory". It is a term used for simple numerical identifiers (other name is "handles") which represent some internal data structures in the system.
+Presented like Atom Data. It is an acronym of "Access to Memory". It is a term used for simple numerical identifiers (other name is "handles") which represent some internal data structures in the system.
 
 Moreover,object modeling/representation is used in different programming languages (Smalltalk, Oberon, Zonnon etc.). Function as an object model is commonly used in functional programming languages. Type inference in programming languages helps to deduce types
 
@@ -2352,6 +2352,9 @@ Implementations of the \ff{Product} interface are products. Inheritors of the \f
 \subsubsection{Implementation}
 First, we should mention that the problem solved by the Builder pattern may be addressed by the partial application mechanism embedded into the language as one of its features. The partial application mechanism allows programmers to partially apply objects (i.e., create objects with some or all of the input attributes omitted and then, optionally, set unbound attributes after throughout the program). This technique may be utilized as a more concise alternative to constructor overloading. Here is an example:
 \begin{ffcode}
++package sandbox
++alias sprintf org.eolang.txt.sprintf
+
 [a b c name] > triangle
   plus. > perimeter
     plus.
@@ -2371,9 +2374,10 @@ First, we should mention that the problem solved by the Builder pattern may be a
     7:b
     8:c
   triangleABC > triangleABCNamed
-   "My Triangle":name
+    "My Triangle":name
   triangle > triangleNamed
     "My Another Triangle":name
+    
 \end{ffcode}
 
 Here, we have the \ff{triangle} object with input attributes \ff{a}, \ff{b}, \ff{c}, and \ff{name}. The \ff{triangle} object has two bound attributes: \ff{perimeter} (which relies on \ff{a}, \ff{b}, and \ff{c}) and \ff{toString} (which relies on \ff{name}). Object app demonstrates the partial application mechanism. So, \ff{triangleA} has only the a attribute bound, \ff{triangleABC} has all the sides (\ff{a}, \ff{b}, \ff{c}) sat up, \ff{triangleABCNamed} has all the sides and its name configured, and \ff{triangleNamed} has the name only. All three triangles are constructed through partial application (meaning, some of the attributes are left unbound or were bound after). The above example demonstrates an alternative solution to the problem of optional configuration of objects. However, this solution does not encapsulate the creation process of objects. Hence, the Builder pattern still may have its place in the EO environment.
@@ -2412,15 +2416,14 @@ Consider the following example:
     # validates side value
     [val] > validateSide
       if. > @
-        val.greater 0
+        val.gt 0
         val
         error
-          "The side of a triangle must not 
-          be less than 1!"
+          "The side of a triangle must not be less than 1!"
     # validates name
     [val] > validateName
       if. > @
-        val.length.neq 0
+        (val.length.eq 0).not
         val
         error
           "The name of a triangle must not be empty!"
