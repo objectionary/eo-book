@@ -49,9 +49,13 @@
 
 
 
+
+
 \RequirePackage{pgfopts}
 \pgfkeys{
   /ff/.cd,
+  bold/.store in=\ff@bold,
+  sf/.store in=\ff@sf,
   nopygments/.store in=\ff@nopygments,
   noframes/.store in=\ff@noframes,
   nonumbers/.store in=\ff@nonumbers,
@@ -107,7 +111,13 @@
 \fi\makeatother
 
 \makeatletter
-\newcommand\ff@print[1]{\textnormal{\texttt{#1}}}
+\newcommand\ff@print[1]{%
+  \textnormal{%
+    \ifdefined\ff@sf\sffamily\else\ttfamily\fi%
+    \ifdefined\ff@bold\fontseries{b}\selectfont\fi%
+    #1%
+  }%
+}
 \makeatother
 
 \makeatletter\newcommand\ff@rule
