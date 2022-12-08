@@ -123,29 +123,32 @@ IN$:
 \end{ffcode}
 
 This simple program just prints \ff{"Hello, World!"} on standard output. However, there are many concepts here that are important to understand. Let's examine what what happens in this program.
+\\
+\\
 
-\begin{itemize}
-    \item \textbf{Line 1}
-    \begin{itemize}
-        \item First line defines \ff{package} meta which instructs the compiler to put all objects from the ﬁle into the package \ff{sandbox}.
-    \end{itemize}
-    \item  \textbf{Line 2}
-    \begin{itemize}
-        \item Second line defines alias which resolves the name
-        \ff{stdout} (see \ref{subsec:stdout}), which is external to the ﬁle.
-        \item See \ref{subsec:"+"-qualifier} for more information about meta qualifier (\ff{+}) and metas.
-    \end{itemize}
-    \item \textbf{Line 4}
-    \begin{itemize}
-        \item At this line the abstraction occurs (see \ref{sec:abstracion}). Abstraction helps to create an abstract objects (see \ref{sec:objects}). 
-        \item Here \ff{args...} is a vararg free attribute (see \ref{subsec:"..."-qualifier}). In this example it is used to pass command line arguments.
-    \end{itemize}
-    \item \textbf{Line 5}
-    \begin{itemize}
-        \item At this line the application (see \ref{sec:application}) occurs. Free attribute of \ff{stdout} object is bounded with \ff{"Hello, World!"} string literal, which is on the line 6. 
-        \item Here we also can see the \ff{@} attribute (see \ref{subsec:pgi-attr}) which is uses for decoration (see \ref{sec:decoration}). When executing the program, the \ff{app} object will be dataized (see \ref{sec:dataization}). And since \ff{app} is the decorator, it will be dataized as it's decoratee, i.e. \ff{stdout "Hello, World!"}.
-    \end{itemize}
-\end{itemize}
+First lines,
+\begin{ffcode}
++package sandbox
++alias stdout org.eolang.io.stdout
+\end{ffcode}
+defines meta statements. The \ff{package} meta instructs the compiler to put all objects from the ﬁle into the package \ff{sandbox}. The \ff{alias} resolves the name \ff{stdout} (see \ref{subsec:stdout}), which is external to the ﬁle. See \ref{subsec:"+"-qualifier} for more information about meta qualifier (\ff{+}) and metas.
+
+At this line,
+\begin{ffcode}
+[args...] > app
+\end{ffcode}
+the abstraction occurs (see \ref{sec:abstracion}). Abstraction helps to create an abstract objects (see \ref{sec:objects}). Here \ff{args...} is a vararg free attribute (see \ref{subsec:"..."-qualifier}). In this example it is used to pass command line arguments.
+
+At this lines,
+\begin{ffcode}
+stdout > @
+  "Hello, world!\n"
+\end{ffcode}
+the application (see \ref{sec:application}) occurs. Free attribute of \ff{stdout} object is bounded with \ff{"Hello, World!"} string literal, which is on the next line. Here application in horizontal mode is used. We also can use vertical mode:
+\begin{ffcode}
+stdout "Hello, world!\n" > @
+\end{ffcode}
+Here we also can see the \ff{@} attribute (see \ref{subsec:pgi-attr}) which is uses for decoration (see \ref{sec:decoration}). When executing the program, the \ff{app} object will be dataized (see \ref{sec:dataization}). And since \ff{app} is the decorator, it will be dataized as it's decoratee, i.e. \ff{stdout "Hello, World!"}.
 
 It is important to remember that each EO program must be ended with a new line without any symbols.
 
