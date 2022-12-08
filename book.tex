@@ -100,9 +100,9 @@ Summing up, we briefly list the considered approaches to programming:
 
 This chapter provides sample EO programs to help you understand the basics. Each example has an explanation and references to additional information.
 
-\section{Hello, world!}
+\section{Hello, World!}
 % TODO: add more information about using eo-sandbox
-Here is the simple Hello World program:
+Here is the simple "Hello, World" program:
 
 \begin{ffcode}
 +package sandbox
@@ -114,47 +114,37 @@ Here is the simple Hello World program:
     
 \end{ffcode}
 
-To run your first program, check out the \href{https://github.com/objectionary/sandbox}{sandbox} repository and read the README. Create new file \ff{app.eo} in sandbox folder, and enter the code above. Then run it:
+To run your first program, set up EO Sanbox (https://github.com/objectionary/sandbox) by following its \ff{README.md}. After sandbox has been set up create new file \ff{app.eo} in \ff{eo/sandbox} folder, and enter the code above. Then run it:
 
 \begin{ffcode}
-IN$: ./run.sh
-OUT>: Hello, World!
-IN$: 
+./run.sh
 \end{ffcode}
 
-This simple program just prints \ff{"Hello, World!"} on standard output. However, there are many concepts here that are important to understand. Let's examine what what happens in this program.
-\\
-\\
-
-First lines,
+As a result "Hello, World!" will be printed to console. This simple code demonstrates several concepts of EO language. Let’s examine what what happens in this program. First two lines:
 \begin{ffcode}
 +package sandbox
 +alias stdout org.eolang.io.stdout
 \end{ffcode}
-defines meta statements. The \ff{package} meta instructs the compiler to put all objects from the ﬁle into the package \ff{sandbox}. The \ff{alias} resolves the name \ff{stdout} (see \ref{subsec:stdout}), which is external to the ﬁle. See \ref{subsec:"+"-qualifier} for more information about meta qualifier (\ff{+}) and metas.
-
-At this line,
+declare \textit{meta} statements. Meta \ff{package} instructs the compiler to assign place all objects defined in the file into particular package. \ff{alias} meta tells that the name \ff{stdout} is an alias for object \ff{org.eolang.io.stdout}, which is external to the file. \ff{alias} meta is similar to \ff{import} statement in Java or C++. Section \ref{subsec:"+"-qualifier} provides more information about meta qualifier (\ff{+}) and metas. Next line: 
 \begin{ffcode}
 [args...] > app
 \end{ffcode}
-the abstraction occurs (see \ref{sec:abstracion}). Abstraction helps to create an abstract objects (see \ref{sec:objects}). Here \ff{args...} is a vararg free attribute (see \ref{subsec:"..."-qualifier}). In this example it is used to pass command line arguments.
-
-At this lines,
+defines an \textit{abstract object} called \ff{app} with variable number of arguments referenced as \ff{args}. Square brackets (\ff{[]}) define \textit{free attributes} of an object. Free attributes of an object doesn't have any concrete values assigned to them. In this example attribute \ff{args} (used to pass command line arguments) doesn't contain any actual value. The \ff{> app} part bounds the object definition to name \ff{app}. \textit{Abstraction} is explained in more details in section \ref{sec:abstracion}. Lines:
 \begin{ffcode}
 stdout > @
   "Hello, world!\n"
 \end{ffcode}
-the application (see \ref{sec:application}) occurs. Free attribute of \ff{stdout} object is bounded with \ff{"Hello, World!"} string literal, which is on the next line. Here application in horizontal mode is used. We also can use vertical mode:
+state that the attribute \ff{@} of the object is bound to the result of \textit{application} of the object \ff{stdout} with its first argument assigned with string \ff{"Hello, world!\n"}. Application always results in a copy of object with one or more free attributes assigned with concrete values. More on application will be explained in section \ref{sec:application}. Here vertical notation of application is used. Note the indentation which defines the scope of the statement in EO. The above two lines can be also rewritten using horizontal notation:
 \begin{ffcode}
 stdout "Hello, world!\n" > @
 \end{ffcode}
-Here we also can see the \ff{@} attribute (see \ref{subsec:pgi-attr}) which is uses for decoration (see \ref{sec:decoration}). When executing the program, the \ff{app} object will be dataized (see \ref{sec:dataization}). And since \ff{app} is the decorator, it will be dataized as it's decoratee, i.e. \ff{stdout "Hello, World!"}.
+Attribute \ff{@} has special meaning: it denotes that this object \textit{decorates} the one written before bound symbol (\ff{>}). In this example object \ff{app} (\textit{decorator}) decorates the result of application of object \ff{stdout} (\textit{decoratee}). More one decoration see section \ref{subsec:@-attr}.
 
-It is important to remember that each EO program must be ended with a new line without any symbols.
+When the program is executed, the \ff{app} object is \textit{dataized}, i.e. data is tried to be extracted. For decorator object the data is extracted from its decoratee. Hence the result will be \textit{dataization} of \ff{stdout} object, which prints the string into console. Dataizaton is discussed in section \ref{sec:dataization}. It is important to remember that each EO program must be ended with a new line without any symbols. 
 
 \chapter{Principles of the Language}
 
-The basic principles that the EO programming language relies on: objects, attributes, and four elemental operations — abstraction, application, decoration, and dataization.
+The basic principles that the EO programming language relies on: objects, attributes, and four elemental operations — abstraction, application, decoration, and dataization. 
 
 \section{Objects} \label{sec:objects}
 Objects are a centric notion of the EO programming language. Essentially, an object is a set of attributes. An object connects with and links other objects through its attributes to compose a new concept that the object abstracts.
@@ -223,7 +213,7 @@ Locator points to the place where to find an attribute. The \ff{$} character is 
 The \ff{$} locator may be useful to use the result of the object's dataization process for declaring other object's attributes.
 The \ff{$} locator may be used to access attributes of an object inside of the object with the dot notation (e.g., \ff{$.attrA}), but this notation is redundant.
 
-\subsection{The \texttt{@} attribute} \label{subsec:pgi-attr}
+\subsection{The \texttt{@} attribute} \label{subsec:@-attr}
 The \ff{@} attribute is named phi (after the Greek letter $\varphi$). The \ff{@} character is reserved for the phi attribute and cannot be used for any other purpose. Every object has its own and only \ff{@} attribute. The \ff{@} attribute can be bound to a value only once.
 The \ff{@} attribute is used for decorating objects. An object bound to the \ff{@} attribute is referred to as a decoratee (i.e., an object that is being decorated) while the base object of the \ff{@} attribute is a decorator (i.e., an object that decorates the decoratee). Since the \ff{@} attribute may be bound only once, every object may have only one decoratee object. More on the decoration see in this section.
 Besides, the \ff{@} attribute is heavily used in the dataization process (see this section for more information).
