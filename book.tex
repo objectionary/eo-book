@@ -114,7 +114,7 @@ Here is the simple "Hello, World" program:
     
 \end{ffcode}
 
-To run your first program, set up EO Sanbox (https://github.com/objectionary/sandbox) by following its \ff{README.md}. After sandbox has been set up create new file \ff{app.eo} in \ff{eo/sandbox} folder, and enter the code above. Then run it:
+To run your first program, set up EO Sanbox (\url{https://github.com/objectionary/sandbox}) by following its \ff{README.md}. After sandbox has been set up create new file \ff{app.eo} in \ff{eo/sandbox} folder, and enter the code above. Then run it:
 
 \begin{ffcode}
 ./run.sh
@@ -140,7 +140,47 @@ stdout "Hello, world!\n" > @
 \end{ffcode}
 Attribute \ff{@} has special meaning: it denotes that this object \textit{decorates} the one written before bound symbol (\ff{>}). In this example object \ff{app} (\textit{decorator}) decorates the result of application of object \ff{stdout} (\textit{decoratee}). More one decoration see section \ref{subsec:@-attr}.
 
-When the program is executed, the \ff{app} object is \textit{dataized}, i.e. data is tried to be extracted. For decorator object the data is extracted from its decoratee. Hence the result will be \textit{dataization} of \ff{stdout} object, which prints the string into console. Dataizaton is discussed in section \ref{sec:dataization}. It is important to remember that each EO program must be ended with a new line without any symbols. 
+When the program is executed, the \ff{app} object is \textit{dataized}, i.e. data is tried to be extracted. For decorator object the data is extracted from its decoratee. Hence the result will be \textit{dataization} of \ff{stdout} object, which prints the string into console. Dataizaton is discussed in section \ref{sec:dataization}. It is important to remember that each EO program must be ended with a new line without any symbols.
+
+\section{Celsius To Fahrenheit Converter}
+
+Here is example of Celsius to Fahrenheit Converter:
+
+\begin{ffcode}
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
++alias text org.eolang.txt.text
+
+[cels] > celsToFahr
+  plus. > @
+    times.
+      div.
+        cels
+        5.0
+      9.0
+    32.0
+
+[args...] > app
+  as-float. > celsius
+    text
+      args.at 0
+  stdout > @
+    sprintf
+      "Celsius: %f\nFahrenheit: %f\n"
+      celsius
+      celsToFahr celsius
+\end{ffcode}
+
+Run it with one argument - the number of degrees Celsius. For example, for
+\begin{ffcode}
+./run.sh 20
+\end{ffcode}
+an output will be:
+\begin{ffcode}
+Celsius: 20.000000
+Fahrenheit: 68.000000
+\end{ffcode}
 
 \chapter{Principles of the Language}
 
