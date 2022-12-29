@@ -8,3 +8,5 @@ book.pdf
 *.fls
 *.fdb_latexmk
 *.pyg
+*.swp
+

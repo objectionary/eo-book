@@ -23,7 +23,7 @@
 \tableofcontents
 
 \chapter{Introduction}
-The first programming languages appeared relatively recently: various researchers indicate the 1920s, 1930s and even 1940s. Our task is not to establish the earliest language, but to identify the features of patterns in their development.
+The  first programming languages appeared relatively recently: various researchers indicate the 1920s, 1930s and even 1940s. Our task is not to establish the earliest language, but to identify the features of patterns in their development.
 
 As you might expect, the first programming languages, like the first computers, were quite primitive and focused on numerical calculations. These were purely theoretical scientific calculations (primarily mathematical and physical), and applied problems, in particular in the field of military affairs. Programs written in early programming languages were linear sequences of elementary operations with registers in which data was stored.
 
@@ -172,7 +172,9 @@ Here is example of Celsius to Fahrenheit Converter:
       celsToFahr celsius
 \end{ffcode}
 
-This program converts the number of degrees Celsius to the number of degrees Fahrenheit. Run the program with one command line argument - the number of degrees Celsius:
+This program converts the number of degrees Celsius to the number of degrees Fahrenheit. 
+
+Run the program with one command line argument —  the number of degrees Celsius:
 \begin{ffcode}
 ./run.sh 20
 \end{ffcode}
@@ -189,7 +191,9 @@ Let's see what's going on in the code. At the first lines:
 +alias sprintf org.eolang.txt.sprintf
 +alias text org.eolang.txt.text
 \end{ffcode}
-new aliases are declared. They are use for \ff{org.eolang.txt.sprintf} and \ff{org.eolang.txt.text} objects. The following will explain how to use them. Line:
+new aliases are declared. They are used for \ff{org.eolang.txt.sprintf} and 
+\\
+\ff{org.eolang.txt.text} objects. The following will explain how to use them. Line:
 \begin{ffcode}
 [cels] > celsToFahr
 \end{ffcode}
@@ -203,15 +207,35 @@ plus. > @
     9.0
   32.0
 \end{ffcode}
-contain the body of the abstract object. Here \ff{cels} free attribute is used to calculate the final number of degrees Fahrenheit. Object \ff{celsToFahr} decorates result of this calculations, so it will be dataized as this result.
+contain the body of the abstract object \ff{celsToFahr}. Here \ff{cels} free attribute is used to calculate the final number of degrees Fahrenheit. Object \ff{celsToFahr} decorates result of this calculations, so it will be dataized as this result.
 
-These lines use \textit{dot notation}. The dot notation is used to refer to the attributes of an object. For example, here \ff{float} \textit{data object} attributes such as \ff{plus}, \ff{times} and \ff{div} are used. Data objects and their attributes is discussed in chapter \ref{chapter:basics}. These lines demonstrates \textit{inverse} dot notation. It can be written in one line:
+These lines use \textit{dot notation}. The dot notation is used to refer to the attributes of an object. For example, here \ff{float} \textit{data object} attributes such as \ff{plus}, \ff{times} and \ff{div} are used. Data objects and their attributes is discussed in chapter \ref{chapter:basics}. 
+
+Here \textit{inverse} dot notation is used. It can be written in one line:
 \begin{ffcode}
 ((cells.div 5.0).times 9.0).plus 32.0 > @
 \end{ffcode}
+An inverse dot notation is used in order to simplify the syntax. The identiﬁer that goes after the dot is written ﬁrst, the dot follows, and the next line contains the part that is supposed to stay before the dot.  On the following lines:
+\begin{ffcode}
+as-float. > celsius
+  text
+    args.at 0
+\end{ffcode}
+command line arguments are handled.  The \ff{args} object is an \textit{array} and contains command line arguments. The attribute \ff{at} is used to access array elements. More about arrays in section \ref{section:arrays}.
+
+The command line arguments themselves inside the \ff{args} array are represented as a \textit{string} object.  So here \ff{args.at 0} is the first argument represented as a string. The object \ff{text} decorates the string that is applied to it. This object provides some additional attributes for working with strings, in our example — \ff{as-float} attribute. This attribute converts \ff{text} object to a \ff{float} object. Strings and their attributes are discussed in section \ref{seciotn:string}.
+
+The \ff{> celsius} part copies the result to a \textit{closed} object called \ff{celsius}. Closed object is an object without free attributes. The following lines: 
+\begin{ffcode}
+stdout > @
+  sprintf
+    "Celsius: %f\nFahrenheit: %f\n"
+    celsius
+    celsToFahr celsius
+\end{ffcode}
+print the result to stdout. Here \ff{sprintf} object is used for formatted printing to a string. More about \ff{sprintf} object in section \ref{subsec:sprintf}.
 
 \chapter{Principles of the Language}
-
 The basic principles that the EO programming language relies on: objects, attributes, and four elemental operations — abstraction, application, decoration, and dataization. 
 
 \section{Objects} \label{sec:objects}
@@ -1145,7 +1169,7 @@ OUT>: false
 IN$: 
 \end{ffcode}
 
-\section{string Data Object}
+\section{string Data Object} \label{seciotn:string}
 The \ff{string} data object represents a string literal.
 Fully Qualified Name: \ff{org.eolang.string} (no aliasing or FQN reference required since the object is automatically imported).
 
@@ -1672,7 +1696,7 @@ IN$:
 \end{ffcode}
 
 
-\section{Arrays}
+\section{Arrays} \label{section:arrays}
 The EO Standard Object Collection contains the array object for working with arrays of objects.
 Fully Qualified Name: \ff{org.eolang.array} (no aliasing or FQN reference required since the object is automatically imported).
 
