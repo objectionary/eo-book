@@ -172,14 +172,42 @@ Here is example of Celsius to Fahrenheit Converter:
       celsToFahr celsius
 \end{ffcode}
 
-Run it with one argument - the number of degrees Celsius. For example, for
+This program converts the number of degrees Celsius to the number of degrees Fahrenheit. Run the program with one command line argument - the number of degrees Celsius:
 \begin{ffcode}
 ./run.sh 20
 \end{ffcode}
-an output will be:
+The output will be the number of degrees Fahrenheit:
 \begin{ffcode}
 Celsius: 20.000000
 Fahrenheit: 68.000000
+\end{ffcode}
+
+Let's see what's going on in the code. At the first lines:
+\begin{ffcode}
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
++alias text org.eolang.txt.text
+\end{ffcode}
+new aliases are declared. They are use for \ff{org.eolang.txt.sprintf} and \ff{org.eolang.txt.text} objects. The following will explain how to use them. Line:
+\begin{ffcode}
+[cels] > celsToFahr
+\end{ffcode}
+defines an abstract object called \ff{celsToFahr}. This object has one free attribute \ff{cels} which is used to pass number of degrees Celsius. The following lines:
+\begin{ffcode}
+plus. > @
+  times.
+    div.
+      cels
+      5.0
+    9.0
+  32.0
+\end{ffcode}
+contain the body of the abstract object. Here \ff{cels} free attribute is used to calculate the final number of degrees Fahrenheit. Object \ff{celsToFahr} decorates result of this calculations, so it will be dataized as this result.
+
+These lines use \textit{dot notation}. The dot notation is used to refer to the attributes of an object. For example, here \ff{float} \textit{data object} attributes such as \ff{plus}, \ff{times} and \ff{div} are used. Data objects and their attributes is discussed in chapter \ref{chapter:basics}. These lines demonstrates \textit{inverse} dot notation. It can be written in one line:
+\begin{ffcode}
+((cells.div 5.0).times 9.0).plus 32.0 > @
 \end{ffcode}
 
 \chapter{Principles of the Language}
@@ -587,7 +615,7 @@ The opposite is true. If the attribute \ff{x.attr} or the object \ff{x} itself a
 \end{figure*}
 
 
-\chapter{Basics}
+\chapter{Basics} \label{chapter:basics}
 
 \section{Data Objects}
 
@@ -1060,7 +1088,7 @@ Here, the \ff{i} attribute of the \ff{f} iteration object is
 used to find the \ff{x^3}. However, the \ff{i} attribute may 
 stay unused inside the \ff{f}.
 
-\section{float Data Object}
+\section{float Data Object} \label{sec:float-data-type}
 The \ff{float} data object represents a double-precision 64-bit IEEE 754 floating-point number and can be used to perform various FPU computations.
 Fully Qualified Name: \ff{org.eolang.float} (no aliasing or FQN reference required since the object is automatically imported).
 
@@ -2701,3 +2729,4 @@ It is possible to conclude that:
 Also, EO has no local variables or any kind of stack-lifetime storage. Instead, any name refers to an object (stored in heap) that may be accessed through the scope of any other object via the dot-notation mechanism. Even anonymous objects may allow programmers to access its local scope (including parent and decoration hierarchies) freely. In addition, EO has no access modification instruments. This makes closures technique almost similar to the partial application mechanism. Moreover, the publicity of any attribute of any object makes encapsulation impossible in the language. This differentiates EO from functional programming languages and, also, from object-oriented languages. Absence of instruments of access modification (or simulation of it) may be a severe violation of object-oriented principle of encapsulation, which may lead to insecure environments breaking business logic of problem domains.
 
 \end{document}
+
