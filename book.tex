@@ -152,7 +152,7 @@ Here is example of Celsius to Fahrenheit Converter:
 +alias sprintf org.eolang.txt.sprintf
 +alias text org.eolang.txt.text
 
-[cels] > celsToFahr
+[cels] > fahrenheit
   plus. > @
     times.
       div.
@@ -169,7 +169,7 @@ Here is example of Celsius to Fahrenheit Converter:
     sprintf
       "Celsius: %f\nFahrenheit: %f\n"
       celsius
-      celsToFahr celsius
+      fahrenheit celsius
 \end{ffcode}
 
 This program converts the number of degrees Celsius to the number of degrees Fahrenheit. 
@@ -195,9 +195,9 @@ new aliases are declared. They are used for \ff{org.eolang.txt.sprintf} and
 \\
 \ff{org.eolang.txt.text} objects. The following will explain how to use them. Line:
 \begin{ffcode}
-[cels] > celsToFahr
+[cels] > fahrenheit
 \end{ffcode}
-defines an abstract object called \ff{celsToFahr}. This object has one free attribute \ff{cels} which is used to pass number of degrees Celsius. The following lines:
+defines an abstract object called \ff{fahrenheit}. This object has one free attribute \ff{cels} which is used to pass number of degrees Celsius. The following lines:
 \begin{ffcode}
 plus. > @
   times.
@@ -207,7 +207,7 @@ plus. > @
     9.0
   32.0
 \end{ffcode}
-contain the body of the abstract object \ff{celsToFahr}. Here \ff{cels} free attribute is used to calculate the final number of degrees Fahrenheit. Object \ff{celsToFahr} decorates result of this calculations, so it will be dataized as this result.
+constitute the body of the abstract object \ff{fahrenheit}. Here \ff{cels} free attribute is used to calculate the final number of degrees Fahrenheit. Object \ff{fahrenheit} decorates result of this calculations, so it will be dataized as this result.
 
 These lines use \textit{dot notation}. The dot notation is used to refer to the attributes of an object. For example, here \ff{float} \textit{data object} attributes such as \ff{plus}, \ff{times} and \ff{div} are used. Data objects and their attributes is discussed in chapter \ref{chapter:basics}. 
 
@@ -215,7 +215,7 @@ Here \textit{inverse} dot notation is used. It can be written in one line:
 \begin{ffcode}
 ((cells.div 5.0).times 9.0).plus 32.0 > @
 \end{ffcode}
-An inverse dot notation is used in order to simplify the syntax. The identiﬁer that goes after the dot is written ﬁrst, the dot follows, and the next line contains the part that is supposed to stay before the dot.  On the following lines:
+An \textit{inverse dot notation} is used in order to simplify the syntax. The identiﬁer that goes after the dot is written ﬁrst, the dot follows, and the next line contains the part that is supposed to stay before the dot.  On the following lines:
 \begin{ffcode}
 as-float. > celsius
   text
@@ -231,7 +231,7 @@ stdout > @
   sprintf
     "Celsius: %f\nFahrenheit: %f\n"
     celsius
-    celsToFahr celsius
+    fahrenheit celsius
 \end{ffcode}
 print the result to stdout. Here \ff{sprintf} object is used for formatted printing to a string. More about \ff{sprintf} object in section \ref{subsec:sprintf}.
 
