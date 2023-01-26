@@ -2,11 +2,12 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage[tt=false, type1=true]{libertine}
-\usepackage[nonumbers,novert]{ffcode}
+\usepackage{lmodern}
+\usepackage[nonumbers,novert,bold,noframes]{ffcode}
+\usepackage[nonumbers,novert,bold,noframes,sf]{ffcode}
 \usepackage{to-be-determined}
 \usepackage{href-ul}
 \usepackage{graphicx}
-\usepackage{dashbox}
 
 \title{\includegraphics[height=2in]{cactus.pdf} \\[1in] EOLANG Book}
 
@@ -234,6 +235,64 @@ stdout > @
     fahrenheit celsius
 \end{ffcode}
 print the result to stdout. Here \ff{sprintf} object is used for formatted printing to a string. More about \ff{sprintf} object in section \ref{subsec:sprintf}.
+
+\section{Factorial}
+
+Here is an example of Factorial program:
+
+\begin{ffcode}
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
++alias text org.eolang.txt.text
+
+[n] > fact
+  if. > @
+    n.lt 1
+    1
+    times.
+      n
+      fact (n.minus 1)
+
+[args...] > app
+  as-int. > n
+    text
+      args.at 0
+
+  stdout > @
+    sprintf
+      "%d! = %d\n"
+      n
+      fact n
+      
+\end{ffcode}
+
+This program calculates factorial. Run the program with one command line argument —  $n$:
+\begin{ffcode}
+./run.sh 5
+\end{ffcode}
+The output will be $n!$:
+\begin{ffcode}
+5! = 120
+\end{ffcode}
+
+Let's examine what happens in the \ff{fact} abstract object. Line:
+\begin{ffcode}
+[n] > fact
+\end{ffcode}
+defines this object. The following lines:
+\begin{ffcode}
+if. > @
+  n.lt 1
+  1
+  times.
+    n
+    fact (n.minus 1)
+\end{ffcode}
+constitute the body of the object \ff{fact}. This object will be dataized as a factorial of free attribute \ff{n}. Here \ff{if} attribute of \ff{bool} data object is occurred. This attribute works like \ff{if-else} statement in Java of C++. A condition is the base object of \ff{if} attribute. First free attribute of \ff{if} will be dataized if the condition is true, and the second if false. More information about \ff{bool} data object and its attributes discussed in section \ref{sec:bool-data-type}.
+
+In this program object \ff{n.lt 1} is the condition. \ff{lt} is an attribute of the \ff{int} data object. This attribute uses for comparison its base object with its free attribute. If the base object is less than the free attribute, the result will be \ff{TRUE}, otherwise \ff{FALSE}. 
+
 
 \chapter{Principles of the Language}
 The basic principles that the EO programming language relies on: objects, attributes, and four elemental operations — abstraction, application, decoration, and dataization. 
@@ -874,7 +933,7 @@ OUT>: ABCD
 IN$: 
 \end{ffcode}
 
-\section{bool Data Object}
+\section{bool Data Object} \label{sec:bool-data-type}
 The \ff{bool} data object represents a boolean value (either \ff{TRUE} or \ff{FALSE}) that can be used for performing logical operations.
 Fully Qualified Name: \ff{org.eolang.bool} (no aliasing or CFQN reference required since the object is automatically imported).
 
@@ -1063,6 +1122,8 @@ OUT>: a || b || c || d = true
 IN$: 
 \end{ffcode}
 
+\hl{add section about} \ff{if} \hl{attribute}
+
 \subsubsection{while Attribute}
 The \ff{while} attribute object is used to evaluate its \ff{f} free attribute until the base \ff{bool} object is not \ff{FALSE}.
 The \ff{f} attribute object must have the free attribute \ff{i} (the current iteration of the while loop).
@@ -1168,6 +1229,8 @@ OUT>: true
 OUT>: false
 IN$: 
 \end{ffcode}
+
+\hl{briefly write about other attributes, that similar to} \ff{int} \hl{data type attributes}
 
 \section{string Data Object} \label{seciotn:string}
 The \ff{string} data object represents a string literal.
