@@ -288,13 +288,20 @@ if. > @
     n
     fact (n.minus 1)
 \end{ffcode}
-constitute the body of the object \ff{fact}. This object will be dataized as a factorial of free attribute \ff{n}. Here \ff{if} attribute of \ff{bool} data object is occurred. This attribute works like \ff{if-else} statement in Java of C++. A condition is the base object of \ff{if} attribute. First free attribute of \ff{if} will be dataized if the condition is true, and the second if false. More information about \ff{bool} data object and its attributes discussed in section \ref{sec:bool-data-type}.
+constitute the body of the object \ff{fact}. This object will be dataized as a factorial of free attribute \ff{n}. Here \ff{if} attribute of \ff{bool} data object is occurred. This attribute works like \ff{if-else} statement in Java or C++. A condition is the base object of \ff{if} attribute. First free attribute of \ff{if} will be dataized if the condition is true, and the second if false. More information about \ff{bool} data object and its attributes discussed in section \ref{sec:bool-data-type}.
 
-In this program object \ff{n.lt 1} is the condition. \ff{lt} is an attribute of the \ff{int} data object. This attribute uses for comparison its base object with its free attribute. If the base object is less than the free attribute, the result will be \ff{TRUE}, otherwise \ff{FALSE}. 
+In this case, object \ff{n.lt 1} is the condition. \ff{lt} is an attribute of the \ff{int} data object. This attribute uses for comparison its base object with its free attribute. If the base object is less than the free attribute, the result will be \ff{TRUE}, otherwise \ff{FALSE}.  In the lines:
+\begin{ffcode}
+times.
+  n
+  fact (n.minus 1)
+\end{ffcode}
+object \ff{fact} is dataized \textit{recursively}.  So, object  \ff{fact} calculates the factorial in the classical recursive way.
 
+The rest of the code in this example is very similar to what was discussed earlier.
 
 \chapter{Principles of the Language}
-The basic principles that the EO programming language relies on: objects, attributes, and four elemental operations — abstraction, application, decoration, and dataization. 
+The basic principles that the EO programming language relies on: objects, attributes, and four elemental operations — abstraction, application, decoration, and dataization.
 
 \section{Objects} \label{sec:objects}
 Objects are a centric notion of the EO programming language. Essentially, an object is a set of attributes. An object connects with and links other objects through its attributes to compose a new concept that the object abstracts.
