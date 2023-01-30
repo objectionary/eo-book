@@ -1146,7 +1146,7 @@ Since objects are immutable, the \ff{memory} object should be used as the loop c
   memory 0 > x
   seq > @
     while.
-      x.lt 11
+      x.lt 10
       [i]
         seq > @
           stdout
@@ -1157,6 +1157,7 @@ Since objects are immutable, the \ff{memory} object should be used as the loop c
               x.times (x.times i)
           x.write
             x.plus 1
+    TRUE
 \end{ffcode}
 \textbf{Output} 
 \begin{ffcode}
