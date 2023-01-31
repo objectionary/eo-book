@@ -296,9 +296,134 @@ times.
   n
   fact (n.minus 1)
 \end{ffcode}
-object \ff{fact} is dataized \textit{recursively}.  So, object  \ff{fact} calculates the factorial in the classical recursive way.
+object \ff{fact} is dataized \textit{recursively}. So, object  \ff{fact} calculates the factorial in the classical recursive way.
 
 The rest of the code in this example is very similar to what was discussed earlier.
+
+\section{Filter Array}
+
+Here is an example of program that removes numbers that  are less than or equals to \ff{3} from an array of integers:
+
+\begin{ffcode}
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
++alias list org.eolang.collections.list
+
+[arr] > filter-arr
+  filtered. > @
+    arr
+    [elem]
+      gt. > @
+        elem
+        3
+
+[args...] > app
+  list > arr
+    * 7 2 1 0 9 4 8 3 6 5
+  filter-arr arr > new-arr
+  memory 0 > x
+  seq > @
+    while.
+      x.lt (new-arr.length.minus 1)
+      [i]
+        seq > @
+          stdout
+            sprintf "%d "
+              new-arr.at x
+        x.write
+          x.plus 1
+    stdout "\n"
+    TRUE
+  
+\end{ffcode}
+
+Run this program  with no command line arguments:
+\begin{ffcode}
+./run.sh /path/to/dir/
+\end{ffcode}
+The output will be:
+\begin{ffcode}
+
+\end{ffcode}
+
+Let’s examine what happens in this program. At the lines:
+\begin{ffcode}
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
++alias list org.eolang.collections.list
+\end{ffcode}
+new aliases are declared (\ff{org.eolang.collections.list}).  The following will explain how to use them. Lines:
+\begin{ffcode}
+list > arr
+  * 7 2 1 0 9 4 8 3 6 5
+\end{ffcode}
+declares closed object \ff{arr}. Here the object \ff{* 7 2 1 0 9 4 8 3 6 5} is an array declared with the symbol \ff{*}. The object \ff{list} decorates the array that is applied to it. This object provides some additional attributes for working with arrays, they will be used later.
+
+\section{Search Files}
+
+Here is an example of program that can recursively find all files with \ff{.eo} extension in directory:
+
+\begin{ffcode}
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
++alias regex org.eolang.txt.regex
++alias list org.eolang.collections.list
++alias dir org.eolang.fs.dir
+
+[source-dir] > find-eo-files
+  filtered. > @
+    list
+      walk.
+        dir source-dir
+        "**/*"
+    [f]
+      and. > @
+        f.is-dir.not
+        matches.
+          compile.
+            regex
+              "/.*\\.eo$/"
+          f
+
+[args...] > app
+  args.at 0 > source-dir
+  each. > @
+    find-eo-files
+      source-dir
+    [f]
+      stdout > @
+        sprintf
+          "file: %s\n"
+          f
+          
+\end{ffcode}
+
+Run this program  with one command line argument - path to the directory to be explored:
+\begin{ffcode}
+./run.sh /path/to/dir/
+\end{ffcode}
+The output will be list of \ff{.eo} files contained in specified directory:
+\begin{ffcode}
+file: /path/to/dir/1.eo
+file: /path/to/dir/2.eo
+file: /path/to/dir/subdir/3.eo
+\end{ffcode}
+
+Let’s examine what happens in this program. At the lines:
+\begin{ffcode}
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
++alias regex org.eolang.txt.regex
++alias list org.eolang.collections.list
++alias dir org.eolang.fs.dir
+\end{ffcode}
+new aliases are declared (\ff{org.eolang.txt.regex} and \ff{org.eolang.fs.dir}). 
+
+Let's consider how does \ff{find-eo-fiies} abstract object works.
 
 \chapter{Principles of the Language}
 The basic principles that the EO programming language relies on: objects, attributes, and four elemental operations — abstraction, application, decoration, and dataization.
