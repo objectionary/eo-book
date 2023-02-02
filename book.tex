@@ -302,7 +302,7 @@ The rest of the code in this example is very similar to what was discussed earli
 
 \section{Filter Array}
 
-Here is an example of program that removes numbers that  are less than or equals to \ff{3} from an array of integers:
+This program removes numbers that  are less than or equals to \ff{3} from an array of integers:
 
 \begin{ffcode}
 +package sandbox
@@ -310,29 +310,26 @@ Here is an example of program that removes numbers that  are less than or equals
 +alias sprintf org.eolang.txt.sprintf
 +alias list org.eolang.collections.list
 
-[arr] > filter-arr
+[lst] > filter-list
   filtered. > @
-    arr
+    lst
     [elem]
       gt. > @
         elem
         3
 
 [args...] > app
-  list > arr
+  list > lst
     * 7 2 1 0 9 4 8 3 6 5
-  filter-arr arr > new-arr
-  memory 0 > x
+  filter-list lst > new-lst
   seq > @
-    while.
-      x.lt (new-arr.length.minus 1)
-      [i]
-        seq > @
-          stdout
-            sprintf "%d "
-              new-arr.at x
-        x.write
-          x.plus 1
+    each.
+      new-lst
+      [elem]
+        stdout > @
+          sprintf
+            "%d "
+            elem
     stdout "\n"
     TRUE
   
@@ -340,11 +337,11 @@ Here is an example of program that removes numbers that  are less than or equals
 
 Run this program  with no command line arguments:
 \begin{ffcode}
-./run.sh /path/to/dir/
+./run.sh
 \end{ffcode}
 The output will be:
 \begin{ffcode}
-
+7 9 4 8 6 5
 \end{ffcode}
 
 Let’s examine what happens in this program. At the lines:
@@ -356,10 +353,46 @@ Let’s examine what happens in this program. At the lines:
 \end{ffcode}
 new aliases are declared (\ff{org.eolang.collections.list}).  The following will explain how to use them. Lines:
 \begin{ffcode}
-list > arr
+list > lst
   * 7 2 1 0 9 4 8 3 6 5
 \end{ffcode}
-declares closed object \ff{arr}. Here the object \ff{* 7 2 1 0 9 4 8 3 6 5} is an array declared with the symbol \ff{*}. The object \ff{list} decorates the array that is applied to it. This object provides some additional attributes for working with arrays, they will be used later.
+declares closed object \ff{lst}. Here the object \ff{* 7 2 1 0 9 4 8 3 6 5} is an array declared with the symbol \ff{*}. The object \ff{list} decorates the array that is applied to it. This object provides some additional attributes for working with arrays, they will be used later. For more examples with \ff{list} object see section \ref{subsec:additional-arrays}. At the next line:
+\begin{ffcode}
+filter-list lst > new-lst
+\end{ffcode}
+object \ff{lst} is applied to \ff{filter-list} and result copies to \ff{new-lst}.  Object \ff{new-lst} will be filtered array. Let's see how  this works.  Lines:
+\begin{ffcode}
+[lst] > filter-list
+  filtered. > @
+    lst
+    [elem]
+      gt. > @
+        elem
+        3
+
+\end{ffcode}
+defines object \ff{filter-list}. This object have one free attribute - an array to be filtered. This array must be a \ff{list} object in order to use attributes of \ff{list}. Attribute \ff{filtered} of \ff{list} has one free attribute. This free attribute is an \textit{anonymous abstract object} that itself has a free attribute. Anonymous abstract object work like regular abstract object, but it don't have a name. Therefore, it can be bound with free attributes of another abstract object, as in this example. More information about \textit{anonymous abstraction} in section \ref{subsec:anonymous-abstracion}.
+
+So the \ff{filtered} attribute applies each element of the list to that anonymous abstract object.  If the result of this application is \ff{FALSE}, the element will be removed from the list. Eventually, the result will be a filtered list. In this example anonymous abstract object dataized as \ff{TRUE} if element of list is greater than \ff{3}. So the result will be a filtered list with only elements greater than \ff{3}.
+
+When list is filtered, it need to be printed. At the lines:
+\begin{ffcode}
+seq > @
+  each.
+    new-lst
+    [elem]
+      stdout > @
+        sprintf
+          "%d "
+          elem
+  stdout "\n"
+  TRUE
+    
+\end{ffcode}
+\ff{new-lst} is printed using \ff{each} attribute of \ff{list} object. Attribute \ff{each} of \ff{list} has one free attribute. This free attribute is an anonymous abstract object that itself has a free attribute. It works similar to \ff{filtered} attribute, but \ff{each} don't change its base \ff{list} object. Attribute \ff{each} only dataize anonymous abstract object that is applied to it. In this example it only prints each element of the \ff{new-lst}.
+
+The \ff{seq} object is also used here. The \ff{seq} object uses for sequencing computations. This object has one free attribute \ff{steps} that may have an arbitrary number of steps that will be evaluated one by one, from the beginning to the end in the sequential order. The \ff{seq} object starts the dataization process for each of the objects bound to the \ff{steps} attribute of it. On dataization, the \ff{seq} object evaluates into the result of datazation of the last step. Therefore, in this case, we need to add \ff{TRUE} as the last step, because object \ff{app}, as whole program, need to be dataized as \ff{TRUE}. Otherwise, the execution of the program will be considered incorrect.
+
 
 \section{Search Files}
 
@@ -1417,7 +1450,7 @@ OUT>: false
 IN$: 
 \end{ffcode}
 
-\subsection{Additional Attributes For Working With strings}
+\subsection{Additional Attributes For Working With strings} 
 The object \ff{org.eolang.txt.text} is a decorator of \ff{org.eolang.string}. So the \ff{text} object contains attributes for working with strings. Before using these attributes, you need to make such an application:
 \begin{ffcode}
 (org.eolang.txt.text "String").trim
@@ -1983,7 +2016,7 @@ IN$:
 
 This example uses the \ff{args} array, which consists of the CLI options passed to the program.
 
-\subsection{Additional Attributes For Working With arrays}
+\subsection{Additional Attributes For Working With arrays} \label{subsec:additional-arrays}
 
 The object \ff{org.eolang.collections.list} is a decorator of \ff{org.eolang.array}. So the \ff{list} object contains attributes for working with arrays. Before using these attributes, you need to make such an application:
 \begin{ffcode}
@@ -2041,7 +2074,7 @@ IN$:
 
 In this example, the \ff{args} array is used that consists of the CLI parameters passed to the program. The \ff{array} of numbers passed into the program is reduced into the sum of its elements.
 
-\section{Sequencing Computations - seq}
+\section{Sequencing Computations - seq} \label{sec:seq}
 The EO Standard Object Collection contains the \ff{seq} object for sequencing computations.
 The \ff{seq} object has one free attribute \ff{steps} that may have an arbitrary number of steps that will be evaluated one by one, from the beginning to the end in the sequential order.
 
