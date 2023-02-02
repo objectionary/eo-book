@@ -389,7 +389,7 @@ seq > @
   TRUE
     
 \end{ffcode}
-\ff{new-lst} is printed using \ff{each} attribute of \ff{list} object. Attribute \ff{each} of \ff{list} has one free attribute. This free attribute is an anonymous abstract object that itself has a free attribute. It works similar to \ff{filtered} attribute, but \ff{each} don't change its base \ff{list} object. Attribute \ff{each} only dataize anonymous abstract object that is applied to it. In this example it only prints each element of the \ff{new-lst}.
+\ff{new-lst} is printed using \ff{each} attribute of \ff{list} object. Attribute \ff{each} of \ff{list} has one free attribute. This free attribute is an anonymous abstract object that itself has a free attribute. It works similar to \ff{filtered} attribute, but \ff{each} don't change its base \ff{list} object. Attribute \ff{each} only applies anonymous abstract object to each elements in base list and evaluate result. In this example it only prints each element of the \ff{new-lst}.
 
 The \ff{seq} object is also used here. The \ff{seq} object uses for sequencing computations. This object has one free attribute \ff{steps} that may have an arbitrary number of steps that will be evaluated one by one, from the beginning to the end in the sequential order. The \ff{seq} object starts the dataization process for each of the objects bound to the \ff{steps} attribute of it. On dataization, the \ff{seq} object evaluates into the result of datazation of the last step. Therefore, in this case, we need to add \ff{TRUE} as the last step, because object \ff{app}, as whole program, need to be dataized as \ff{TRUE}. Otherwise, the execution of the program will be considered incorrect.
 
@@ -454,10 +454,74 @@ Let’s examine what happens in this program. At the lines:
 +alias list org.eolang.collections.list
 +alias dir org.eolang.fs.dir
 \end{ffcode}
-new aliases are declared (\ff{org.eolang.txt.regex} and \ff{org.eolang.fs.dir}). 
+new aliases are declared (\ff{org.eolang.txt.regex} and \ff{org.eolang.fs.dir}). The following will explain how to use them. Lines:
+\begin{ffcode}
+[source-dir] > find-eo-files
+  filtered. > @
+    list
+      walk.
+        dir source-dir
+        "**/*"
+  [f]
+    and. > @
+      f.is-dir.not
+      matches.
+        compile.
+          regex
+            "/.*\\.eo$/"
+        f
 
-Let's consider how does \ff{find-eo-fiies} abstract object works.
+\end{ffcode}
+defines object \ff{find-eo-files}. This object has one free attribute \ff{source-dir} - path to the directory in which to search. It returns \ff{list} with files which names end with \ff{.eo}. Let's consider how does this object works. The following lines:
+\begin{ffcode}
+walk.
+  dir source-dir
+  "**/*"
+\end{ffcode}
+shows \ff{walk} attribute of object \ff{dir}. Object \ff{dir} has one free attribute - path to the directory. This object provides attributes for working with directories. Attribute \ff{walk} is one of them. This attribute recursively goes through all files in the directory using rule, that applied to it. In this example the rule is \ff{"**/*"}.  Attribute \ff{walk} returns list of suitable files as an \ff{array}.
 
+In this examples files array is applied to \ff{list} object and then \ff{filtered} attribute is called. Let's figure out what rules are used to filter this list of files. Lines:
+\begin{ffcode}
+[f]
+  and. > @
+    f.is-dir.not
+    matches.
+      compile.
+        regex
+          "/.*\\.eo$/"
+      f
+
+\end{ffcode} 
+defines anonymous abstract object, that is applied to \ff{filtered} attribute. Here \ff{and} is an attribute of \ff{bool} data object. It represents logical conjunction. Data object \ff{bool} has other attributes for logical operations, such as \ff{or} (logical disjunction) and \ff{not} (logical negation). More information about \ff{bool} data object attributes discussed in section \ref{sec:bool-data-type}.
+
+So here are two conditions. First condition:
+\begin{ffcode}
+f.is-dir.not
+\end{ffcode}
+means that file \ff{f} must to be not a directory. Attribute \ff{is-dir} of \ff{file} object evaluates as \ff{TRUE} if its base object is directory, and \ff{FALSE} otherwise. More information about files in EO in section \ref{sec:files}. Second condition:
+\begin{ffcode}
+matches.
+  compile.
+    regex
+      "/.*\\.eo$/"
+  f
+
+\end{ffcode}
+means that the \ff{f} filename must end with \ff{".eo"}. Let's figure out how it works. First of all \ff{"/.*\\.eo$/"} is a string with regular expression which specifies all lines ending with \ff{.eo}. The \ff{regex} object is used to process regular expressions and provides some attributes to work with them. It has one free attribute - a string representation of regex object, it starts and ends with slash (\ff{/}). Attribute \ff{compile} process regular expression of its base \ff{regex} object. Finally, attribute \ff{matches} check whether the string bounded to its free attribute satisfies the regular expression in the base \ff{regex} object. It evaluates as \ff{TRUE} if the string matches the regular expression, and \ff{FALSE} otherwise.
+
+Thus, \ff{find-eo-files} object can find all \ff{.eo} files in provided directory. Lines:
+\begin{ffcode}
+each. > @
+  find-eo-files
+    source-dir
+  [f]
+    stdout > @
+      sprintf
+        "file: %s\n"
+        f
+\end{ffcode}
+ prints paths to found files. 
+ 
 \chapter{Principles of the Language}
 The basic principles that the EO programming language relies on: objects, attributes, and four elemental operations — abstraction, application, decoration, and dataization.
 
@@ -489,7 +553,7 @@ Application can turn an abstract object to a closed one
   [x] > plus
     sum 0 x > @ 
   # And closed attributes, too
-  [] > neg
+  [] > negfiles
     -0 > @
   $.plus 1 > plusOne
 \end{ffcode}
@@ -1285,8 +1349,6 @@ OUT>: a || b || c = false
 OUT>: a || b || c || d = true
 IN$: 
 \end{ffcode}
-
-\hl{add section about} \ff{if} \hl{attribute}
 
 \subsubsection{while Attribute}
 The \ff{while} attribute object is used to evaluate its \ff{f} free attribute until the base \ff{bool} object is not \ff{FALSE}.
@@ -2134,6 +2196,9 @@ OUT>: 4
 IN$: 
 \end{ffcode}
 
+\section{File System - fs} \label{sec:files}
+
+\hl{write section about} \ff{org.eolang.fs}
 
 % TODO: #12 decide what we can do with this chapter
 \chapter{Comparison between EO, Java, Kotlin, Groovy}
