@@ -558,12 +558,16 @@ Application can turn an abstract object to a closed one
 \end{ffcode}
 
 \section{Attributes}
+
 An attribute is a pair of a name and a value, where a value of an attribute is another object. That is because "Everything in EO is an object". Hence, for instance, an attribute name of an object person may be also referred to as plainly the object name of the object person.
 
 \subsection{Free and Bound Attributes.} \label{subsec:free-bound-attr}
+
+\catcode`\#=12\relax
 \tbd{
-% TODO: add an example of using free and bound attributes
+	TODO: #21 add an example of using free and bound attributes
 }
+
 Binding is an operation of associating an attribute's value with some object. An attribute may be bound to some object only once.
 An attribute that is not bound to any object is named a free attribute. An attribute that has some object associated with its value is called a bound attribute.
 Free attributes may be declared through the object abstraction only. Binding may be performed either during object declaration using the bind (\ff{>}) operator (see the \ref{sec:abstracion} section for more information) or through object copying (see the \ref{sec:application} section for details).
@@ -918,9 +922,12 @@ The opposite is true. If the attribute \ff{x.attr} or the object \ff{x} itself a
 
 
 \section{EO syntax}
+
+\catcode`\#=12\relax
 \tbd{
-% TODO: #11 make an up-to-date version of the syntax
+	TODO: #11 make an up-to-date version of the syntax
 }
+
 \begin{figure*}[ht]
   \centering
   \includegraphics[width=1\textwidth,]{EOsyntxax.jpg}
@@ -2202,10 +2209,14 @@ IN$:
 \section{File System - fs} \label{sec:files}
 
 \hl{write section about} \ff{org.eolang.fs}
-\tbd{
-% TODO: #12 decide what we can do with this chapter (remove or modify)
-}
+
 \chapter{Comparison between EO, Java, Kotlin, Groovy}
+
+\catcode`\#=12\relax
+\tbd{
+	TODO: #12 decide what we can do with this chapter (remove or modify)
+}
+
 We tried to be as close to JVM languages as possible.
 We examine next languages:
 
@@ -2391,10 +2402,13 @@ When compared to C++ and Java languages, it can be noted that in these languages
 \subsection{WEAKNESSES}
 One of the weaknesses is that the limited capabilities of the language do not allow it to be used in many subject areas in comparison with C++ and Java. That is, where high performance computing is required.
 
-\tbd{
-% TODO: #13 now EO have eo-threads. This statement needs to be revised like this entire chapter.
-}
 Another point to mention is \textbf{lack of tools} that provide support for parallel and distributed computing, which is currently used in one form or another in almost all modern programming languages.
+
+\catcode`\#=12\relax
+\tbd{
+	TODO: #13 now EO have eo-threads. This statement needs to be revised like this entire chapter.
+}
+
 
 And not enough attention is paid to the formation of the type system. Using a typeless solution can turn out to be unreliable in many situations, which, in turn, may lead to difficulties associated with static code analysis. In addition, in some cases, to increase control over data when writing programs in Eolang, additional constructions will have to be introduced to model data types and explicitly check them either during static analysis or at runtime.
 
@@ -2806,9 +2820,11 @@ Here, we have the \ff{triangle} object with input attributes \ff{a}, \ff{b}, \ff
 \\
 Consider the following example:
 
+\catcode`\#=12\relax
 \tbd{
-% TODO: #3
+	TODO: #3
 }
+
 \begin{ffcode}
 [] > builder
   subbuilder triangle > @
@@ -2894,9 +2910,11 @@ Implementations of the \ff{Product} interface are products. Inheritors of the \f
 \subsubsection{Implementation}
 The EO programming language does not have interfaces, classes, and types. Because of it, we may omit defining the \ff{Product} interface contract (since it would not impose any requirements). Consider the following implementation of the pattern in EO: 
 
+\catcode`\#=12\relax
 \tbd{
-% TODO: #4
+	TODO: #4
 }
+
 \begin{ffcode}
 [] > creator
   # left to be redefined
