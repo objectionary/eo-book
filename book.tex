@@ -13,7 +13,8 @@
 \author{Joseph Afriyie Attakorah,
   Vitaliy Korzun,
   Eugene Popov,
-  Hadi Saleh}
+  Hadi Saleh,
+  Sergey Zykov}
 
 \begin{document}
 \raggedbottom
@@ -39,13 +40,13 @@ In the 1960s, a new approach to programming emerged, which still successfully co
 
 A high degree of abstraction is also an advantage of this approach. In fact, the programmer does not operate with a set of instructions, but with abstract concepts that can be quite generalized. At the initial stage of development, declarative programming languages found it difficult to compete with imperative ones due to objective difficulties in creating an effective implementation of translators. Programs ran slower, but they could solve more abstract problems with less effort.
 
-One of the ways to develop a declarative style of programming was the functional approach that arose with the advent and development of the LISP language, with which the EO language discussed below is in many respects similar. A distinctive feature of this approach is the fact that any program written in such a language can be interpreted as a function with one or more arguments. This approach makes it possible to transparently model the text of programs by mathematical means, which means that it is very interesting from a theoretical point of view. 
+One of the ways to develop a declarative style of programming was the functional approach that arose with the advent and development of the LISP language, with which the EO language discussed below is in many respects similar. A distinctive feature of this approach is the fact that any program written in such a language can be interpreted as a function with one or more arguments. This approach makes it possible to transparently model the text of programs by mathematical means, which means that it is very interesting from a theoretical point of view.
 
 Complex programs with this approach are built by aggregation of functions. In this case, the text of the program is a function, some arguments of which can also be considered as functions. Thus, the reuse of code is reduced to calling the previously described function, the structure of which, unlike the procedure of the imperative language, is mathematically transparent. Moreover, the types of individual functions used in functional languages can be variable. Thus, it is possible to process heterogeneous data (for example, ordering list items in ascending order for integers, individual characters and strings), or polymorphism.
 
 Another important advantage of implementing functional programming languages is the automated dynamic allocation of computer memory for data storage. At the same time, the programmer gets rid of the routine duty to control the data, and if necessary, can run the function of "garbage collection" - cleaning the memory from those data that the program no longer needs (usually this process is periodically initiated by the computer). Thus, when creating programs in functional languages, the developer of the programmer focuses on the field of research (subject area) and to a lesser extent cares about routine operations (ensuring the correct presentation of data from the point of view of the computer, "garbage collection", etc.).
 
-Since function is a natural formalism for functional programming languages, the implementation of various aspects of programming related to functions is greatly simplified. In particular, it becomes intuitively transparent to write recursive functions, i.e.  functions that call themselves as an argument. 
+Since function is a natural formalism for functional programming languages, the implementation of various aspects of programming related to functions is greatly simplified. In particular, it becomes intuitively transparent to write recursive functions, i.e.  functions that call themselves as an argument.
 
 In addition, it becomes natural to implement the processing of recursive data structures (for example, lists - basic elements, say, for the LISP family of languages, trees, etc.). By implementing a pattern mapping mechanism, languages such as ML and Haskellare very well applicable for character processing. Examples of functional programming languages in addition to the mentioned LISP, ML, Haskell  are also SML, as well as F-sharp.
 
@@ -110,7 +111,7 @@ Here a simple "Hello, World" program:
 [args...] > app
   stdout > @
     "Hello, world!\n"
-    
+
 \end{ffcode}
 
 To run your first program, set up EO Sanbox (\url{https://github.com/objectionary/sandbox}) by following its \ff{README.md}. After sandbox has been set up create new file \ff{app.eo} in \ff{eo/sandbox} folder, and enter the code above. Then run it:
@@ -124,7 +125,7 @@ As a result "Hello, World!" will be printed to console. This simple code demonst
 +package sandbox
 +alias stdout org.eolang.io.stdout
 \end{ffcode}
-declare \textit{meta} statements. Meta \ff{package} instructs the compiler to assign place all objects defined in the file into particular package. \ff{alias} meta tells that the name \ff{stdout} is an alias for object \ff{org.eolang.io.stdout}, which is external to the file. \ff{alias} meta is similar to \ff{import} statement in Java or C++. Section \ref{subsec:"+"-qualifier} provides more information about meta qualifier (\ff{+}) and metas. Next line: 
+declare \textit{meta} statements. Meta \ff{package} instructs the compiler to assign place all objects defined in the file into particular package. \ff{alias} meta tells that the name \ff{stdout} is an alias for object \ff{org.eolang.io.stdout}, which is external to the file. \ff{alias} meta is similar to \ff{import} statement in Java or C++. Section \ref{subsec:"+"-qualifier} provides more information about meta qualifier (\ff{+}) and metas. Next line:
 \begin{ffcode}
 [args...] > app
 \end{ffcode}
@@ -171,7 +172,7 @@ Here is example of Celsius to Fahrenheit Converter:
       fahrenheit celsius
 \end{ffcode}
 
-This program converts the number of degrees Celsius to the number of degrees Fahrenheit. 
+This program converts the number of degrees Celsius to the number of degrees Fahrenheit.
 
 Run the program with one command line argument —  the number of degrees Celsius:
 \begin{ffcode}
@@ -190,7 +191,7 @@ Let's see what's going on in the code. At the first lines:
 +alias sprintf org.eolang.txt.sprintf
 +alias text org.eolang.txt.text
 \end{ffcode}
-new aliases are declared. They are used for \ff{org.eolang.txt.sprintf} and 
+new aliases are declared. They are used for \ff{org.eolang.txt.sprintf} and
 \\
 \ff{org.eolang.txt.text} objects. The following will explain how to use them. Line:
 \begin{ffcode}
@@ -208,7 +209,7 @@ plus. > @
 \end{ffcode}
 constitute the body of the abstract object \ff{fahrenheit}. Here \ff{cels} free attribute is used to calculate the final number of degrees Fahrenheit. Object \ff{fahrenheit} decorates result of this calculations, so it will be dataized as this result.
 
-These lines use \textit{dot notation}. The dot notation is used to refer to the attributes of an object. For example, here \ff{float} \textit{data object} attributes such as \ff{plus}, \ff{times} and \ff{div} are used. Data objects and their attributes is discussed in chapter \ref{chapter:basics}. 
+These lines use \textit{dot notation}. The dot notation is used to refer to the attributes of an object. For example, here \ff{float} \textit{data object} attributes such as \ff{plus}, \ff{times} and \ff{div} are used. Data objects and their attributes is discussed in chapter \ref{chapter:basics}.
 
 Here \textit{inverse} dot notation is used. It can be written in one line:
 \begin{ffcode}
@@ -224,7 +225,7 @@ command line arguments are handled.  The \ff{args} object is an \textit{array} a
 
 The command line arguments themselves inside the \ff{args} array are represented as a \textit{string} object.  So here \ff{args.at 0} is the first argument represented as a string. The object \ff{text} decorates the string that is applied to it. This object provides some additional attributes for working with strings, in our example — \ff{as-float} attribute. This attribute converts \ff{text} object to a \ff{float} object. Strings and their attributes are discussed in section \ref{seciotn:string}.
 
-The \ff{> celsius} part copies the result to a \textit{closed} object called \ff{celsius}. Closed object is an object without free attributes. The following lines: 
+The \ff{> celsius} part copies the result to a \textit{closed} object called \ff{celsius}. Closed object is an object without free attributes. The following lines:
 \begin{ffcode}
 stdout > @
   sprintf
@@ -262,7 +263,7 @@ Here is an example of Factorial program:
       "%d! = %d\n"
       n
       fact n
-      
+
 \end{ffcode}
 
 This program calculates factorial. Run the program with one command line argument —  $n$:
@@ -331,7 +332,7 @@ This program removes numbers that  are less than or equals to \ff{3} from an arr
             elem
     stdout "\n"
     TRUE
-  
+
 \end{ffcode}
 
 Run this program  with no command line arguments:
@@ -386,7 +387,7 @@ seq > @
           elem
   stdout "\n"
   TRUE
-    
+
 \end{ffcode}
 \ff{new-lst} is printed using \ff{each} attribute of \ff{list} object. Attribute \ff{each} of \ff{list} has one free attribute. This free attribute is an anonymous abstract object that itself has a free attribute. It works similar to \ff{filtered} attribute, but \ff{each} don't change its base \ff{list} object. Attribute \ff{each} only applies anonymous abstract object to each elements in base list and evaluate result. In this example it only prints each element of the \ff{new-lst}.
 
@@ -430,7 +431,7 @@ Here is an example of program that can recursively find all files with \ff{.eo} 
         sprintf
           "file: %s\n"
           f
-          
+
 \end{ffcode}
 
 Run this program  with one command line argument - path to the directory to be explored:
@@ -490,7 +491,7 @@ In this examples files array is applied to \ff{list} object and then \ff{filtere
           "/.*\\.eo$/"
       f
 
-\end{ffcode} 
+\end{ffcode}
 defines anonymous abstract object, that is applied to \ff{filtered} attribute. Here \ff{and} is an attribute of \ff{bool} data object. It represents logical conjunction. Data object \ff{bool} has other attributes for logical operations, such as \ff{or} (logical disjunction) and \ff{not} (logical negation). More information about \ff{bool} data object attributes discussed in section \ref{sec:bool-data-type}.
 
 So here are two conditions. First condition:
@@ -519,8 +520,8 @@ each. > @
         "file: %s\n"
         f
 \end{ffcode}
- prints paths to found files. 
- 
+ prints paths to found files.
+
 \chapter{Principles of the Language}
 The basic principles that the EO programming language relies on: objects, attributes, and four elemental operations — abstraction, application, decoration, and dataization.
 
@@ -550,7 +551,7 @@ Application can turn an abstract object to a closed one
   "0" > stringValue
   # Closed objects may have abstract attributes
   [x] > plus
-    sum 0 x > @ 
+    sum 0 x > @
   # And closed attributes, too
   [] > negfiles
     -0 > @
@@ -688,7 +689,7 @@ No free attributes abstraction
 \begin{ffcode}
 [] > magicalObject
   42 > magicalNumber
-  # here we use abstraction to define 
+  # here we use abstraction to define
   # an attribute
   [a] > addSomeMagic
     magicalNumber.plus a > @
@@ -846,7 +847,7 @@ The \ff{...} qualifier is used to denote a varargs. The last free attribute in a
 [x...] > sum |$\label{ln:sum-def}$|
 sum 8 13 -9 |$\label{ln:sum-instance}$|
 \end{ffcode}
-Here, at the first line the abstract object \ff{sum} is defined with a free vararg attribute \ff{x}. At the second line a copy of the abstract object is made with three arguments. The internals of the \ff{sum} will see \ff{x} as an \ff{array} with three elements inside. 
+Here, at the first line the abstract object \ff{sum} is defined with a free vararg attribute \ff{x}. At the second line a copy of the abstract object is made with three arguments. The internals of the \ff{sum} will see \ff{x} as an \ff{array} with three elements inside.
 \\
 \\
 It is possible to provide an array as a parameter for vararg attribute (both variants are semantically equivalent):
@@ -874,7 +875,7 @@ The \ff{!} qualifier is used to make the object it applies to a constant. EO is 
       stdin.next-line > x!
       x.length
 \end{ffcode}
-The \ff{sprintf} object (see \ref{subsec:sprintf}) will go to the \ff{x} two times. First time, in order to use it as a substitute for \ff{%s} and the second time for \ff{%d}. There will be two round-trips to the standard input stream, which obviously is not correct. The \ff{!} qualifier at the \ff{x!} solves the problem, making the object by the name \ff{x} a \textit{constant}. This means that all attributes of \ff{x} are \textit{cached}. Important to notice that the cache is \textit{not deep}: the attributes of attributes are not cached. 
+The \ff{sprintf} object (see \ref{subsec:sprintf}) will go to the \ff{x} two times. First time, in order to use it as a substitute for \ff{%s} and the second time for \ff{%d}. There will be two round-trips to the standard input stream, which obviously is not correct. The \ff{!} qualifier at the \ff{x!} solves the problem, making the object by the name \ff{x} a \textit{constant}. This means that all attributes of \ff{x} are \textit{cached}. Important to notice that the cache is \textit{not deep}: the attributes of attributes are not cached.
 
 Here, \ff{x} is an attribute of the object \ff{hello}, even though it is not defined as explicitly as \ff{say}. Anywhere a new name shows up after the \ff{>} symbol, it is a declaration of a new attribute in the nearest object abstraction.
 
@@ -965,12 +966,12 @@ Example:
     sprintf
       "%d\n"
       FF-FF-FF-FF-FF-FF-FF-FF.as-int
-\end{ffcode}  
+\end{ffcode}
 \textbf{Output}
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: -1
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsection{bytes Attributes}
@@ -1000,7 +1001,7 @@ OUT>: -1
 OUT>: false
 OUT>: 0.007813
 OUT>: A
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{eq Attribute}
@@ -1024,7 +1025,7 @@ stdout > @
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: false
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{and, or, xor Attributes}
@@ -1054,7 +1055,7 @@ IN$: ./run.sh
 OUT>: true
 OUT>: true
 OUT>: true
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{not Attributes}
@@ -1063,7 +1064,7 @@ The \ff{not} attribute object is used for the bitwise operation of the same name
 +package sandbox
 +alias stdout org.eolang.io.stdout
 +alias org.eolang.txt.sprintf
-    
+
 [args...] > app
   stdout > @
     sprintf
@@ -1076,7 +1077,7 @@ The \ff{not} attribute object is used for the bitwise operation of the same name
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: true
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{left, right Attributes}
@@ -1103,7 +1104,7 @@ Attribute objects \ff{left}, \ff{right} are used for left and right bitwise shif
 IN$: ./run.sh
 OUT>: true
 OUT>: true
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{size Attribute}
@@ -1124,7 +1125,7 @@ The \ff{size} attribute object is used to find out the total number of bytes in 
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: 3
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{slice Attribute}
@@ -1146,7 +1147,7 @@ The \ff{slice} attribute object is used to represents a bytes sub-sequence insid
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: ABC
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{concat Attribute}
@@ -1168,7 +1169,7 @@ The \ff{concat} attribute object is used to make a new sequence, which is a conc
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: ABCD
-IN$: 
+IN$:
 \end{ffcode}
 
 \section{bool Data Object} \label{sec:bool-data-type}
@@ -1199,7 +1200,7 @@ Example:
 IN$: ./run.sh
 OUT>: true
 OUT>: false
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsection{bool Attributes}
@@ -1242,7 +1243,7 @@ OUT>: the first value is true
 OUT>: the second value is false
 OUT>: 2 is less than 3
 OUT>: The max(2, 5) is: 5
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{not Attribute}
@@ -1283,7 +1284,7 @@ OUT>: the first value is false
 OUT>: the second value is true
 OUT>: 2 is not less than 3
 OUT>: The max(2, 5) is: 2
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{and Attribute}
@@ -1304,7 +1305,7 @@ If the \ff{and} attribute object is applied, it represents the conjunction of th
   FALSE > d
   stdout > @
     sprintf
-      "a && b = %b\na && b && c = %b\na && b 
+      "a && b = %b\na && b && c = %b\na && b
       && c && d = %b\n"
       a.and b
       a.and b c
@@ -1320,7 +1321,7 @@ IN$: ./run.sh
 OUT>: a && b = true
 OUT>: a && b && c = true
 OUT>: a && b && c && d = false
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{or Attribute}
@@ -1341,7 +1342,7 @@ If the \ff{or} attribute object is applied, it represents the disjunction of the
   FALSE > d
   stdout > @
     sprintf
-      "a || b = %b\na || b || c = %b\na || b || c 
+      "a || b = %b\na || b || c = %b\na || b || c
       || d = %b\n"
       a.or b
       a.or b c
@@ -1357,7 +1358,7 @@ IN$: ./run.sh
 OUT>: a || b = false
 OUT>: a || b || c = false
 OUT>: a || b || c || d = true
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{while Attribute}
@@ -1389,7 +1390,7 @@ Since objects are immutable, the \ff{memory} object should be used as the loop c
             x.plus 1
     TRUE
 \end{ffcode}
-\textbf{Output} 
+\textbf{Output}
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: 0 x 0 x 0 = 0
@@ -1403,11 +1404,11 @@ OUT>: 7 x 7 x 7 = 343
 OUT>: 8 x 8 x 8 = 512
 OUT>: 9 x 9 x 9 = 729
 OUT>: 10 x 10 x 10 = 1000
-IN$: 
+IN$:
 \end{ffcode}
 
-Here, the \ff{i} attribute of the \ff{f} iteration object is 
-used to find the \ff{x^3}. However, the \ff{i} attribute may 
+Here, the \ff{i} attribute of the \ff{f} iteration object is
+used to find the \ff{x^3}. However, the \ff{i} attribute may
 stay unused inside the \ff{f}.
 
 \section{float Data Object} \label{sec:float-data-type}
@@ -1438,7 +1439,7 @@ Example:
 IN$: ./run.sh
 OUT>: 1.500000
 OUT>: -3.710000
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsection{float Attributes}
@@ -1464,7 +1465,7 @@ If the \ff{eq} attribute object is applied, it represents the result of the equa
 IN$: ./run.sh
 OUT>: true
 OUT>: false
-IN$: 
+IN$:
 \end{ffcode}
 
 \hl{briefly write about other attributes, that similar to} \ff{int} \hl{data type attributes}
@@ -1497,7 +1498,7 @@ Example 1:
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: Hello, World! Welcome to The "EO Docs"!
-IN$: 
+IN$:
 \end{ffcode}
 Example 2:
 \begin{ffcode}
@@ -1513,22 +1514,22 @@ Example 2:
       "Hey".eq "Hey"
       "Hey".eq "hey"
 \end{ffcode}
-\textbf{Output} 
+\textbf{Output}
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: true
 OUT>: true
 OUT>: false
-IN$: 
+IN$:
 \end{ffcode}
 
-\subsection{Additional Attributes For Working With strings} 
+\subsection{Additional Attributes For Working With strings}
 The object \ff{org.eolang.txt.text} is a decorator of \ff{org.eolang.string}. So the \ff{text} object contains attributes for working with strings. Before using these attributes, you need to make such an application:
 \begin{ffcode}
 (org.eolang.txt.text "String").trim
 \end{ffcode}
 
-\subsubsection{trim Attribute} 
+\subsubsection{trim Attribute}
 The \ff{trim} attribute object is used for trimming the base text object (i.e. \ff{trim} is a string with whitespace removed from both ends of the base string).
 The \ff{trim} attribute object has no free attributes.
 If the \ff{trim} attribute object is applied (called), it represents the resulting trimmed \ff{string}. Here is an example of using \ff{trim} attribute:
@@ -1553,7 +1554,7 @@ If the \ff{trim} attribute object is applied (called), it represents the resulti
 \textbf{Output}
 \begin{ffcode}
 IN$: ./run.sh
-OUT>: Hello There!IN$: 
+OUT>: Hello There!IN$:
 \end{ffcode}
 
 Here, the \ff{\n} escape sequence is trimmed as it is a
@@ -1595,7 +1596,7 @@ OUT>: 1700
 OUT>: -1500
 OUT>: 8
 OUT>: 0
-IN$: 
+IN$:
 \end{ffcode}
 
 \section{int Data Object}
@@ -1635,14 +1636,14 @@ OUT>: -157
 OUT>: 1009283
 OUT>: 16
 OUT>: 0xa
-IN$: 
+IN$:
 \end{ffcode}
 Example 2:
 \begin{ffcode}
 +package sandbox
 +alias sprintf org.eolang.txt.sprintf
 +alias stdout org.eolang.io.stdout
-    
+
 [args...] > app
   stdout > @
   sprintf
@@ -1657,7 +1658,7 @@ Example 2:
 IN$: ./run.sh
 OUT>: true
 OUT>: false
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsection{int Attributes}
@@ -1689,10 +1690,10 @@ OUT>: true
 OUT>: true
 OUT>: true
 OUT>: true
-IN$: 
+IN$:
 \end{ffcode}
 
-\subsubsection{plus Attribute} 
+\subsubsection{plus Attribute}
 The \ff{plus} attribute object is used to calculate the sum of its base \ff{int} object and the free attribute \ff{x} of type \ff{int} (i.e. \ff{$ + x}).
 If the \ff{plus} attribute object is fully applied, it represents the resulting sum of the integer numbers. Here is an example of using \ff{plus} attribute:
 
@@ -1710,12 +1711,12 @@ If the \ff{plus} attribute object is fully applied, it represents the resulting 
         16
       -16.plus 0x10
 \end{ffcode}
-\textbf{Output} 
+\textbf{Output}
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: 32
 OUT>: 0
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{minus Attribute}
@@ -1741,7 +1742,7 @@ If the \ff{minus} attribute object is fully applied, it represents the resulting
 IN$: ./run.sh
 OUT>: 0
 OUT>: -32
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{neg Attribute}
@@ -1769,7 +1770,7 @@ OUT>: -5
 OUT>: -16
 OUT>: -20
 OUT>: -14
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{times Attribute}
@@ -1803,7 +1804,7 @@ OUT>: 13
 OUT>: 256
 OUT>: 10000
 OUT>: 10000
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{div Attribute}
@@ -1827,7 +1828,7 @@ If the \ff{div} attribute object is fully applied, it represents the resulting q
 IN$: ./run.sh
 OUT>: 5
 OUT>: 3
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsection{Additional Attributes For Working With int Objects}
@@ -1871,7 +1872,7 @@ OUT>: 3
 OUT>: 3
 OUT>: -3
 OUT>: -3
-IN$: 
+IN$:
 \end{ffcode}
 
 \subsubsection{pow Attribute}
@@ -1903,7 +1904,7 @@ OUT>: -8
 OUT>: 0
 OUT>: 1
 OUT>: 2
-IN$: 
+IN$:
 \end{ffcode}
 Here, \ff{2^(-10)} results in \ff{0} as well as raising all the integer numbers (except \ff{0}) to the negative power (\ff{-1}, \ff{-2}, \ff{-3}, ...).
 
@@ -1912,7 +1913,7 @@ The EO Standard Object Collection contains two objects for the CLI output: \ff{s
 
 \subsection{Plain Text Output - stdout} \label{subsec:stdout}
 For plain text output, the \ff{stdout} object is used.
-Fully Qualified Name: 
+Fully Qualified Name:
 \\
 \ff{org.eolang.io.stdout}.
 
@@ -1934,7 +1935,7 @@ Example 1. The Plain Old “Hello, World”:
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: Hello, World!
-IN$: 
+IN$:
 \end{ffcode}
 Example 2. Print the First Word of the User's Input:
 \begin{ffcode}
@@ -1950,7 +1951,7 @@ Example 2. Print the First Word of the User's Input:
 \textbf{Output}
 \begin{ffcode}
 IN$: ./run.sh Hello Bye Thanks Ok
-OUT>: HelloIN$: 
+OUT>: HelloIN$:
 \end{ffcode}
 
 Note: here, the \ff{"Hello"} is printed with no EOL character at the end of the line because of the absence of it in the user input.
@@ -1961,7 +1962,7 @@ String formatting is the process of data injection into the string, optionally a
 Fully Qualified Name: \ff{org.eolang.txt.sprintf}.
 
 \subsubsection{Usage}
-The \ff{sprintf} object has two free attributes: 
+The \ff{sprintf} object has two free attributes:
 \begin{itemize}
     \item \ff{format} for the format string that describes the formatting of the resulting string
     \item \ff{args} for the data being injected into the string.
@@ -1992,7 +1993,7 @@ For the format syntax reference, see this article. Here are examples of using \f
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: int: 2, bool: false, string: Hey
-IN$: 
+IN$:
 \end{ffcode}
 
 
@@ -2025,7 +2026,7 @@ IN$: ./run.sh
 OUT>: elem
 OUT>: 1
 OUT>: true
-IN$: 
+IN$:
 \end{ffcode}
 In this example we can see, that \ff{array} can consist of objects of different types, even nested arrays. See \ref{subsubsec:at-attr} to find out about \ff{at} attribute.
 
@@ -2053,7 +2054,7 @@ When applied, the \ff{at} attribute object represents the object stored at the p
 IN$: ./run.sh Hello, World!
 OUT>: Hello,
 OUT>: World!
-IN$: 
+IN$:
 \end{ffcode}
 
 This example uses the \ff{args} array, which consists of the CLI options passed to the program.
@@ -2083,7 +2084,7 @@ IN$: ./run.sh Hello, World!
 OUT>: Hello,
 OUT>: World!
 OUT>: New Element!
-IN$: 
+IN$:
 \end{ffcode}
 
 This example uses the \ff{args} array, which consists of the CLI options passed to the program.
@@ -2141,7 +2142,7 @@ When applied, the reduce attribute object represents the resulting reduced accum
 
 IN$: ./run.sh 1 2 3 4 5
 OUT>: 15
-IN$: 
+IN$:
 \end{ffcode}
 
 In this example, the \ff{args} array is used that consists of the CLI parameters passed to the program. The \ff{array} of numbers passed into the program is reduced into the sum of its elements.
@@ -2173,7 +2174,7 @@ OUT>: Hello
 OUT>: These objects
 OUT>: will be dataized
 OUT>: one by one, in sequential order
-IN$: 
+IN$:
 \end{ffcode}
 
 \section{Mutable Storage in Memory - memory}
@@ -2181,7 +2182,7 @@ The EO Standard Object Collection contains the memory object for mutable storage
 Fully Qualified Name: \ff{org.eolang.memory} (no aliasing or FQN reference required since the object is automatically imported).
 
 To use the \ff{memory} object you need to make a copy of the it and bound it to some attribute.
-To put an object into the \ff{memory} object, the 
+To put an object into the \ff{memory} object, the
 ff{write} attribute object is used. It has the \ff{x} free attribute that is the object to put into the memory. The \ff{write} attribute evaluates to \ff{TRUE} on dataization.
 To retrieve the object stored in the memory, dataization of the memory object is used. Here is an example of using \ff{memory} object:
 
@@ -2203,7 +2204,7 @@ To retrieve the object stored in the memory, dataization of the memory object is
 \begin{ffcode}
 IN$: ./run.sh
 OUT>: 4
-IN$: 
+IN$:
 \end{ffcode}
 
 \section{File System - fs} \label{sec:files}
@@ -2221,7 +2222,7 @@ We tried to be as close to JVM languages as possible.
 We examine next languages:
 
 \section{Java}
-The Java programming language originated as part of a research project to develop advanced software for a wide variety of network devices and embedded systems. The goal was to develop a small, reliable, portable, distributed, real-time operating platform. When the project started, C++ was the language of choice. But over time the difficulties encountered with C++ grew to the point where the problems could best be addressed by creating an entirely new language platform. Design and architecture decisions drew from a variety of languages such as Eiffel, SmallTalk, Objective C, and Cedar/Mesa. The result is a language platform that has proven ideal for developing secure, distributed, network-based end-user applications in environments ranging from network-embedded devices to the World-Wide Web and the desktop. 
+The Java programming language originated as part of a research project to develop advanced software for a wide variety of network devices and embedded systems. The goal was to develop a small, reliable, portable, distributed, real-time operating platform. When the project started, C++ was the language of choice. But over time the difficulties encountered with C++ grew to the point where the problems could best be addressed by creating an entirely new language platform. Design and architecture decisions drew from a variety of languages such as Eiffel, SmallTalk, Objective C, and Cedar/Mesa. The result is a language platform that has proven ideal for developing secure, distributed, network-based end-user applications in environments ranging from network-embedded devices to the World-Wide Web and the desktop.
 
 \section{Kotlin}
 Kotlin was designed to run on the JVM. It comes with its own compiler that compiles kotlin code to byte-code that can run on the JVM. The byte-code generated by kotlin compiler is equivalent to the byte-code generated by the Java compiler. Whenever two-byte code files run on JVM, due to their equivalent nature they can communicate with each other and that’s how interoperability is established in kotlin for Java . Kotlin was developed keeping interoperability in mind. A Kotlin class or a function can refer to the Java classes and their methods in a simple way. Kotlin program files (.kt) and Java program files (.java) can be in the same project. They are all compiled and converted to .class files which are byte-codes.
@@ -2238,9 +2239,9 @@ Already exists. The object abstracts behavior
 \\
 Example:
 \begin{ffcode}
-[x a b c] > polynomial 
+[x a b c] > polynomial
   (((x.pow 2).times a).plus (x.times b)).plus c > @
-  
+
 \end{ffcode}
 \subsection{Java}
 To create an abstract class, just use the abstract  keyword before the class keyword, in the class declaration.
@@ -2251,8 +2252,8 @@ Example:
 class Polynomial {
     public Polynomial
     (int x, int a, int b, int c){
-    this.x=x;  
-    this.a=a; 
+    this.x=x;
+    this.a=a;
     this.b=b;
     this.c=c;
     }
@@ -2270,8 +2271,8 @@ Example:
 class Polynomial {
     public Polynomial
     (int x, int a, int b, int c){
-    this.x=x;  
-    this.a=a; 
+    this.x=x;
+    this.a=a;
     this.b=b;
     this.c=c;
     }
@@ -2279,7 +2280,7 @@ class Polynomial {
 public int compute() {
     return x*x*a + x*b + c;}
     }
-    
+
 \end{ffcode}
 
 \subsection{Kotlin}
@@ -2305,7 +2306,7 @@ OOP encapsulation in Kotlin unlike Python is enforced and has some fine grained 
 Doesn't exist and won't be introduced. The usual inheritance is presented by decorators (\ff{@} attribute). The main idea is that in the production (inheritance causes  many problems)
 
 \subsection{Java}
-In Java, it is possible to inherit attributes and methods from one class to another. We group the "inheritance concept" into two categories: 
+In Java, it is possible to inherit attributes and methods from one class to another. We group the "inheritance concept" into two categories:
 \begin{itemize}
     \item sub-class (child) - the class that inherits from another class.
     \item super-class (parent) - the class being  inherited from to inherit from a class, use the \ff{extends} keyword.
@@ -2326,7 +2327,7 @@ Duck typing in computer programming is an application of the duck test — "If i
 
 \subsection{Java}
 Inheritance lets us inherit attributes and methods from another class. Polymorphism uses those methods to perform different tasks. This allows us to perform a single action in different ways.
- 
+
 \subsection{Groovy}
 If you do this in Java (splitting the classes out to their own files of course), it won't compile. Java looks at the reference type for available methods, so you will get a \ff{NoSuchMethodException}. In Groovy, however, it looks at the type of the object, not the type of the reference so the method is found at runtime.
 
@@ -2359,27 +2360,27 @@ There are many criteria important to comparing or evaluating general purpose pro
 
 \begin{enumerate}
     \item \textbf{Simplicity of language constructs}.
-    
+
 The simplicity of a language design includes such measurable aspects as the minimality of required concepts and the integrity and consistency of its structures. Simpilicity here relates to ease of programming. Simple is beautiful is the golden mantra in programming. While efficiency and performance are major factors, simplicity and maintenance cost wins over them in many use cases. These become a deciding factor while choosing a programming language, exploring features in a language or even deciding on standard coding practices within an organization.
 
     \item \textbf{Readability}.
-    
+
 Readability refers to the ease with which codes can be read and understood. This relates to maintainability, an important factor as many programs greatly outlive their expected lifetimes.
 
     \item \textbf{Compilation speed}.
-    
+
 This metric identifies the program's total execution time. This can comparatively help determine how long it takes to run an algorithm in different languages.
 
     \item \textbf{Memory usage}.
-    
+
 The memory usage criteria identifies the  total amount of memory that were used due to program execution. Some programming languages may be efficient in memory consumption while others are not. This criteria is important for clarifying the differences between EO, C++ and Java.
 
     \item \textbf{LOC (Lines of code)}.
-    
+
 This refers to the total number of LOC that were used to develop a program. This metric is used to measure the size and complexity of a software project. It is measured by counting the number of lines in text of the program's source code. LOC can be used to predict the amount of effort that would be required to develop a program, as well as estimate programming productivity or maintainability once the software is developed.
 
     \item \textbf{Debugging help}.
-    
+
 This criteria helps clarify the amount of tools and help available for the process of detecting and removing of existing and potential errors or bugs in a software code that can cause it to behave unexpectedly or crash.
 \end{enumerate}
 
@@ -2414,7 +2415,7 @@ And not enough attention is paid to the formation of the type system. Using a ty
 
 For C++ and Java, static typing is used to control the data at compile time. In addition, these languages support dynamic typing due to Object-Oriented polymorphism and the possibility of dynamic type checking at runtime.
 
-Currently, the EO community is limited. There are not many conferences, local meetups, forums, Facebook groups, open-source projects based on the language and people willing to help. 
+Currently, the EO community is limited. There are not many conferences, local meetups, forums, Facebook groups, open-source projects based on the language and people willing to help.
 
 Also Eolang lacks \textbf{simplicity}. The EO language is barely simple to read and write and has a quite steep learning curve for new programmers. In comparison to the other languages in context, corresponding code in Eolang takes consumes more lines \textbf{(LOC)}. Eolang has low efficiency in terms of \textbf{memory consumption} and \textbf{compilation speed}. Thus, Eolang consumes a lot of resources, and increasing becomes complex as the code base gets large. These plus to the weaknesses of the language.
 
@@ -2501,7 +2502,7 @@ Provides an interface for creating families of interconnected or interdependent 
     sprintf
       "ProductA: %s\nProductB: %s\n"
       objFactory.createProductA
-      objFactory.createProductB 
+      objFactory.createProductB
 
 \end{ffcode}
 \textbf{Output}
@@ -2532,7 +2533,7 @@ Singleton \ff{Singleton}:
 \end{enumerate}
 
 \subsubsection{Relations}
-Clients access an instance of the \ff{Singleton} class only through its \ff{Instance} operation. 
+Clients access an instance of the \ff{Singleton} class only through its \ff{Instance} operation.
 
 \subsubsection{Implementation}
 There are no classes in the EO, so this pattern is not implemented in its pure form. If we define \ff{Singleton} in  terms  of  EO as an object that is guaranteed to have only one copy, then the implementation of this object is also impossible for the following reasons:
@@ -2648,7 +2649,7 @@ A request initiated by a client is moved along the chain until some \ff{Concrete
     sprintf
       "%s\n"
       hChain.process
-        args.at 0 
+        args.at 0
 \end{ffcode}
 \textbf{Output}
 \begin{ffcode}
@@ -2690,7 +2691,7 @@ The Null Object Pattern is one of the behavioral design patterns.
 Null object pattern is used to replace check of \ff{NULL} object instance to simplify the use of dependencies that can be undefined.
 
 \subsubsection{Problem}
-In Null Object pattern, a \ff{null} object replaces check of NULL object instance. Instead of putting if check for a \ff{null} value, Null Object reflects a do-nothing relationship. Such Null Object can also be used to provide default behaviour in case data is not available. The concept of \ff{null} objects comes from the idea that some methods return \ff{null} instead of real objects and may lead to having many checks for \ff{null} in your code. 
+In Null Object pattern, a \ff{null} object replaces check of NULL object instance. Instead of putting if check for a \ff{null} value, Null Object reflects a do-nothing relationship. Such Null Object can also be used to provide default behaviour in case data is not available. The concept of \ff{null} objects comes from the idea that some methods return \ff{null} instead of real objects and may lead to having many checks for \ff{null} in your code.
 
 In Java and C++, the key to the Null Object pattern is an abstract class that defines the interface for all objects of this type. The Null Object is implemented as a subclass of this abstract class. Because it conforms to the interface of an abstract class, it can be used any place this type of object is needed. Null Object should not have any state.
 
@@ -2713,7 +2714,7 @@ In Eolang, the concept of \ff{null} does not exist as every object is meant to d
       if.
         (list args).is-empty
         null
-        args.at 0 
+        args.at 0
 \end{ffcode}
 \textbf{Output:}
 \begin{ffcode}
@@ -2777,7 +2778,7 @@ Suppose, we have a class with a variety of input parameters. The input parameter
 The Builder pattern may be considered a universal solution to the problem. The pattern defines the Builder class, which has methods (stages) for building objects. The user code can call the stages in any order, omitting some of them (optional configurations). Also, the Builder class may check that all the required parameters are set up. At the end of construction, user code is required to call a method that finishes the construction process and returns a ready-made object. The pattern encapsulates the creational sensitive logic inside the Builder class and makes the configuration process manageable to the user code.
 
 \subsubsection{Code Instances Involved}
-\ff{Builder} is an abstract class that defines the contract of the creational steps of Products for its successors (concrete builders). Also, the \ff{Builder} superclass defines the finizaliotion method. 
+\ff{Builder} is an abstract class that defines the contract of the creational steps of Products for its successors (concrete builders). Also, the \ff{Builder} superclass defines the finizaliotion method.
 Product is an interface for products (instances being created and configured through the Builder pattern). The interface defines the contract for all products so that these may be managed by Builders.
 (optional) Director is a class, which defines higher-level (that is, higher than the level of "understanding" of the builder itself, for example, rules for mandatory fields and compliance with business logic) scripts for building objects. The director can be used to reuse some high-level business logic for constructing objects based on various builder implementations.
 
@@ -2812,7 +2813,7 @@ First, we should mention that the problem solved by the Builder pattern may be a
     "My Triangle":name
   triangle > triangleNamed
     "My Another Triangle":name
-    
+
 \end{ffcode}
 
 Here, we have the \ff{triangle} object with input attributes \ff{a}, \ff{b}, \ff{c}, and \ff{name}. The \ff{triangle} object has two bound attributes: \ff{perimeter} (which relies on \ff{a}, \ff{b}, and \ff{c}) and \ff{toString} (which relies on \ff{name}). Object app demonstrates the partial application mechanism. So, \ff{triangleA} has only the a attribute bound, \ff{triangleABC} has all the sides (\ff{a}, \ff{b}, \ff{c}) sat up, \ff{triangleABCNamed} has all the sides and its name configured, and \ff{triangleNamed} has the name only. All three triangles are constructed through partial application (meaning, some of the attributes are left unbound or were bound after). The above example demonstrates an alternative solution to the problem of optional configuration of objects. However, this solution does not encapsulate the creation process of objects. Hence, the Builder pattern still may have its place in the EO environment.
@@ -2901,14 +2902,14 @@ The pattern addresses the problem of extending the architecture of an applicatio
 \end{enumerate}
 
 \subsubsection{Code Instances Involved}
-\ff{Creator} is an abstract class that defines the contract of the reutilized steps (here, it is \ff{someOperation}) and the creational step (\ff{createProduct}) of Products for its successors (concrete creators). 
+\ff{Creator} is an abstract class that defines the contract of the reutilized steps (here, it is \ff{someOperation}) and the creational step (\ff{createProduct}) of Products for its successors (concrete creators).
 Product is an interface for products (instances being created and configured through the Factory Method pattern). The interface defines the contract for all products so that these may be managed by the pattern.
 
 \subsubsection{Relation}
-Implementations of the \ff{Product} interface are products. Inheritors of the \ff{Creator} class provide concrete implementations for the creational method and inherit the rest methods. The concrete implementation of the creational method may return different implementations of \ff{Product}, which implies the substitution of logic (or configurability of the application). 
+Implementations of the \ff{Product} interface are products. Inheritors of the \ff{Creator} class provide concrete implementations for the creational method and inherit the rest methods. The concrete implementation of the creational method may return different implementations of \ff{Product}, which implies the substitution of logic (or configurability of the application).
 
 \subsubsection{Implementation}
-The EO programming language does not have interfaces, classes, and types. Because of it, we may omit defining the \ff{Product} interface contract (since it would not impose any requirements). Consider the following implementation of the pattern in EO: 
+The EO programming language does not have interfaces, classes, and types. Because of it, we may omit defining the \ff{Product} interface contract (since it would not impose any requirements). Consider the following implementation of the pattern in EO:
 
 \catcode`\#=12\relax
 \tbd{
@@ -2946,9 +2947,9 @@ The EO programming language does not have interfaces, classes, and types. Becaus
           24 > @
 \end{ffcode}
 
-Here, we have the creator object with the \ff{performOperation} attribute (the logic to be reused) and the \ff{createObject} attribute (the logic to be redefined for flexible substitution of objects). The \ff{concreteCreatorA} and \ff{concreteCreatorB} objects have the creator object as their decoratee, so that these might inherit the reusable logic. Both objects define the \ff{createObject} attribute that hides the original attribute of the same name from the decoration hierarchy. Objects \ff{productA} and \ff{productB} implement the attribute of interest (\ff{getWeight}) differently. One of them may at the value from the production server, while another takes it from the testing environment. This example demonstrates the implementation of the classic version of the pattern in EO. 
+Here, we have the creator object with the \ff{performOperation} attribute (the logic to be reused) and the \ff{createObject} attribute (the logic to be redefined for flexible substitution of objects). The \ff{concreteCreatorA} and \ff{concreteCreatorB} objects have the creator object as their decoratee, so that these might inherit the reusable logic. Both objects define the \ff{createObject} attribute that hides the original attribute of the same name from the decoration hierarchy. Objects \ff{productA} and \ff{productB} implement the attribute of interest (\ff{getWeight}) differently. One of them may at the value from the production server, while another takes it from the testing environment. This example demonstrates the implementation of the classic version of the pattern in EO.
 
-However, we may consider a more EO-idiomatic example, free from additional structures (concrete creators) utilized in statically typed class-based object-oriented languages such as Java or C++. Consider the following example: 
+However, we may consider a more EO-idiomatic example, free from additional structures (concrete creators) utilized in statically typed class-based object-oriented languages such as Java or C++. Consider the following example:
 
 \begin{ffcode}
 [concreteCreator] > creator
@@ -3009,7 +3010,7 @@ console.log(add5(2));  // 7
 console.log(add10(2)); // 12
 \end{ffcode}
 
-Here, we have the \ff{makeAdder} function that returns an anonymous function capturing its outer state \ff{x}. The state is then utilized when the returned function is applied with its own parameter \ff{y}. In other words, the inner anonymous function remembers the value of \ff{x} and uses it even when the actual value disappeared from the stack. This technique may be useful to emulate access modificators in functional languages: 
+Here, we have the \ff{makeAdder} function that returns an anonymous function capturing its outer state \ff{x}. The state is then utilized when the returned function is applied with its own parameter \ff{y}. In other words, the inner anonymous function remembers the value of \ff{x} and uses it even when the actual value disappeared from the stack. This technique may be useful to emulate access modificators in functional languages:
 
 \begin{ffcode}
 var counter = (function() {
@@ -3043,7 +3044,7 @@ counter.decrement();
 console.log(counter.value());  // 1.
 \end{ffcode}
 
-Here, the outer function \ff{counter} returns a complex object-like structure containing functions that capture the state of the \ff{counter} function. The state of the \ff{counter} function is also complex: it has a mutable local variable \ff{privateCounter}, and the \ff{changeBy} function that mutates the value in the unified manner. The user code may not access the value and the mutating functions directly: both of them disappeared from the stack. However, the closures returned by the outer function still may do it. Hence, the technique allows functional programmers to simulate private state. 
+Here, the outer function \ff{counter} returns a complex object-like structure containing functions that capture the state of the \ff{counter} function. The state of the \ff{counter} function is also complex: it has a mutable local variable \ff{privateCounter}, and the \ff{changeBy} function that mutates the value in the unified manner. The user code may not access the value and the mutating functions directly: both of them disappeared from the stack. However, the closures returned by the outer function still may do it. Hence, the technique allows functional programmers to simulate private state.
 
 We surely may reproduce the similar technique of capturing the lexical scope in EO. Here is an example:
 \begin{ffcode}
