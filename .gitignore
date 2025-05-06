@@ -1,3 +1,6 @@
+_minted-book/
+.DS_Store
+.idea/
 *.aux
 *.fdb_latexmk
 *.fls
@@ -7,8 +10,5 @@
 *.swp
 *.synctex*
 *.toc
-.DS_Store
-.idea/
-_minted-book/
 book.pdf
 node_modules/
