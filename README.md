@@ -1,4 +1,5 @@
 #
+
 [![logo](assets/cactus.svg)](assets/cactus.svg)
 
 This is our book about [EO](https://www.eolang.org) programming language.
