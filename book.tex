@@ -133,7 +133,7 @@ declare \textit{meta} statements. Meta \ff{package} instructs the compiler to as
 \begin{ffcode}
 [args...] > app
 \end{ffcode}
-defines an \textit{abstract object} called \ff{app} with variable number of arguments referenced as \ff{args}. Square brackets (\ff{[]}) define \textit{free attributes} of an object. Free attributes of an object doesn't have any concrete values assigned to them. In this example attribute \ff{args} (used to pass command line arguments) doesn't contain any actual value. The \ff{> app} part bounds the object definition to name \ff{app}. \textit{Abstraction} is explained in more details in section \ref{sec:abstracion}. Lines:
+defines an \textit{abstract object} called \ff{app} with variable number of arguments referenced as \ff{args}. Square brackets (\ff{[]}) define \textit{free attributes} of an object. Free attributes of an object doesn't have any concrete values assigned to them. In this example attribute \ff{args} (used to pass command line arguments) doesn't contain any actual value. The \ff{> app} part bounds the object definition to name \ff{app}. \textit{Abstraction} is explained in more details in section \ref{sec:abstraction}. Lines:
 \begin{ffcode}
 stdout > @
   "Hello, world!\n"
@@ -375,7 +375,7 @@ object \ff{lst} is applied to \ff{filter-list} and result copies to \ff{new-lst}
         3
 
 \end{ffcode}
-defines object \ff{filter-list}. This object have one free attribute - an array to be filtered. This array must be a \ff{list} object in order to use attributes of \ff{list}. Attribute \ff{filtered} of \ff{list} has one free attribute. This free attribute is an \textit{anonymous abstract object} that itself has a free attribute. Anonymous abstract object work like regular abstract object, but it don't have a name. Therefore, it can be bound with free attributes of another abstract object, as in this example. More information about \textit{anonymous abstraction} in section \ref{subsec:anonymous-abstracion}.
+defines object \ff{filter-list}. This object have one free attribute - an array to be filtered. This array must be a \ff{list} object in order to use attributes of \ff{list}. Attribute \ff{filtered} of \ff{list} has one free attribute. This free attribute is an \textit{anonymous abstract object} that itself has a free attribute. Anonymous abstract object work like regular abstract object, but it don't have a name. Therefore, it can be bound with free attributes of another abstract object, as in this example. More information about \textit{anonymous abstraction} in section \ref{subsec:anonymous-abstraction}.
 
 So the \ff{filtered} attribute applies each element of the list to that anonymous abstract object.  If the result of this application is \ff{FALSE}, the element will be removed from the list. Eventually, the result will be a filtered list. In this example anonymous abstract object dataized as \ff{TRUE} if element of list is greater than \ff{3}. So the result will be a filtered list with only elements greater than \ff{3}.
 
@@ -575,7 +575,7 @@ An attribute is a pair of a name and a value, where a value of an attribute is a
 
 Binding is an operation of associating an attribute's value with some object. An attribute may be bound to some object only once.
 An attribute that is not bound to any object is named a free attribute. An attribute that has some object associated with its value is called a bound attribute.
-Free attributes may be declared through the object abstraction only. Binding may be performed either during object declaration using the bind (\ff{>}) operator (see the \ref{sec:abstracion} section for more information) or through object copying (see the \ref{sec:application} section for details).
+Free attributes may be declared through the object abstraction only. Binding may be performed either during object declaration using the bind (\ff{>}) operator (see the \ref{sec:abstraction} section for more information) or through object copying (see the \ref{sec:application} section for details).
 
 \subsection{Accessing Attributes. The Dot Notation}
 There are no access modifiers in the EO programming language. All attributes of all objects are publicly visible and accessible. To access attributes of objects, the dot notation is used. The dot notation can be used to retrieve values of attributes and not to bind attributes with objects.
@@ -624,7 +624,7 @@ Example
 Here \ff{^.magicNumber} refers to the \ff{parentObject} object's attribute and \ff{magicNumber} refers to \ff{childObject} object's attribute
 
 \subsection{The \texttt{\&} attribute}
-An instance of an abstact object (see the section \ref{sec:abstracion} section) may need to have access to the
+An instance of an abstact object (see the section \ref{sec:abstraction} section) may need to have access to the
 object where the abstract was defined. Here is an example of it:
 \begin{ffcode}
 [] > parentObject
@@ -635,12 +635,12 @@ object where the abstract was defined. Here is an example of it:
       [x]
         &.f.plus x > @
 \end{ffcode}
-The objects \ff{childObject1} and \ff{childObject2} has one free attribute \ff{f}. The object \ff{childObject2} decorates \ff{childObject1} to which an anonymous object (see \ref{subsec:anonymous-abstracion}) with one free attribute \ff{x} is applied. The anonymous inner abstract object has to get access to the attribute \ff{f} of \ff{childObject2}. However, \ff{^.f} won't work, because the parent of it is a copy of \ff{childObject1}, and the parent of \ff{childObject1} is the object \ff{parentObject}. Thus, there is no way to get access to \ff{childObject1.f} using parent attributes.
+The objects \ff{childObject1} and \ff{childObject2} has one free attribute \ff{f}. The object \ff{childObject2} decorates \ff{childObject1} to which an anonymous object (see \ref{subsec:anonymous-abstraction}) with one free attribute \ff{x} is applied. The anonymous inner abstract object has to get access to the attribute \ff{f} of \ff{childObject2}. However, \ff{^.f} won't work, because the parent of it is a copy of \ff{childObject1}, and the parent of \ff{childObject1} is the object \ff{parentObject}. Thus, there is no way to get access to \ff{childObject1.f} using parent attributes.
 
 The \textit{home} attribute \ff{&} helps here. Once an anonymous inner abstract object is created, its home attribute is set to the \ff{childObject2}. Its parent attribute \ff{^} is also set to the object \ff{childObject2}, but is later changed by the \ff{childObject1} when a copy of it is being made. However, the home attribute remains the same.
 
 \subsection{The \texttt{<} attribute}
-Each object has a special attribute \ff{<}, which is an integer refering to a unique identifier of an object in the entire runtime scope of a program. All of the following expressions are true:
+Each object has a special attribute \ff{<}, which is an integer referring to a unique identifier of an object in the entire runtime scope of a program. All of the following expressions are true:
 \begin{ffcode}
 TRUE.<.eq (TRUE.<)
 42.<.eq (42.<)
@@ -654,7 +654,7 @@ All of the following expressions are false:
 \end{ffcode}
 See \ref{subsubsec:comp-attrs} to find out about \ff{eq} attribute of \ff{int} type object.
 
-\section{Abstraction} \label{sec:abstracion}
+\section{Abstraction} \label{sec:abstraction}
 Abstraction is the operation of declaring a new object. Abstraction allows declaring both abstract and closed, anonymous and named objects.
 If we are to compare abstraction and application, we can conclude that abstraction allows broadening the field of concepts (objects) by declaring new objects. Application allows enriching the objects declared through abstraction by defining the actual links between the concepts.
 
@@ -674,7 +674,7 @@ The abstraction syntax includes the following elements:
     \item (\textit{optional}) The object may be declared as an atom (i.e., its implementation is made out of the EO language (for instance, in Java)) if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{/} qualifier (see \ref{subsec:"/"-qualifier}) is used (for example, \ff{/bool}).
 \end{enumerate}
 
-\subsection{Anonymous Abstraction} \label{subsec:anonymous-abstracion}
+\subsection{Anonymous Abstraction} \label{subsec:anonymous-abstraction}
 There are two types of anonymous abstraction: inline and plain multi-line. Here is example of plain multi-line anonymous abstraction:
 
 \begin{ffcode}
@@ -748,7 +748,7 @@ The application syntax is quite wide, so let's point out the constituents to per
         \item \textit{Containing one or more objects}. In this case, the listed objects will be bound to the free attributes of the applied object in their order of appearance.
         \item \textit{Containing one or more objects with names after each} (like \ff{1:a} \ff{5:b} \ff{9:c}). In this case, the listed objects will be bound to the corresponding free attributes of the applied object (see \ref{subsec:":"-qualifier}).
     \end{enumerate}
-    \item \label{item:2.4.1.3} (\textit{optiona}l) Binding to a name ( \ff{> myObject}).
+    \item \label{item:2.4.1.3} (\textit{optional}) Binding to a name ( \ff{> myObject}).
     \item (\textit{optional}) The object may be declared as constant (i.e., dataized only once), if the object is bound to a name (see \ref{item:2.3.1.3}). For this, the \ff{!} qualifier (see \ref{subsec:"!"-qualifier}) is used.
 \end{enumerate}
 
