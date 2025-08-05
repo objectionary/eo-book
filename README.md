@@ -1,6 +1,6 @@
 #
 
-[![logo](https://www.objectionary.com/cactus.svg)](https://www.objectionary.com/cactus.svg)
+[![logo](assets/cactus.png)](assets/cactus.png)
 
 This is our book about [EO](https://www.eolang.org) programming language.
 
