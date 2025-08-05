@@ -1,4 +1,6 @@
-<img alt="logo" src="https://www.objectionary.com/cactus.svg" height="100px" />
+#
+
+[![logo](assets/cactus.png)](assets/cactus.png)
 
 This is our book about [EO](https://www.eolang.org) programming language.
 
